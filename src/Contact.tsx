@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { personalInfo } from './data';
+import GoogleMeetScheduler from './components/GoogleMeetScheduler';
 
 export default function Contact() {
   const [mounted, setMounted] = useState(false);
@@ -97,43 +98,16 @@ export default function Contact() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="bg-[#111] border border-white/5 p-8 md:p-12 rounded-3xl h-full flex flex-col justify-center relative overflow-hidden"
+            className="flex flex-col justify-start"
           >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 blur-[100px] rounded-full"></div>
-            
-            <h2 className="text-3xl font-bold mb-4 relative z-10">Book a Consultation</h2>
-            <p className="text-white/60 mb-8 relative z-10 leading-relaxed font-light">
-              Schedule a 30-minute discovery call to discuss your industrial scaling challenges, AI workflow integration, or materials research needs.
-            </p>
-            
-            <div className="bg-[#050505] border border-white/10 rounded-2xl p-6 relative z-10 mb-8">
-               <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
-                  <div className="flex items-center gap-3 text-white/80 font-medium">
-                     <Calendar size={20} className="text-indigo-400" />
-                     <span>Discovery Call</span>
-                  </div>
-                  <span className="text-sm border border-white/10 px-3 py-1 rounded-full text-white/60">Free</span>
-               </div>
-               
-               <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3 text-white/60 text-sm">
-                     <Clock size={16} />
-                     <span>30 Minutes</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-white/60 text-sm">
-                     <MapPin size={16} />
-                     <span>Google Meet</span>
-                  </div>
-               </div>
+            <div className="mb-6">
+              <h2 className="text-3xl font-bold mb-2">Book a Consultation</h2>
+              <p className="text-white/60 leading-relaxed font-light text-sm">
+                Connect your Google Account to automatically book a 30-minute discovery call and generate an instant Google Meet link.
+              </p>
             </div>
             
-            <a href="https://calendly.com/arahmankhn" target="_blank" rel="noreferrer" className="w-full py-4 bg-indigo-600 text-white rounded-xl font-bold uppercase tracking-widest hover:bg-indigo-700 transition-colors flex items-center justify-center gap-3 relative z-10">
-              Schedule Now <ArrowUpRight size={18} />
-            </a>
-            
-            <p className="text-center text-xs text-white/30 tracking-widest uppercase mt-6 relative z-10">
-              Powered by Calendly
-            </p>
+            <GoogleMeetScheduler />
           </motion.div>
 
         </div>

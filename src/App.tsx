@@ -15,6 +15,10 @@ import {
 } from 'lucide-react';
 import { Routes, Route, Link } from 'react-router-dom';
 import Contact from './Contact';
+import GoogleMeetScheduler from './components/GoogleMeetScheduler';
+import BlogSection from './components/BlogSection';
+import AllPostsPage from './components/AllPostsPage';
+import BlogPostPage from './components/BlogPostPage';
 import { 
   personalInfo, 
   interests,
@@ -23,7 +27,6 @@ import {
   education, 
   projects,
   publications,
-  honors,
   additional
 } from './data';
 
@@ -99,6 +102,7 @@ const Home = () => {
             <a href="#about" className="hover:text-indigo-400 transition-colors">About</a>
             <a href="#experience" className="hover:text-indigo-400 transition-colors">Experience</a>
             <a href="#projects" className="hover:text-indigo-400 transition-colors">Projects</a>
+            <a href="#blog" className="hover:text-indigo-400 transition-colors">Blog</a>
             <Link to="/contact" className="px-5 py-2 bg-white text-black rounded-full hover:bg-gray-200 transition-colors font-bold tracking-widest">Consultancy</Link>
           </div>
         </nav>
@@ -334,8 +338,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Publications & Honors Grid */}
-      <section className="py-32 px-6 md:px-16 z-10 relative bg-[#050505]">
+      {/* Publications & Community Grid */}
+      <section className="py-24 px-6 md:px-16 z-10 relative bg-[#050505] border-b border-white/5">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24">
           
           <div>
@@ -354,27 +358,43 @@ const Home = () => {
 
           <div>
             <h3 className="text-4xl font-black tracking-tighter mb-12 flex items-center gap-4">
-              <MapPin size={36} className="text-indigo-400" /> Honors <span className="text-lg text-white/50 font-normal tracking-wide">& Leadership</span>
+              <MapPin size={36} className="text-indigo-400" /> Community <span className="text-lg text-white/50 font-normal tracking-wide">& Leadership</span>
             </h3>
             <div className="space-y-12 pl-4 md:pl-8 border-l border-white/10">
               <div>
-                 <h5 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-6">Awards & Testing</h5>
-                 <ul className="space-y-4">
-                   {honors.map((honor, i) => (
-                     <li key={i} className="text-sm md:text-base text-white/80 flex items-start gap-3">
-                        <span className="text-indigo-500 mt-1">✦</span> {honor}
-                     </li>
-                   ))}
-                 </ul>
-              </div>
-              <div className="pt-6 border-t border-white/5">
-                 <h5 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-6">Community & Service</h5>
-                 <p className="text-sm md:text-base text-white/80 leading-relaxed mb-6"><strong className="text-white">Leadership:</strong> {additional.leadership}</p>
-                 <p className="text-sm md:text-base text-white/80 leading-relaxed"><strong className="text-white">Memberships:</strong> {additional.memberships}</p>
+                 <h5 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-6">Service & Engagement</h5>
+                 <p className="text-sm md:text-base text-white/80 leading-relaxed mb-6">
+                   <strong className="text-white">Leadership:</strong> {additional.leadership}
+                 </p>
+                 <p className="text-sm md:text-base text-white/80 leading-relaxed">
+                   <strong className="text-white">Memberships:</strong> {additional.memberships}
+                 </p>
               </div>
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* Blog Showcase Section */}
+      <BlogSection />
+
+      {/* Google Meet Scheduling Section */}
+      <section id="schedule-meeting" className="py-32 px-6 md:px-16 z-10 relative bg-[#0a0a0a] border-b border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-3xl mb-16">
+            <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs uppercase tracking-widest text-indigo-300 mb-6 inline-block">
+              Google Workspace Integrated
+            </span>
+            <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-6">
+              Schedule a Consultation
+            </h2>
+            <p className="text-lg text-white/60 font-light leading-relaxed">
+              Book an appointment with Abdul Rahman. The integration will automatically generate a Google Meet video conference link and place it on both calendars.
+            </p>
+          </div>
+
+          <GoogleMeetScheduler />
         </div>
       </section>
 
@@ -398,6 +418,8 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/blog" element={<AllPostsPage />} />
+      <Route path="/blog/:slug" element={<BlogPostPage />} />
     </Routes>
   );
 }

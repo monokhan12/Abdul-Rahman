@@ -1,0 +1,43 @@
+{
+  "entities": {
+    "Post": {
+      "title": "BlogPost",
+      "description": "A blog post about metallurgy, AI, or materials engineering.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Title of the post" },
+        "slug": { "type": "string", "description": "Unique slug for URLs" },
+        "date": { "type": "string", "description": "Display date of the post" },
+        "summary": { "type": "string", "description": "Short description of the post content" },
+        "content": { "type": "string", "description": "Full markdown/HTML content" },
+        "category": { "type": "string", "description": "Scientific topic category" },
+        "author": { "type": "string", "description": "Author name" },
+        "createdAt": { "type": "object", "description": "Timestamp when created" },
+        "updatedAt": { "type": "object", "description": "Timestamp when last updated" }
+      },
+      "required": ["title", "slug", "date", "summary", "content", "category", "author", "createdAt"]
+    },
+    "Comment": {
+      "title": "BlogComment",
+      "description": "User comments on a specific blog post.",
+      "type": "object",
+      "properties": {
+        "postId": { "type": "string", "description": "ID of the associated post" },
+        "authorName": { "type": "string", "description": "Display name of the commenter" },
+        "content": { "type": "string", "description": "Comment content text" },
+        "createdAt": { "type": "object", "description": "Timestamp when added" }
+      },
+      "required": ["postId", "authorName", "content", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/posts/{postId}": {
+      "schema": "Post",
+      "description": "Collection of blog posts published on the portfolio."
+    },
+    "/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Flat collection of comments associated with blog posts."
+    }
+  }
+}

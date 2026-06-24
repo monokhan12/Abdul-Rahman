@@ -99,13 +99,6 @@ export const publications = [
   }
 ];
 
-export const honors = [
-  "National Merit Scholarship: Prime Minister's Award for Academic Excellence",
-  "Top Performer in National AI Application Development Challenge (2024)",
-  "Participant in MIT and UC Berkeley Informatics Hackathons",
-  "IELTS Academic: 6.5 (Overall)"
-];
-
 export const additional = {
   leadership: "Founder, 'UnNamed' School: Established a volunteer-led initiative providing basic literacy to child laborers.",
   memberships: "Registered Engineer, Pakistan Engineering Council (PEC); Member, Institute of Engineers Pakistan."
