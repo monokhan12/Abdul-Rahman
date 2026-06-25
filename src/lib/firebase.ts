@@ -24,10 +24,10 @@ export const auth = getAuth(app);
 // Test connection on boot according to guidelines
 async function testConnection() {
   try {
-    await getDocFromServer(doc(db, 'test', 'connection'));
+    await getDocFromServer(doc(db, 'posts', 'test-connection'));
   } catch (error) {
     if (error instanceof Error && error.message.includes('the client is offline')) {
-      console.error("Please check your Firebase configuration.");
+      console.warn("Please check your Firebase configuration if you are offline.");
     }
   }
 }
