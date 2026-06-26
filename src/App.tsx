@@ -19,6 +19,7 @@ import GoogleMeetScheduler from './components/GoogleMeetScheduler';
 import BlogSection from './components/BlogSection';
 import AllPostsPage from './components/AllPostsPage';
 import BlogPostPage from './components/BlogPostPage';
+import ThemeToggle from './components/ThemeToggle';
 import { 
   personalInfo, 
   interests,
@@ -415,11 +416,14 @@ const Home = () => {
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/blog" element={<AllPostsPage />} />
-      <Route path="/blog/:slug" element={<BlogPostPage />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/blog" element={<AllPostsPage />} />
+        <Route path="/blog/:slug" element={<BlogPostPage />} />
+      </Routes>
+      <ThemeToggle />
+    </>
   );
 }
