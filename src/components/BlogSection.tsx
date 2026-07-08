@@ -12,8 +12,8 @@ export default function BlogSection() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        // Seed default database posts if completely empty on load
-        await seedDefaultPostsIfEmpty();
+        // Seed default database posts in the background (non-blocking)
+        seedDefaultPostsIfEmpty();
         const data = await getBlogPosts();
         // Limit to 3 recent posts for the homepage section
         setPosts(data.slice(0, 3));

@@ -7,6 +7,7 @@ import {
   doc, 
   getDoc, 
   setDoc,
+  deleteDoc,
   query, 
   where, 
   orderBy, 
@@ -32,6 +33,17 @@ async function testConnection() {
   }
 }
 testConnection();
+
+// Timeout utility to prevent Firestore requests from hanging in sandboxed environments
+export const withTimeout = <T>(promise: Promise<T>, timeoutMs: number, fallbackValue: T): Promise<T> => {
+  return Promise.race([
+    promise,
+    new Promise<T>((resolve) => setTimeout(() => {
+      console.warn(`Firestore operation timed out after ${timeoutMs}ms. Using fallback.`);
+      resolve(fallbackValue);
+    }, timeoutMs))
+  ]);
+};
 
 // Types representing Blog Data
 export interface BlogPost {
@@ -95,6 +107,308 @@ export function handleFirestoreError(error: unknown, operationType: OperationTyp
 
 // Pre-seeded high-quality blog posts to show immediately when database is empty
 export const defaultBlogPosts: BlogPost[] = [
+  {
+    id: "pakistan-6-trillion-mineral-wealth",
+    title: "Pakistan's $6 Trillion Mineral Wealth: The Untapped Scientific Treasure That Could Transform the Nation",
+    slug: "pakistan-6-trillion-mineral-wealth",
+    date: "July 7, 2026",
+    summary: "Pakistan possesses an estimated $6 trillion in mineral wealth, including copper, gold, rare earth elements, coal, iron ore, gemstones, and industrial minerals. Discover the science behind these resources.",
+    category: "Physical Metallurgy",
+    author: "Abdul Rahman",
+    createdAt: new Date("2026-07-07T10:00:00Z"),
+    content: `
+![The Mineral Map of Pakistan](/src/assets/images/pakistan_mineral_map_1783445793899.jpg)
+
+# Pakistan Is Sitting on a $6 Trillion Treasure—Why Is It Still Struggling?
+
+Imagine owning one of the world's richest underground treasure chests but never finding the key to unlock it.
+
+This is the story of Pakistan.
+
+Beneath its mountains, deserts, river plains, and ancient volcanic rocks lies an extraordinary collection of natural resources. Massive deposits of copper, gold, coal, chromite, iron ore, gemstones, industrial minerals, and emerging critical minerals could place Pakistan among the world's leading mineral-producing nations.
+
+Economists estimate that the country's underground mineral resources may exceed **$6 trillion** in value. Yet, despite this enormous wealth, mining contributes only **2–3% of Pakistan's Gross Domestic Product (GDP)**.
+
+This contradiction raises an important question:
+
+> **How can a country so rich in minerals remain economically constrained?**
+
+The answer lies far beyond geology.
+
+It involves science, governance, economics, engineering, environmental sustainability, technological innovation, and long-term national planning.
+
+Today, the global economy is entering an era defined by **electric vehicles**, **renewable energy**, **artificial intelligence**, and **advanced manufacturing**. Every one of these industries depends heavily on critical minerals such as copper, lithium, nickel, cobalt, graphite, and rare earth elements.
+
+Countries are now competing to secure stable mineral supplies.
+
+Pakistan has the geological potential to become an important contributor to this global transition—but only if it can transform underground wealth into sustainable economic development.
+
+---
+
+## Key Takeaways
+
+✔ Pakistan possesses approximately **92 identified minerals**, with more than **52 currently being mined commercially**.
+
+✔ The estimated value of Pakistan's natural resources exceeds **$6 trillion**.
+
+✔ The country hosts one of the world's largest undeveloped copper-gold deposits at **Reko Diq**.
+
+✔ The **Thar Coalfield** contains around **175 billion tonnes of lignite**, ranking among the world's largest coal reserves.
+
+✔ Pakistan's mining industry contributes only **2–3% of GDP**, far below its actual potential.
+
+✔ More than **90% of mineral exports leave the country with minimal processing**, resulting in substantial economic losses.
+
+✔ Strong institutions, modern technology, environmental stewardship, and value-added industries are essential for converting mineral wealth into national prosperity.
+
+---
+
+# Why Minerals Matter More Than Ever
+
+Minerals are no longer simply materials extracted from the ground.
+
+They have become the foundation of the modern technological world.
+
+Every smartphone contains over **60 different chemical elements**.
+
+Every electric vehicle requires approximately four times more mineral resources than conventional automobiles.
+
+Modern wind turbines consume enormous quantities of copper, rare earth magnets, and specialty alloys.
+
+Solar panels rely on silicon, silver, aluminum, and various specialty metals.
+
+Even artificial intelligence data centers depend upon vast quantities of copper wiring and advanced materials.
+
+The global shift toward clean energy has triggered what experts describe as the **Critical Minerals Race**.
+
+According to international energy forecasts, demand for several strategic minerals is expected to increase multiple times during the coming decades.
+
+Countries that possess these resources—and develop them responsibly—could become major beneficiaries of the global green economy.
+
+Pakistan is one of those countries.
+
+---
+
+# The Geological Story Behind Pakistan's Mineral Wealth
+
+Many people assume mineral deposits occur randomly.
+
+In reality, mineral formation is the result of geological processes occurring over hundreds of millions of years.
+
+Pakistan occupies one of Earth's most geologically fascinating regions.
+
+The country lies where the **Indian Plate** continues to collide with the **Eurasian Plate**.
+
+This ongoing collision created the majestic Himalayas while simultaneously generating intense geological activity beneath the surface.
+
+These tectonic forces produced:
+
+* volcanic arcs
+* mountain-building events
+* hydrothermal systems
+* sedimentary basins
+* metamorphic rocks
+
+Each geological environment generated different mineral deposits.
+
+---
+
+## Why Pakistan Is Naturally Rich in Minerals
+
+Pakistan contains several distinct geological provinces.
+
+Each possesses unique mineral resources.
+
+### 1. Chagai Magmatic Arc (Balochistan)
+
+This ancient volcanic belt hosts world-class deposits of:
+
+* Copper
+* Gold
+* Molybdenum
+* Silver
+* Porphyry mineral systems
+
+The internationally renowned **Reko Diq** and **Saindak** deposits formed within this geological setting.
+
+---
+
+### 2. Salt Range (Punjab)
+
+Millions of years ago, an ancient inland sea evaporated repeatedly.
+
+These evaporation cycles deposited enormous quantities of salt and gypsum.
+
+Today, this region contains:
+
+* Rock salt
+* Gypsum
+* Limestone
+* Coal
+
+The famous **Khewra Salt Mine** is one of the largest salt mines in the world.
+
+---
+
+### 3. Thar Desert Basin (Sindh)
+
+Unlike metallic mineral deposits, the Thar Basin formed from ancient forests buried beneath sediments over tens of millions of years.
+
+Pressure and heat gradually transformed plant material into lignite coal.
+
+The result is one of the world's largest coalfields.
+
+---
+
+### 4. Northern Mountain Belts
+
+The collision of continental plates generated ideal conditions for gemstones.
+
+Pakistan's northern mountains produce internationally recognized:
+
+* Emeralds
+* Rubies
+* Aquamarine
+* Tourmaline
+* Topaz
+
+Many gemologists regard these among the finest gemstones available globally.
+
+![Valuable Mineral Specimen Samples of Pakistan](/src/assets/images/mineral_samples_1783445814400.jpg)
+
+# Pakistan's Most Valuable Mineral Resources
+
+Pakistan possesses a remarkable diversity of mineral resources, ranging from precious metals to industrial minerals that support infrastructure, manufacturing, agriculture, and renewable energy.
+
+These resources can broadly be divided into five major categories.
+
+---
+
+## 1. Precious Metals
+
+Precious metals have historically symbolized wealth and continue to play a critical role in investment, electronics, aerospace, and advanced manufacturing.
+
+Pakistan's most valuable precious metals include:
+
+* Gold
+* Silver
+
+Most gold occurs alongside copper deposits within porphyry systems such as Reko Diq and Saindak.
+
+---
+
+## 2. Base Metals
+
+Base metals form the backbone of modern civilization.
+
+Copper carries electricity.
+
+Iron builds cities.
+
+Lead and zinc protect infrastructure from corrosion.
+
+Pakistan possesses economically significant deposits of:
+
+* Copper
+* Iron ore
+* Lead
+* Zinc
+* Chromite
+* Antimony
+
+These minerals are essential for electric vehicles, renewable energy systems, electronics, and construction.
+
+---
+
+## 3. Industrial Minerals
+
+Industrial minerals may receive less public attention than gold, but they contribute far more to everyday life.
+
+Pakistan possesses extensive reserves of:
+
+* Limestone
+* Gypsum
+* Marble
+* Granite
+* Barite
+* Silica sand
+* China clay
+* Rock phosphate
+
+These materials are indispensable for producing:
+
+* Cement
+* Glass
+* Fertilizers
+* Ceramics
+* Paint
+* Pharmaceuticals
+* Construction materials
+
+---
+
+## 4. Energy Minerals
+
+Energy security remains one of Pakistan's greatest economic challenges.
+
+Fortunately, the country contains substantial energy resources including:
+
+* Coal
+* Natural gas
+* Petroleum
+* Uranium
+
+Among these, the Thar Coalfield represents the largest known energy reserve.
+
+---
+
+## 5. Critical Minerals
+
+Perhaps the most exciting opportunity lies in critical minerals.
+
+These materials power the global transition toward clean energy.
+
+Critical minerals include:
+
+* Rare earth elements
+* Antimony
+* Copper
+* Graphite
+* Nickel
+* Lithium (under exploration)
+
+These resources are rapidly becoming strategic assets as nations compete to build batteries, wind turbines, electric vehicles, robotics, semiconductors, and advanced defense technologies.
+
+---
+
+# Why the World Is Suddenly Interested in Pakistan
+
+For decades, Pakistan's mining sector attracted relatively modest international attention.
+
+Today, the situation has changed dramatically.
+
+The rapid expansion of electric vehicles, renewable energy infrastructure, artificial intelligence, and modern defense systems has created an unprecedented demand for critical minerals.
+
+Governments and multinational companies are actively searching for reliable sources of copper, rare earth elements, gold, and other strategic materials.
+
+Pakistan's geological potential has therefore become increasingly significant—not only for its own economic development but also for global supply chains seeking to diversify beyond traditional mineral-producing regions.
+
+---
+
+## Coming Up in Part 2
+
+In the next section, we'll examine:
+
+* Pakistan's richest mineral deposits province by province
+* The science behind copper, gold, coal, chromite, gemstones, and rare earth elements
+* A comprehensive comparison table of major mineral reserves
+* The economic value of each resource
+* Why Balochistan is considered Pakistan's mineral powerhouse
+* Exclusive infographics and geological maps
+
+The next part will continue seamlessly from here, maintaining the same publication-quality style.
+`
+  },
   {
     id: "alloy-optimization-ml",
     title: "Accelerating Alloy Discovery with Bayesian Optimization",
@@ -219,22 +533,33 @@ By shielding researchers from tedious searching and presenting synthesized, cita
   }
 ];
 
-// Seed default posts to Firestore if none exist (for seamless startup)
+// Seed default posts to Firestore if none exist or any are missing (for seamless startup and updates)
 export const seedDefaultPostsIfEmpty = async () => {
   try {
     const postsRef = collection(db, 'posts');
-    const postsSnapshot = await getDocs(postsRef);
-    if (postsSnapshot.empty) {
-      console.log('Seeding default blog posts...');
-      for (const post of defaultBlogPosts) {
-        const { id, ...postData } = post;
-        const postDocRef = doc(db, 'posts', id || post.slug);
-        await setDoc(postDocRef, {
-          ...postData,
-          createdAt: Timestamp.fromDate(new Date(post.createdAt))
-        });
-      }
-      console.log('Default blog posts seeded successfully.');
+    const postsSnapshotPromise = getDocs(postsRef);
+    const postsSnapshot = await withTimeout(postsSnapshotPromise, 1500, null);
+    
+    if (!postsSnapshot) {
+      console.warn("Skipping seeding because Firestore query timed out.");
+      return;
+    }
+    const existingSlugs = new Set(postsSnapshot.docs.map(doc => doc.id));
+    
+    let seededCount = 0;
+    for (const post of defaultBlogPosts) {
+      const docId = post.id || post.slug;
+      // Overwrite default posts to ensure they have the latest rich images and text!
+      const { id, ...postData } = post;
+      const postDocRef = doc(db, 'posts', docId);
+      await setDoc(postDocRef, {
+        ...postData,
+        createdAt: Timestamp.fromDate(new Date(post.createdAt))
+      });
+      seededCount++;
+    }
+    if (seededCount > 0) {
+      console.log(`Synced ${seededCount} default blog posts to Firestore successfully.`);
     }
   } catch (error) {
     console.error('Failed to seed default posts:', error);
@@ -246,28 +571,39 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
   const postsPath = 'posts';
   try {
     const q = query(collection(db, postsPath), orderBy('createdAt', 'desc'));
-    const snapshot = await getDocs(q);
-    
-    if (snapshot.empty) {
-      // Return default blog posts if Firestore is completely empty
-      return defaultBlogPosts;
-    }
+    const fetchPromise = getDocs(q).then((snapshot) => {
+      if (snapshot.empty) {
+        // Return default blog posts if Firestore is completely empty
+        return defaultBlogPosts;
+      }
 
-    return snapshot.docs.map(doc => {
-      const data = doc.data();
-      return {
-        id: doc.id,
-        title: data.title,
-        slug: data.slug,
-        date: data.date,
-        summary: data.summary,
-        content: data.content,
-        category: data.category,
-        author: data.author,
-        createdAt: data.createdAt instanceof Timestamp ? data.createdAt.toDate() : new Date(data.createdAt),
-        updatedAt: data.updatedAt instanceof Timestamp ? data.updatedAt.toDate() : data.updatedAt
-      } as BlogPost;
+      const mapped = snapshot.docs.map(doc => {
+        const data = doc.data();
+        if (!data || !data.title || !data.slug) {
+          console.warn(`Ignoring invalid document in posts collection with ID: ${doc.id}`);
+          return null;
+        }
+        return {
+          id: doc.id,
+          title: data.title || '',
+          slug: data.slug || '',
+          date: data.date || '',
+          summary: data.summary || '',
+          content: data.content || '',
+          category: data.category || 'General',
+          author: data.author || 'Abdul Rahman',
+          createdAt: data.createdAt instanceof Timestamp ? data.createdAt.toDate() : (data.createdAt ? new Date(data.createdAt) : new Date()),
+          updatedAt: data.updatedAt instanceof Timestamp ? data.updatedAt.toDate() : (data.updatedAt ? new Date(data.updatedAt) : undefined)
+        } as BlogPost;
+      }).filter((p): p is BlogPost => p !== null);
+
+      if (mapped.length === 0) {
+        return defaultBlogPosts;
+      }
+      return mapped;
     });
+
+    return await withTimeout(fetchPromise, 2000, defaultBlogPosts);
   } catch (error) {
     // If we hit permission issues or unconfigured Firestore errors, gracefully fallback to default seeded data!
     console.warn('Firestore fetch failed, falling back to static default posts:', error);
@@ -280,28 +616,34 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
   const postsPath = 'posts';
   try {
     const q = query(collection(db, postsPath), where('slug', '==', slug));
-    const snapshot = await getDocs(q);
-    
-    if (snapshot.empty) {
-      // Search in default static blog posts
-      const staticPost = defaultBlogPosts.find(p => p.slug === slug);
-      return staticPost || null;
-    }
+    const fetchPromise = getDocs(q).then((snapshot) => {
+      if (snapshot.empty) {
+        // Search in default static blog posts
+        const staticPost = defaultBlogPosts.find(p => p.slug === slug);
+        return staticPost || null;
+      }
 
-    const docSnap = snapshot.docs[0];
-    const data = docSnap.data();
-    return {
-      id: docSnap.id,
-      title: data.title,
-      slug: data.slug,
-      date: data.date,
-      summary: data.summary,
-      content: data.content,
-      category: data.category,
-      author: data.author,
-      createdAt: data.createdAt instanceof Timestamp ? data.createdAt.toDate() : new Date(data.createdAt),
-      updatedAt: data.updatedAt instanceof Timestamp ? data.updatedAt.toDate() : data.updatedAt
-    } as BlogPost;
+      const docSnap = snapshot.docs[0];
+      const data = docSnap.data();
+      if (!data || !data.title || !data.slug) {
+        const staticPost = defaultBlogPosts.find(p => p.slug === slug);
+        return staticPost || null;
+      }
+      return {
+        id: docSnap.id,
+        title: data.title || '',
+        slug: data.slug || '',
+        date: data.date || '',
+        summary: data.summary || '',
+        content: data.content || '',
+        category: data.category || 'General',
+        author: data.author || 'Abdul Rahman',
+        createdAt: data.createdAt instanceof Timestamp ? data.createdAt.toDate() : (data.createdAt ? new Date(data.createdAt) : new Date()),
+        updatedAt: data.updatedAt instanceof Timestamp ? data.updatedAt.toDate() : (data.updatedAt ? new Date(data.updatedAt) : undefined)
+      } as BlogPost;
+    });
+
+    return await withTimeout(fetchPromise, 2000, defaultBlogPosts.find(p => p.slug === slug) || null);
   } catch (error) {
     console.warn(`Firestore slug fetch failed, checking static: ${slug}`, error);
     const staticPost = defaultBlogPosts.find(p => p.slug === slug);
@@ -323,6 +665,43 @@ export const createBlogPost = async (post: Omit<BlogPost, 'id' | 'createdAt'>): 
     return docId;
   } catch (error) {
     handleFirestoreError(error, OperationType.WRITE, `${postsPath}/${post.slug}`);
+    throw error;
+  }
+};
+
+// Update an existing blog post (Admin only)
+export const updateBlogPost = async (slug: string, post: Partial<BlogPost>): Promise<void> => {
+  const postsPath = 'posts';
+  try {
+    const postData = {
+      ...post,
+      updatedAt: Timestamp.now()
+    };
+    await setDoc(doc(db, postsPath, slug), postData, { merge: true });
+  } catch (error) {
+    handleFirestoreError(error, OperationType.WRITE, `${postsPath}/${slug}`);
+    throw error;
+  }
+};
+
+// Delete a blog post (Admin only)
+export const deleteBlogPost = async (slug: string): Promise<void> => {
+  const postsPath = 'posts';
+  try {
+    await deleteDoc(doc(db, postsPath, slug));
+  } catch (error) {
+    handleFirestoreError(error, OperationType.DELETE, `${postsPath}/${slug}`);
+    throw error;
+  }
+};
+
+// Delete a comment (Admin only)
+export const deleteComment = async (commentId: string): Promise<void> => {
+  const commentsPath = 'comments';
+  try {
+    await deleteDoc(doc(db, commentsPath, commentId));
+  } catch (error) {
+    handleFirestoreError(error, OperationType.DELETE, `${commentsPath}/${commentId}`);
     throw error;
   }
 };
@@ -349,6 +728,31 @@ export const getComments = async (postId: string): Promise<BlogComment[]> => {
     });
   } catch (error) {
     console.warn('Comments query failed, returning empty list:', error);
+    return [];
+  }
+};
+
+// Fetch ALL comments for administrative moderation
+export const getAllComments = async (): Promise<BlogComment[]> => {
+  const commentsPath = 'comments';
+  try {
+    const q = query(
+      collection(db, commentsPath),
+      orderBy('createdAt', 'desc')
+    );
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map(doc => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        postId: data.postId,
+        authorName: data.authorName,
+        content: data.content,
+        createdAt: data.createdAt instanceof Timestamp ? data.createdAt.toDate() : new Date(data.createdAt)
+      } as BlogComment;
+    });
+  } catch (error) {
+    console.warn('All comments query failed, returning empty list:', error);
     return [];
   }
 };

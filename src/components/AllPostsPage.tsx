@@ -14,7 +14,8 @@ import {
   Lock,
   User,
   Shield,
-  Eye
+  Eye,
+  Settings
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { 
@@ -82,7 +83,7 @@ export default function AllPostsPage() {
     setLoading(true);
     setError(null);
     try {
-      await seedDefaultPostsIfEmpty();
+      seedDefaultPostsIfEmpty();
       const data = await getBlogPosts();
       setPosts(data);
     } catch (err: any) {
@@ -239,20 +240,29 @@ export default function AllPostsPage() {
 
             {/* Quick Admin sign-in / toggle */}
             {isAdmin ? (
-              <button
-                onClick={() => setShowAddModal(true)}
-                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-2 cursor-pointer transition-transform hover:scale-[1.02]"
-              >
-                <Plus size={14} /> New Post
-              </button>
+              <div className="flex gap-2">
+                <Link
+                  to="/admin/dashboard"
+                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-2 cursor-pointer transition-transform hover:scale-[1.02]"
+                  title="WP CMS Dashboard"
+                >
+                  <Settings size={14} /> WP Core CMS
+                </Link>
+                <button
+                  onClick={() => setShowAddModal(true)}
+                  className="px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-2 cursor-pointer transition-transform hover:scale-[1.02]"
+                >
+                  <Plus size={14} /> Quick Post
+                </button>
+              </div>
             ) : (
-              <button 
-                onClick={handleGoogleLogin}
+              <Link 
+                to="/admin/login"
                 className="px-3.5 py-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white/50 hover:text-white rounded-xl text-[10px] uppercase font-bold tracking-wider flex items-center gap-1.5 cursor-pointer transition-colors"
                 title="Author Login"
               >
-                <Lock size={10} /> Author Log
-              </button>
+                <Lock size={10} /> Publisher Login
+              </Link>
             )}
           </div>
         </div>
@@ -264,12 +274,20 @@ export default function AllPostsPage() {
               <Shield size={16} />
               <span>Logged in as Admin (<strong className="text-white">{user?.email}</strong>). You can now publish and manage articles.</span>
             </div>
-            <button
-              onClick={() => setShowAddModal(true)}
-              className="text-xs font-bold uppercase text-indigo-300 hover:text-indigo-200 border-b border-indigo-300 pb-0.5 tracking-wider cursor-pointer"
-            >
-              Open Writer
-            </button>
+            <div className="flex gap-4">
+              <Link
+                to="/admin/dashboard"
+                className="text-xs font-bold uppercase text-indigo-300 hover:text-indigo-200 border-b border-indigo-300 pb-0.5 tracking-wider cursor-pointer"
+              >
+                WordPress Dashboard
+              </Link>
+              <button
+                onClick={() => setShowAddModal(true)}
+                className="text-xs font-bold uppercase text-indigo-300 hover:text-indigo-200 border-b border-indigo-300 pb-0.5 tracking-wider cursor-pointer"
+              >
+                Quick Writer
+              </button>
+            </div>
           </div>
         )}
 

@@ -30,10 +30,49 @@ const renderMarkdown = (text: string) => {
   if (!text) return null;
   
   return text.split('\n').map((line, index) => {
+    // Images
+    if (line.trim().startsWith('![') && line.trim().endsWith(')')) {
+      const match = line.trim().match(/^!\[(.*?)\]\((.*?)\)$/);
+      if (match) {
+        const alt = match[1];
+        const src = match[2];
+        return (
+          <div key={index} className="my-8 rounded-3xl overflow-hidden border border-white/10 bg-white/5 p-2">
+            <img 
+              src={src} 
+              alt={alt} 
+              referrerPolicy="no-referrer" 
+              className="w-full h-auto rounded-2xl object-cover max-h-[500px]" 
+            />
+            {alt && (
+              <p className="text-center text-xs text-white/40 mt-3 font-mono">
+                {alt}
+              </p>
+            )}
+          </div>
+        );
+      }
+    }
+    // Heading 1
+    if (line.startsWith('# ')) {
+      return (
+        <h1 key={index} className="text-3xl md:text-4xl font-black mt-12 mb-6 text-white border-b-2 border-indigo-500/30 pb-3 tracking-tight">
+          {line.replace('# ', '')}
+        </h1>
+      );
+    }
+    // Heading 2
+    if (line.startsWith('## ')) {
+      return (
+        <h2 key={index} className="text-2xl md:text-3xl font-extrabold mt-10 mb-5 text-white/90 border-b border-white/10 pb-2 tracking-tight">
+          {line.replace('## ', '')}
+        </h2>
+      );
+    }
     // Heading 3
     if (line.startsWith('### ')) {
       return (
-        <h3 key={index} className="text-2xl font-bold mt-10 mb-4 text-white border-b border-white/5 pb-2 tracking-tight">
+        <h3 key={index} className="text-xl md:text-2xl font-bold mt-8 mb-4 text-white/80 tracking-tight">
           {line.replace('### ', '')}
         </h3>
       );

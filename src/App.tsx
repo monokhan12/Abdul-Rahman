@@ -13,13 +13,28 @@ import {
   Layers,
   ChevronDown
 } from 'lucide-react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import Contact from './Contact';
 import GoogleMeetScheduler from './components/GoogleMeetScheduler';
 import BlogSection from './components/BlogSection';
 import AllPostsPage from './components/AllPostsPage';
 import BlogPostPage from './components/BlogPostPage';
+import BlogAdminPage from './components/BlogAdminPage';
 import ThemeToggle from './components/ThemeToggle';
+import Footer from './components/Footer';
+
+// CMS Core Imports
+import CmsLogin from './components/CmsLogin';
+import CmsLayout from './components/CmsLayout';
+import ProtectedRoute from './components/ProtectedRoute';
+import { CmsErrorBoundary } from './components/CmsErrorPage';
+import CmsDashboard from './components/CmsDashboard';
+import UserProfile from './components/UserProfile';
+import CmsPosts from './components/CmsPosts';
+import CmsMedia from './components/CmsMedia';
+import CmsCategories from './components/CmsCategories';
+import CmsSettings from './components/CmsSettings';
+import { Toaster } from 'sonner';
 import { 
   personalInfo, 
   interests,
@@ -128,14 +143,6 @@ const Home = () => {
               {personalInfo.title} blending physical metallurgy with computational materials science & AI.
             </p>
             
-            <div className="flex gap-6 text-sm font-medium uppercase tracking-widest">
-              <a href={`https://${personalInfo.linkedin}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-indigo-400 transition-colors border-b border-white hover:border-indigo-400 pb-1">
-                LinkedIn <ArrowUpRight size={14} />
-              </a>
-              <a href={`https://${personalInfo.github}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-indigo-400 transition-colors border-b border-white hover:border-indigo-400 pb-1">
-                GitHub <ArrowUpRight size={14} />
-              </a>
-            </div>
           </motion.div>
         </motion.div>
         
@@ -399,17 +406,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-16 px-6 md:px-16 bg-[#020202] text-white border-t border-white/10 text-center md:text-left z-10 relative">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="text-3xl font-black tracking-tighter text-white">AR.</div>
-          <div className="flex flex-wrap justify-center md:justify-end gap-8 text-xs font-bold uppercase tracking-[0.2em] text-white/40">
-            <a href={`https://${personalInfo.linkedin}`} target="_blank" rel="noreferrer" className="hover:text-indigo-400 transition-colors">LinkedIn</a>
-            <a href={`https://${personalInfo.github}`} target="_blank" rel="noreferrer" className="hover:text-indigo-400 transition-colors">GitHub</a>
-            <Link to="/contact" className="hover:text-indigo-400 transition-colors">Contact Me</Link>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
@@ -417,12 +413,91 @@ const Home = () => {
 export default function App() {
   return (
     <>
+      <Toaster position="top-right" theme="dark" closeButton richColors />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/blog" element={<AllPostsPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
+        
+        {/* WordPress-Equivalent CMS Admin Panel Routes */}
+        <Route path="/admin/login" element={<CmsLogin />} />
+        
+        <Route path="/admin" element={
+          <ProtectedRoute>
+            <CmsErrorBoundary>
+              <CmsLayout>
+                <CmsDashboard />
+              </CmsLayout>
+            </CmsErrorBoundary>
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/admin/dashboard" element={
+          <ProtectedRoute>
+            <CmsErrorBoundary>
+              <CmsLayout>
+                <CmsDashboard />
+              </CmsLayout>
+            </CmsErrorBoundary>
+          </ProtectedRoute>
+        } />
+
+        <Route path="/admin/posts" element={
+          <ProtectedRoute>
+            <CmsErrorBoundary>
+              <CmsLayout>
+                <CmsPosts />
+              </CmsLayout>
+            </CmsErrorBoundary>
+          </ProtectedRoute>
+        } />
+
+        <Route path="/admin/media" element={
+          <ProtectedRoute>
+            <CmsErrorBoundary>
+              <CmsLayout>
+                <CmsMedia />
+              </CmsLayout>
+            </CmsErrorBoundary>
+          </ProtectedRoute>
+        } />
+
+        <Route path="/admin/categories" element={
+          <ProtectedRoute>
+            <CmsErrorBoundary>
+              <CmsLayout>
+                <CmsCategories />
+              </CmsLayout>
+            </CmsErrorBoundary>
+          </ProtectedRoute>
+        } />
+
+        <Route path="/admin/settings" element={
+          <ProtectedRoute>
+            <CmsErrorBoundary>
+              <CmsLayout>
+                <CmsSettings />
+              </CmsLayout>
+            </CmsErrorBoundary>
+          </ProtectedRoute>
+        } />
+
+        <Route path="/admin/profile" element={
+          <ProtectedRoute>
+            <CmsErrorBoundary>
+              <CmsLayout>
+                <UserProfile />
+              </CmsLayout>
+            </CmsErrorBoundary>
+          </ProtectedRoute>
+        } />
+
+        {/* Existing Fallback Admin Portals */}
+        <Route path="/blog/admin" element={<BlogAdminPage />} />
+        <Route path="/blog-admin" element={<BlogAdminPage />} />
       </Routes>
+      <Footer />
       <ThemeToggle />
     </>
   );

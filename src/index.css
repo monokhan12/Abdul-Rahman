@@ -50,7 +50,9 @@ html[data-theme="bright"] .bg-\[\#050505\],
 html[data-theme="bright"] .bg-\[\#111\],
 html[data-theme="bright"] .bg-\[\#0a0a0a\],
 html[data-theme="bright"] .bg-\[\#020202\],
+html[data-theme="bright"] .bg-\[\#030303\],
 html[data-theme="bright"] .bg-\[\#080808\],
+html[data-theme="bright"] #interactive-footer,
 html[data-theme="bright"] .bg-neutral-900 {
   background-color: #FFFFFF !important;
   color: #0F172A !important;

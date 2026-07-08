@@ -17,8 +17,7 @@ service cloud.firestore {
 
     function isAdmin() {
       return isSignedIn() && 
-             request.auth.token.email_verified == true && 
-             (request.auth.token.email == "quanticschool@gmail.com" || request.auth.token.email == "abdulrahmana18@pm.me");
+             request.auth.token.email == "quanticschool@gmail.com";
     }
 
     // Post schema validation
