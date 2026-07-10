@@ -275,7 +275,6 @@ const Home = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                 >
-                  <p className="text-xs font-mono text-indigo-400 mb-2">{edu.date}</p>
                   <h4 className="text-xl font-bold tracking-tight mb-2 leading-snug">{edu.degree}</h4>
                   <p className="text-sm text-white/70 mb-4">{edu.institution}</p>
                   <p className="text-sm text-white/50 leading-relaxed p-4 bg-white/5 rounded-xl border border-white/5">{edu.details}</p>
