@@ -1,6 +1,6 @@
 {
-  "name": "Remix: Abdul Rahman Portfolio",
-  "description": "A clean, modern, and responsive portfolio website for Abdul Rahman, an AI-driven Materials Engineer.",
+  "name": "Abdul Rahman - AI-Driven Materials Engineer",
+  "description": "Portfolio, scientific research blog, and consultancy booking for Abdul Rahman, AI-Driven Materials Engineer specializing in physical metallurgy, computational materials science, and AI workflows.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

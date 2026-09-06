@@ -1,0 +1,110 @@
+# Abdul Rahman — Complete AI Knowledge Base & Materials Science Documentation
+
+## Identity & Professional Overview
+- **Name:** Abdul Rahman
+- **Title:** AI-Driven Materials Engineer & Senior Instructor
+- **Institution:** Pakistan Council of Scientific and Industrial Research (PCSIR)
+- **Location:** Lahore, Pakistan
+- **Email:** abdulrahmana18@pm.me
+- **Phone:** +92-3244862934
+- **GitHub:** https://github.com/ARahmankhn
+- **LinkedIn:** https://linkedin.com/in/arahmankhn
+
+### Professional Summary
+AI-driven Materials Engineer blending physical metallurgy with computational materials science, phase transformations, predictive modeling, and sustainable mineral processing workflows using Machine Learning and CALPHAD-based modeling. Over 7 years of combined industrial testing, research engineering, and technical instruction.
+
+---
+
+## Core Research Pillars & Expertise
+
+### 1. Physical & Extractive Metallurgy
+- **Specialization:** Phase transformations, microstructural evolution, sustainable mineral processing, and beneficiation workflows.
+- **Applications:** Mineral extraction, froth flotation, pyrometallurgy, hydrometallurgy, and alloy heat treatments.
+
+### 2. Computational Materials Science & Informatics
+- **Specialization:** Materials Informatics, Machine Learning (ML), and CALPHAD-based thermodynamic modeling.
+- **Frameworks & Methods:** PyCalphad, Pymatgen, MatGL graph neural networks, Bayesian Optimization, active learning loops, and surrogate modeling for alloy discovery.
+
+### 3. Surfaces, Interfaces & Degradation
+- **Specialization:** Nanotribology, multifunctional coatings, and corrosion kinetics under harsh operational environments (marine, acidic, high-temperature oxidation).
+- **Protective Systems:** Self-healing smart coatings incorporating metal-organic frameworks (MOFs like ZIF-8) and nanocontainers.
+
+### 4. Sustainable Materials & Circular Economy
+- **Specialization:** Direct recycling, hydro-thermal relithiation, and morphological restoration of spent lithium-ion battery cathode materials (NMC chemistry).
+
+---
+
+## Technical Competencies
+
+- **Programming & AI:** Python (Scikit-learn, Pandas, NumPy), PyTorch, PyCalphad, Pymatgen, MatGL, Bayesian Optimization, Agentic AI Workflows, Retrieval-Augmented Generation (RAG).
+- **Advanced Characterization:** Scanning Electron Microscopy (SEM), Energy-Dispersive X-ray Spectroscopy (EDS/EDX), X-ray Diffraction (XRD with Rietveld refinement), X-ray Fluorescence (XRF), Optical Metallography, Tensile & Hardness Testing, CSWIP 3.1 Welding Inspection.
+- **Simulation & Engineering Software:** MATLAB, Thermo-Calc, COMSOL Multiphysics, OriginPro, LAMMPS, Quantum ESPRESSO, ImageJ, Schrödinger Materials Suite.
+
+---
+
+## Professional Career History
+
+### Senior Instructor & Research Engineer
+- **Employer:** Pakistan Council of Scientific and Industrial Research (PCSIR)
+- **Period:** 2017 – Present | Lahore, Pakistan
+- **Key Responsibilities & Achievements:**
+  - Led advanced metallurgical testing, failure analysis, and chemical characterization of engineering alloys and mineral specimens.
+  - Developed and delivered rigorous training programs in physical metallurgy, materials characterization, and welding inspection.
+  - Spearheaded digitalization and computational materials informatics initiatives for accelerated laboratory testing workflows.
+
+### Project Engineer
+- **Employer:** Machine Zone Ltd.
+- **Period:** 2019 | Lahore, Pakistan
+- **Key Responsibilities & Achievements:**
+  - Oversaw quality control, heat treatment verification, and metallurgical compliance for manufacturing components.
+  - Implemented standard operating procedures (SOPs) for non-destructive and mechanical testing.
+
+---
+
+## Academic Background
+- **Degree:** Bachelor of Science in Materials Science and Engineering
+- **Institution:** University of Engineering and Technology (UET), Lahore
+- **Graduation:** 2017
+
+---
+
+## Peer-Reviewed Publications & Research Papers
+
+1. **Machine learning-driven design of self-healing epoxy coatings using MgO-loaded ZIF-8 nanocontainers for corrosion protection**
+   - *Journal:* Springer Nature (2026)
+   - *Key Contribution:* Employs Bayesian optimization and surrogate models to optimize inhibitor release kinetics and self-healing efficiency in harsh marine environments.
+
+2. **Hybrid Generative and Multimodal Machine Learning for Quantum-Enhanced Design of Metal-Organic Frameworks**
+   - *Conference:* AIMS-2025 (2025)
+   - *Key Contribution:* Combines generative diffusion models with quantum chemical descriptors to design high-surface-area MOFs for targeted gas separation and anti-corrosion applications.
+
+3. **Agentic AI-Driven Digital Twin Framework for Accelerated Discovery of Rare-Earth Materials**
+   - *Conference:* MSE 2026, German Materials Society (DGM) (2024)
+   - *Key Contribution:* Proposes an autonomous multi-agent framework combining thermodynamic calculations, automated laboratory robotic synthesis, and closed-loop Bayesian optimization.
+
+---
+
+## Featured Research Articles & Scientific Blog
+
+### Article 1: Unlocking Pakistan’s $6 Trillion Mineral Wealth: A Metallurgical Blueprint
+- **Topic:** Geoeconomic analysis and processing roadmap for Pakistan's massive mineral reserves, including Reko Diq copper-gold deposits (5.9 billion tonnes), Saindak, Dilband iron ore, and Chiniot-Rajoa deposits.
+- **Key Technologies:** Hydrometallurgical bioleaching, automated sensor-based ore sorting, froth flotation modeling, and downstream value-addition smelter infrastructure.
+
+### Article 2: Materials Informatics: Accelerating Alloy Design via Machine Learning
+- **Topic:** Replacing traditional Edisonian trial-and-error metallurgy with active learning loops, CALPHAD thermodynamic modeling, and Bayesian optimization to discover high-performance high-entropy alloys (HEAs).
+
+### Article 3: Corrosion Kinetics and Interface Degradation in Harsh Environments
+- **Topic:** Electrochemical impedance spectroscopy (EIS), potentiodynamic polarization, and nanocontainer-based smart self-healing coatings for offshore and industrial infrastructure.
+
+### Article 4: Direct Recycling and Relithiation of Spent NMC Battery Cathodes
+- **Topic:** Green, low-carbon circular recycling of lithium nickel manganese cobalt oxides through solid-state thermal relithiation, restoring electrochemical capacity without hazardous acid leaching.
+
+### Article 5: Practical Guide to SEM/EDS Microstructural & Compositional Analysis
+- **Topic:** Best practices for sample preparation, accelerating voltage optimization, ZAF matrix correction, and elemental mapping in metallurgical failure analysis.
+
+---
+
+## Consultation & Booking Services
+- **Offerings:** Technical advisory on alloy selection, failure analysis, machine learning workflows for materials discovery, mineral processing plant optimization, and RAG/Agentic AI systems for scientific laboratories.
+- **Direct Scheduling:** 30-minute Google Meet consultation available at `/contact`.
+- **Email:** abdulrahmana18@pm.me

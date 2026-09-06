@@ -15,16 +15,8 @@ import { personalInfo } from './data';
 import GoogleMeetScheduler from './components/GoogleMeetScheduler';
 
 export default function Contact() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
-
   return (
-    <div className="min-h-screen bg-[#050505] text-[#FAFAFA] font-sans selection:bg-[#FAFAFA] selection:text-[#050505] overflow-x-hidden">
+    <div className="min-h-screen bg-[#050505] text-[#FAFAFA] font-sans selection:bg-indigo-500/30 selection:text-white overflow-x-clip">
       
       {/* Background Orbs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
@@ -33,8 +25,8 @@ export default function Contact() {
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full px-6 py-8 md:px-16 flex justify-between items-center z-50 mix-blend-difference top-0 bg-gradient-to-b from-black/50 to-transparent backdrop-blur-sm shadow-xl shadow-black/10 text-white">
-        <Link to="/" className="text-2xl font-bold tracking-tighter">AR.</Link>
+      <nav className="fixed top-0 w-full px-6 py-6 md:px-16 flex justify-between items-center z-50 bg-[#050505]/85 backdrop-blur-md border-b border-white/5 shadow-xl shadow-black/10">
+        <Link to="/" className="text-2xl font-black tracking-tighter hover:opacity-80 transition-opacity">AR<span className="text-indigo-500">.</span></Link>
         <Link to="/" className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] hover:text-indigo-400 transition-colors">
           <ChevronLeft size={16} /> Back to Home
         </Link>
@@ -48,7 +40,7 @@ export default function Contact() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
+            <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 text-white">
               Let's build<br />something great.
             </h1>
             

@@ -1,503 +1,698 @@
 import { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowUpRight, 
   Github, 
-  Linkedin,
-  MapPin,
+  Linkedin, 
+  Mail, 
+  MapPin, 
+  Phone,
+  Calendar,
+  Layers, 
+  Cpu, 
+  Binary, 
+  Microscope, 
+  Flame, 
+  Recycle, 
+  BookOpen, 
+  FileText, 
+  CheckCircle2, 
   ExternalLink,
-  BookOpen,
-  Microscope,
-  Cpu,
-  RefreshCcw,
-  Layers,
-  ChevronDown
+  ChevronRight,
+  Menu,
+  X,
+  Sparkles,
+  Shield,
+  Award
 } from 'lucide-react';
-import { Routes, Route, Link, Navigate } from 'react-router-dom';
+import { Toaster } from 'sonner';
+
+import { 
+  personalInfo, 
+  interests, 
+  skills, 
+  experience, 
+  education, 
+  projects, 
+  publications, 
+  additional 
+} from './data';
+
 import Contact from './Contact';
-import GoogleMeetScheduler from './components/GoogleMeetScheduler';
 import BlogSection from './components/BlogSection';
 import AllPostsPage from './components/AllPostsPage';
 import BlogPostPage from './components/BlogPostPage';
 import BlogAdminPage from './components/BlogAdminPage';
 import ThemeToggle from './components/ThemeToggle';
-import Footer from './components/Footer';
+import { useAuthStore } from './stores/authStore';
 
-// CMS Core Imports
-import CmsLogin from './components/CmsLogin';
-import CmsLayout from './components/CmsLayout';
+// Admin CMS Components
 import ProtectedRoute from './components/ProtectedRoute';
-import { CmsErrorBoundary } from './components/CmsErrorPage';
+import CmsLayout from './components/CmsLayout';
+import CmsLogin from './components/CmsLogin';
 import CmsDashboard from './components/CmsDashboard';
-import UserProfile from './components/UserProfile';
 import CmsPosts from './components/CmsPosts';
-import CmsMedia from './components/CmsMedia';
 import CmsCategories from './components/CmsCategories';
+import CmsMedia from './components/CmsMedia';
 import CmsSettings from './components/CmsSettings';
-import { Toaster } from 'sonner';
-import { 
-  personalInfo, 
-  interests,
-  skills,
-  experience, 
-  education, 
-  projects,
-  publications,
-  additional
-} from './data';
+import UserProfile from './components/UserProfile';
+import { CmsErrorBoundary } from './components/CmsErrorPage';
 
-const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
+function PortfolioHome() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
     };
-    
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target.tagName.toLowerCase() === 'a' || target.tagName.toLowerCase() === 'button' || target.closest('a') || target.closest('button')) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
-    };
-
-    window.addEventListener('mousemove', updateMousePosition);
-    window.addEventListener('mouseover', handleMouseOver);
-
-    return () => {
-      window.removeEventListener('mousemove', updateMousePosition);
-      window.removeEventListener('mouseover', handleMouseOver);
-    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <motion.div
-      className="fixed top-0 left-0 w-8 h-8 rounded-full border border-white/50 pointer-events-none z-[100] mix-blend-difference flex items-center justify-center hidden md:flex"
-      animate={{
-        x: mousePosition.x - 16,
-        y: mousePosition.y - 16,
-        scale: isHovering ? 1.5 : 1,
-        backgroundColor: isHovering ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0)'
-      }}
-      transition={{ type: 'tween', ease: 'backOut', duration: 0.15 }}
-    >
-      {isHovering && <ArrowUpRight size={12} className="text-black" />}
-    </motion.div>
-  );
-};
+    <div className="min-h-screen bg-[#050505] text-[#FAFAFA] font-sans selection:bg-indigo-500/30 selection:text-white relative overflow-x-clip">
+      {/* Subtle Background Glows */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[-8%] left-[-10%] w-[550px] h-[550px] rounded-full bg-indigo-950/25 blur-[140px]" />
+        <div className="absolute top-[35%] right-[-10%] w-[600px] h-[600px] rounded-full bg-purple-950/15 blur-[160px]" />
+        <div className="absolute bottom-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-blue-950/20 blur-[150px]" />
+      </div>
 
-const Home = () => {
-    const [mounted, setMounted] = useState(false);
-    const { scrollYProgress } = useScroll();
-    const yHero = useTransform(scrollYProgress, [0, 1], [0, -200]);
-    const opacityHero = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  
-    useEffect(() => {
-      setMounted(true);
-    }, []);
-  
-    if (!mounted) return null;
-  
-    return (
-      <div className="min-h-screen bg-[#050505] text-[#FAFAFA] font-sans selection:bg-[#FAFAFA] selection:text-[#050505] md:cursor-none overflow-x-hidden">
-        <CustomCursor />
-        
-        {/* Background Orbs */}
-        <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-          <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-900/20 blur-[120px]" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-purple-900/10 blur-[150px]" />
-        </div>
-  
-        {/* Navigation */}
-        <nav className="fixed top-0 w-full px-6 py-8 md:px-16 flex justify-between items-center z-50 mix-blend-difference top-0 bg-gradient-to-b from-black/50 to-transparent backdrop-blur-sm shadow-xl shadow-black/10 text-white">
-          <Link to="/" className="text-2xl font-bold tracking-tighter">AR.</Link>
-          <div className="hidden md:flex gap-8 text-xs font-semibold uppercase tracking-[0.2em] items-center">
-            <a href="#about" className="hover:text-indigo-400 transition-colors">About</a>
-            <a href="#experience" className="hover:text-indigo-400 transition-colors">Experience</a>
-            <a href="#projects" className="hover:text-indigo-400 transition-colors">Projects</a>
-            <a href="#blog" className="hover:text-indigo-400 transition-colors">Blog</a>
-            <Link to="/contact" className="px-5 py-2 bg-white text-black rounded-full hover:bg-gray-200 transition-colors font-bold tracking-widest">Consultancy</Link>
-          </div>
-        </nav>
+      {/* Navigation Bar */}
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? 'bg-[#050505]/85 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'
+      }`}>
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+          <Link to="/" className="text-2xl font-black tracking-tighter hover:opacity-80 transition-opacity">
+            AR<span className="text-indigo-500">.</span>
+          </Link>
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-16 z-10 pt-20">
-        <motion.div style={{ y: yHero, opacity: opacityHero }} className="max-w-7xl mx-auto w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs uppercase tracking-widest text-indigo-300 mb-8">
-              <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span> Available for new projects
-            </div>
-            
-            <h1 className="text-6xl md:text-8xl lg:text-[10rem] leading-[0.9] font-black tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
-              Abdul<br />Rahman.
-            </h1>
-            
-            <p className="text-xl md:text-2xl font-light text-white/60 max-w-2xl mb-12 leading-relaxed">
-              {personalInfo.title} blending physical metallurgy with computational materials science & AI.
-            </p>
-            
-          </motion.div>
-        </motion.div>
-        
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 uppercase tracking-widest text-[10px]"
-        >
-          Scroll to explore
-          <ChevronDown size={16} className="animate-bounce" />
-        </motion.div>
-      </section>
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex items-center gap-8 text-xs font-medium uppercase tracking-widest text-white/60">
+            <a href="#about" className="hover:text-white transition-colors">About</a>
+            <a href="#interests" className="hover:text-white transition-colors">Research</a>
+            <a href="#skills" className="hover:text-white transition-colors">Skills</a>
+            <a href="#experience" className="hover:text-white transition-colors">Experience</a>
+            <a href="#education" className="hover:text-white transition-colors">Education</a>
+            <a href="#projects" className="hover:text-white transition-colors">Projects</a>
+            <a href="#publications" className="hover:text-white transition-colors">Publications</a>
+            <Link to="/blog" className="text-indigo-400 hover:text-indigo-300 transition-colors">Blog</Link>
+          </nav>
 
-      {/* About & Interests Matrix */}
-      <section id="about" className="py-24 px-6 md:px-16 z-10 relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-            
-            <div className="lg:col-span-4">
-              <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-400 mb-4">Focus Areas</h2>
-              <h3 className="text-4xl lg:text-5xl font-black tracking-tighter mb-8 leading-tight">Research <br/>Interests</h3>
-              <p className="text-lg text-white/50 leading-relaxed mb-8">
-                Applying a physics-first approach to data, solving industrial challenges spanning from extraction to advanced predictive modeling.
-              </p>
-            </div>
-            
-            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-              {[
-                { icon: <Layers size={24}/>, ...interests[0] },
-                { icon: <Cpu size={24}/>, ...interests[1] },
-                { icon: <Microscope size={24}/>, ...interests[2] },
-                { icon: <RefreshCcw size={24}/>, ...interests[3] }
-              ].map((item, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: i * 0.1 }}
-                  className="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors group"
-                >
-                  <div className="text-indigo-400 mb-6 group-hover:scale-110 transition-transform origin-left">{item.icon}</div>
-                  <h4 className="text-xl font-bold mb-3">{item.title}</h4>
-                  <p className="text-sm text-white/50 leading-relaxed">{item.details}</p>
-                </motion.div>
-              ))}
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Corporate / Consultancy Teaser (The "Company" Section) */}
-      <section id="consultancy" className="py-32 px-6 md:px-16 bg-white text-[#050505] z-10 relative">
-        <div className="max-w-5xl mx-auto text-center">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-          >
-            <span className="px-4 py-1.5 border border-black/20 rounded-full text-xs font-bold uppercase tracking-[0.2em] text-black/60 mb-8 inline-block">
-              Consultancy & Ventures
-            </span>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-8 text-black leading-tight">
-              Scale industrial operations with intelligence.
-            </h2>
-            <p className="text-xl md:text-2xl text-black/60 font-light leading-relaxed mb-12 max-w-3xl mx-auto">
-              Offering bespoke advisory in ISO 17025 implementation, powder metallurgy facility setup, and AI-driven process optimization pipelines for manufacturing.
-            </p>
-            
+          {/* Action CTAs */}
+          <div className="hidden sm:flex items-center gap-4">
             <Link 
               to="/contact" 
-              className="inline-flex items-center gap-3 py-5 px-10 bg-[#050505] text-white rounded-full text-sm font-bold uppercase tracking-widest hover:scale-105 hover:bg-indigo-600 transition-all duration-300 shadow-xl"
+              className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-xs font-semibold uppercase tracking-wider text-white transition-all hover:scale-[1.02]"
             >
-              Discuss Partnership <ArrowUpRight size={18} />
+              Book Call
             </Link>
+            <Link 
+              to="/contact" 
+              className="px-5 py-2.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-xs font-semibold uppercase tracking-wider text-white transition-all shadow-lg shadow-indigo-600/25 hover:scale-[1.02]"
+            >
+              Contact
+            </Link>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 text-white/70 hover:text-white transition-colors"
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Nav Overlay */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div 
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="lg:hidden bg-[#0a0a0a] border-b border-white/10 px-6 py-6"
+            >
+              <div className="flex flex-col gap-4 text-sm font-medium">
+                <a href="#about" onClick={() => setMobileMenuOpen(false)} className="py-2 text-white/70 hover:text-white">About</a>
+                <a href="#interests" onClick={() => setMobileMenuOpen(false)} className="py-2 text-white/70 hover:text-white">Research Focus</a>
+                <a href="#skills" onClick={() => setMobileMenuOpen(false)} className="py-2 text-white/70 hover:text-white">Skills & Toolkit</a>
+                <a href="#experience" onClick={() => setMobileMenuOpen(false)} className="py-2 text-white/70 hover:text-white">Experience</a>
+                <a href="#education" onClick={() => setMobileMenuOpen(false)} className="py-2 text-white/70 hover:text-white">Education</a>
+                <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="py-2 text-white/70 hover:text-white">Projects</a>
+                <a href="#publications" onClick={() => setMobileMenuOpen(false)} className="py-2 text-white/70 hover:text-white">Publications</a>
+                <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="py-2 text-indigo-400">Scientific Blog</Link>
+                <div className="pt-4 border-t border-white/10 flex gap-3">
+                  <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="flex-1 py-2.5 bg-indigo-600 text-center rounded-xl text-xs font-bold uppercase tracking-wider">
+                    Contact
+                  </Link>
+                  <a href="#schedule-meeting" onClick={() => setMobileMenuOpen(false)} className="flex-1 py-2.5 bg-white/10 text-center rounded-xl text-xs font-bold uppercase tracking-wider">
+                    Book Call
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+
+      {/* Hero Section */}
+      <section id="about" className="relative min-h-screen flex items-center pt-32 pb-20 px-6 md:px-12 z-10">
+        <div className="max-w-7xl mx-auto w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl"
+          >
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-semibold uppercase tracking-widest text-indigo-300 mb-8">
+              <Sparkles size={14} />
+              <span>Physical Metallurgy & Materials Informatics</span>
+            </div>
+
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.05] mb-8">
+              {personalInfo.name}
+            </h1>
+
+            <p className="text-2xl sm:text-3xl text-indigo-300 font-light tracking-tight mb-6">
+              {personalInfo.title}
+            </p>
+
+            <p className="text-lg sm:text-xl text-white/65 font-light leading-relaxed mb-10 max-w-3xl">
+              {personalInfo.summary}
+            </p>
+
+            {/* CTAs & Socials */}
+            <div className="flex flex-wrap items-center gap-4 mb-12">
+              <a 
+                href="#projects" 
+                className="px-7 py-3.5 rounded-full bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-neutral-200 transition-all shadow-xl hover:scale-[1.02]"
+              >
+                Explore Projects
+              </a>
+              <Link 
+                to="/blog" 
+                className="px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 text-white font-bold text-xs uppercase tracking-widest transition-all hover:scale-[1.02]"
+              >
+                Read Scientific Blog
+              </Link>
+              <Link 
+                to="/contact" 
+                className="px-7 py-3.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs uppercase tracking-widest transition-all shadow-lg shadow-indigo-600/30 hover:scale-[1.02]"
+              >
+                Schedule Consultation
+              </Link>
+            </div>
+
+            {/* Quick Metadata Info */}
+            <div className="flex flex-wrap items-center gap-6 text-sm text-white/50 pt-8 border-t border-white/10">
+              <div className="flex items-center gap-2">
+                <MapPin size={16} className="text-indigo-400" />
+                <span>{personalInfo.location}</span>
+              </div>
+              <a href={`mailto:${personalInfo.email}`} className="flex items-center gap-2 hover:text-white transition-colors">
+                <Mail size={16} className="text-indigo-400" />
+                <span>{personalInfo.email}</span>
+              </a>
+              <a href={`https://${personalInfo.github}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-white transition-colors">
+                <Github size={16} className="text-indigo-400" />
+                <span>GitHub</span>
+              </a>
+              <a href={`https://${personalInfo.linkedin}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-white transition-colors">
+                <Linkedin size={16} className="text-indigo-400" />
+                <span>LinkedIn</span>
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Experience & Education */}
-      <section id="experience" className="py-32 px-6 md:px-16 z-10 relative">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24">
-          
-          {/* Experience */}
-          <div>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-16 flex items-center gap-4">
-               Experience <span className="text-indigo-500 text-6xl leading-[0]">.</span>
-            </h2>
-            <div className="space-y-16">
-              {experience.map((exp, idx) => (
-                <motion.div 
-                  key={idx}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  className="relative pl-8 border-l border-white/10"
-                >
-                  <div className="absolute w-3 h-3 bg-indigo-500 rounded-full -left-[6.5px] top-2 blur-[2px]" />
-                  <div className="absolute w-1.5 h-1.5 bg-white rounded-full -left-[3.5px] top-2.5" />
-                  
-                  <p className="text-xs font-mono text-indigo-400 mb-2">{exp.date}</p>
-                  <h4 className="text-2xl font-bold tracking-tight mb-1">{exp.role}</h4>
-                  <p className="text-sm text-white/50 mb-6 uppercase tracking-wider">{exp.company}</p>
-                  
-                  <ul className="space-y-4 text-white/70 leading-relaxed text-sm">
-                    {exp.details.map((detail, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <span className="text-white/20 mt-1">―</span>
-                        <span dangerouslySetInnerHTML={{ __html: detail.replace(/([^:]+):/, '<strong class="text-white">$1:</strong>') }} />
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Education & Skills */}
-          <div>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-16 flex items-center gap-4">
-               Education <span className="text-indigo-500 text-6xl leading-[0]">.</span>
-            </h2>
-            <div className="space-y-12 mb-24">
-              {education.map((edu, idx) => (
-                <motion.div 
-                  key={idx}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                >
-                  <h4 className="text-xl font-bold tracking-tight mb-2 leading-snug">{edu.degree}</h4>
-                  <p className="text-sm text-white/70 mb-4">{edu.institution}</p>
-                  <p className="text-sm text-white/50 leading-relaxed p-4 bg-white/5 rounded-xl border border-white/5">{edu.details}</p>
-                </motion.div>
-              ))}
-            </div>
-
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-10 flex items-center gap-4">
-               Skills <span className="text-indigo-500 text-6xl leading-[0]">.</span>
-            </h2>
-            <div className="space-y-6">
-              {[
-                { title: 'Informatics & AI', desc: skills.informatics },
-                { title: 'Characterization', desc: skills.characterization },
-                { title: 'Software', desc: skills.software }
-              ].map((skill, i) => (
-                <div key={i}>
-                  <h5 className="text-xs uppercase tracking-widest text-indigo-400 font-bold mb-2">{skill.title}</h5>
-                  <p className="text-sm text-white/60 leading-relaxed">{skill.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Projects Bento Grid */}
-      <section id="projects" className="py-32 px-6 md:px-16 bg-[#111] border-y border-white/5 relative z-10">
+      {/* Research Focus / Interests */}
+      <section id="interests" className="py-28 px-6 md:px-12 z-10 relative border-t border-white/5">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-16 md:flex justify-between items-end">
-            <div>
-              <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-400 mb-4">Portfolio</h2>
-              <h3 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter">Selected Works</h3>
-            </div>
+          <div className="mb-16 max-w-2xl">
+            <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs uppercase tracking-widest text-indigo-300 mb-4 inline-block">
+              Core Pillars
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4">
+              Research Focus & Specialization
+            </h2>
+            <p className="text-white/60 text-lg font-light leading-relaxed">
+              Bridging classical metallurgical characterization with contemporary machine learning algorithms and thermodynamic modeling.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {projects.map((project, idx) => (
-              <motion.div 
-                key={idx} 
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                className="group p-8 md:p-12 border border-white/5 rounded-[2rem] hover:border-indigo-500/50 hover:bg-white/[0.02] transition-all duration-500 bg-[#050505] flex flex-col justify-between min-h-[350px]"
+            {interests.map((item, idx) => (
+              <div 
+                key={idx}
+                className="p-8 rounded-3xl bg-[#0a0a0a] border border-white/10 hover:border-indigo-500/40 transition-all group relative overflow-hidden"
               >
-                <div>
-                  <h4 className="text-3xl font-bold tracking-tight mb-4 group-hover:text-indigo-300 transition-colors">{project.title}</h4>
-                  <p className="text-white/60 leading-relaxed mb-8 text-lg font-light">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {project.tags.map((tag, tIdx) => (
-                      <span key={tIdx} className="px-4 py-1.5 bg-white/5 border border-white/10 text-white/80 rounded-full text-[10px] font-bold tracking-[0.1em] uppercase">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 group-hover:bg-indigo-500 group-hover:text-white transition-all">
+                  {idx === 0 && <Flame size={22} />}
+                  {idx === 1 && <Cpu size={22} />}
+                  {idx === 2 && <Microscope size={22} />}
+                  {idx === 3 && <Recycle size={22} />}
                 </div>
-                <div className="flex gap-4 border-t border-white/5 pt-6 mt-4">
-                  {project.link && (
-                    <a href={`https://${project.link}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest hover:text-indigo-400 transition-colors">
-                      View Code <ArrowUpRight size={14} />
-                    </a>
-                  )}
-                </div>
-              </motion.div>
+                <h3 className="text-xl font-bold text-white mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-white/60 text-sm leading-relaxed">
+                  {item.details}
+                </p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Publications & Community Grid */}
-      <section className="py-24 px-6 md:px-16 z-10 relative bg-[#050505] border-b border-white/5">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24">
-          
-          <div>
-            <h3 className="text-4xl font-black tracking-tighter mb-12 flex items-center gap-4">
-              <BookOpen size={36} className="text-indigo-400" /> Publications
-            </h3>
-            <div className="space-y-6">
-              {publications.map((pub, i) => (
-                <div key={i} className="p-8 bg-white/[0.02] border border-white/10 rounded-3xl hover:bg-white/[0.04] transition-colors">
-                  <p className="font-bold text-lg leading-relaxed mb-4">{pub.title}</p>
-                  <p className="text-xs uppercase tracking-widest text-indigo-400 font-bold">{pub.details}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-4xl font-black tracking-tighter mb-12 flex items-center gap-4">
-              <MapPin size={36} className="text-indigo-400" /> Community <span className="text-lg text-white/50 font-normal tracking-wide">& Leadership</span>
-            </h3>
-            <div className="space-y-12 pl-4 md:pl-8 border-l border-white/10">
-              <div>
-                 <h5 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-6">Service & Engagement</h5>
-                 <p className="text-sm md:text-base text-white/80 leading-relaxed mb-6">
-                   <strong className="text-white">Leadership:</strong> {additional.leadership}
-                 </p>
-                 <p className="text-sm md:text-base text-white/80 leading-relaxed">
-                   <strong className="text-white">Memberships:</strong> {additional.memberships}
-                 </p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Blog Showcase Section */}
-      <BlogSection />
-
-      {/* Google Meet Scheduling Section */}
-      <section id="schedule-meeting" className="py-32 px-6 md:px-16 z-10 relative bg-[#0a0a0a] border-b border-white/5">
+      {/* Technical Skills & Competencies */}
+      <section id="skills" className="py-28 px-6 md:px-12 z-10 relative bg-[#080808] border-t border-white/5">
         <div className="max-w-7xl mx-auto">
-          <div className="max-w-3xl mb-16">
-            <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs uppercase tracking-widest text-indigo-300 mb-6 inline-block">
-              Google Workspace Integrated
+          <div className="mb-16 max-w-2xl">
+            <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs uppercase tracking-widest text-indigo-300 mb-4 inline-block">
+              Technical Arsenal
             </span>
-            <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-6">
-              Schedule a Consultation
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4">
+              Skills & Methodologies
             </h2>
-            <p className="text-lg text-white/60 font-light leading-relaxed">
-              Book an appointment with Abdul Rahman. The integration will automatically generate a Google Meet video conference link and place it on both calendars.
+            <p className="text-white/60 text-lg font-light leading-relaxed">
+              Synthesizing domain physics with modern materials informatics computational suites.
             </p>
           </div>
 
-          <GoogleMeetScheduler />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="p-8 rounded-3xl bg-[#050505] border border-white/10">
+              <div className="flex items-center gap-3 mb-6 text-indigo-400">
+                <Binary size={22} />
+                <h3 className="text-lg font-bold text-white">Materials Informatics & AI</h3>
+              </div>
+              <p className="text-white/70 text-sm leading-relaxed mb-6 font-light">
+                {skills.informatics}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {['Python', 'PyTorch', 'PyCalphad', 'Pymatgen', 'MatGL', 'Bayesian Opt', 'Agentic AI'].map((tag, i) => (
+                  <span key={i} className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-[11px] font-mono text-indigo-300">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="p-8 rounded-3xl bg-[#050505] border border-white/10">
+              <div className="flex items-center gap-3 mb-6 text-indigo-400">
+                <Microscope size={22} />
+                <h3 className="text-lg font-bold text-white">Advanced Characterization</h3>
+              </div>
+              <p className="text-white/70 text-sm leading-relaxed mb-6 font-light">
+                {skills.characterization}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {['SEM/EDX', 'XRD Refinement', 'XRF', 'Metallography', 'Mechanical Testing', 'CSWIP 3.1'].map((tag, i) => (
+                  <span key={i} className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-[11px] font-mono text-purple-300">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="p-8 rounded-3xl bg-[#050505] border border-white/10">
+              <div className="flex items-center gap-3 mb-6 text-indigo-400">
+                <Cpu size={22} />
+                <h3 className="text-lg font-bold text-white">Scientific Software & Tools</h3>
+              </div>
+              <p className="text-white/70 text-sm leading-relaxed mb-6 font-light">
+                {skills.software}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {['MATLAB', 'Thermo-Calc', 'COMSOL', 'OriginPro', 'LAMMPS', 'Quantum ESPRESSO', 'ImageJ'].map((tag, i) => (
+                  <span key={i} className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-[11px] font-mono text-blue-300">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
+      {/* Professional Experience */}
+      <section id="experience" className="py-28 px-6 md:px-12 z-10 relative border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16 max-w-2xl">
+            <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs uppercase tracking-widest text-indigo-300 mb-4 inline-block">
+              Career Trajectory
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4">
+              Professional Experience
+            </h2>
+            <p className="text-white/60 text-lg font-light leading-relaxed">
+              Industrial testing, process metallurgy engineering, and materials characterization governance.
+            </p>
+          </div>
+
+          <div className="space-y-12">
+            {experience.map((exp, idx) => (
+              <div 
+                key={idx}
+                className="p-8 md:p-10 rounded-3xl bg-[#0a0a0a] border border-white/10 hover:border-white/20 transition-all"
+              >
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 pb-6 border-b border-white/5 gap-2">
+                  <div>
+                    <h3 className="text-2xl font-bold text-white">{exp.role}</h3>
+                    <p className="text-indigo-400 text-base font-medium">{exp.company}</p>
+                  </div>
+                  <span className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-white/60 self-start md:self-auto">
+                    {exp.date}
+                  </span>
+                </div>
+
+                <ul className="space-y-3">
+                  {exp.details.map((bullet, bIdx) => (
+                    <li key={bIdx} className="flex items-start gap-3 text-sm text-white/70 font-light leading-relaxed">
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0" />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Education (Years and GPA omitted per instructions) */}
+      <section id="education" className="py-28 px-6 md:px-12 z-10 relative bg-[#080808] border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16 max-w-2xl">
+            <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs uppercase tracking-widest text-indigo-300 mb-4 inline-block">
+              Academic Background
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4">
+              Education & Research Degrees
+            </h2>
+            <p className="text-white/60 text-lg font-light leading-relaxed">
+              Formal qualifications in metallurgical and materials engineering.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {education.map((edu, idx) => (
+              <div 
+                key={idx}
+                className="p-8 rounded-3xl bg-[#050505] border border-white/10 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-6">
+                    <Award size={20} />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">
+                    {edu.degree}
+                  </h3>
+                  <p className="text-indigo-400 font-medium text-sm mb-4">
+                    {edu.institution}
+                  </p>
+                  <p className="text-white/60 text-sm font-light leading-relaxed">
+                    {edu.details}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Projects */}
+      <section id="projects" className="py-28 px-6 md:px-12 z-10 relative border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div className="max-w-2xl">
+              <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs uppercase tracking-widest text-indigo-300 mb-4 inline-block">
+                Open Source & Engineering
+              </span>
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4">
+                Selected Projects
+              </h2>
+              <p className="text-white/60 text-lg font-light leading-relaxed">
+                Applied AI systems, materials informatics pipelines, and thermodynamic discovery models.
+              </p>
+            </div>
+
+            <a 
+              href={`https://${personalInfo.github}`} 
+              target="_blank" 
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-indigo-400 hover:text-indigo-300 transition-colors"
+            >
+              View GitHub Profile <ArrowUpRight size={14} />
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {projects.map((proj, idx) => (
+              <div 
+                key={idx}
+                className="p-8 rounded-3xl bg-[#0a0a0a] border border-white/10 hover:border-indigo-500/40 transition-all flex flex-col justify-between group"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-2xl font-bold text-white group-hover:text-indigo-300 transition-colors">
+                      {proj.title}
+                    </h3>
+                    {proj.link && (
+                      <a 
+                        href={`https://${proj.link}`} 
+                        target="_blank" 
+                        rel="noreferrer"
+                        className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors"
+                      >
+                        <ArrowUpRight size={16} />
+                      </a>
+                    )}
+                  </div>
+                  <p className="text-white/60 text-sm leading-relaxed mb-6 font-light">
+                    {proj.description}
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                  {proj.tags.map((tag, tIdx) => (
+                    <span key={tIdx} className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-xs font-mono text-white/70">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Publications */}
+      <section id="publications" className="py-28 px-6 md:px-12 z-10 relative bg-[#080808] border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16 max-w-2xl">
+            <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs uppercase tracking-widest text-indigo-300 mb-4 inline-block">
+              Scholarly Output
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4">
+              Publications & Conference Proceedings
+            </h2>
+            <p className="text-white/60 text-lg font-light leading-relaxed">
+              Peer-reviewed manuscripts, accepted abstracts, and scientific presentations.
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            {publications.map((pub, idx) => (
+              <div 
+                key={idx}
+                className="p-8 rounded-3xl bg-[#050505] border border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-6"
+              >
+                <div className="max-w-3xl">
+                  <div className="flex items-center gap-2 text-indigo-400 text-xs font-mono mb-3">
+                    <FileText size={14} />
+                    <span>Publication #{idx + 1}</span>
+                  </div>
+                  <h3 className="text-lg md:text-xl font-bold text-white leading-snug mb-2">
+                    {pub.title}
+                  </h3>
+                  <p className="text-sm text-indigo-300 font-mono">
+                    {pub.details}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Affiliations & Memberships */}
+          <div className="mt-16 p-8 rounded-3xl bg-[#0a0a0a] border border-white/10 flex flex-col md:flex-row justify-between gap-6">
+            <div>
+              <h4 className="text-xs uppercase tracking-widest text-white/40 font-bold mb-2">Professional Memberships</h4>
+              <p className="text-sm text-white/80 font-light">{additional.memberships}</p>
+            </div>
+            <div>
+              <h4 className="text-xs uppercase tracking-widest text-white/40 font-bold mb-2">Leadership & Community</h4>
+              <p className="text-sm text-white/80 font-light">{additional.leadership}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Scientific Blog Section (Live Firestore Posts) */}
+      <BlogSection />
+
+      {/* Consultation & Advisory Section */}
+      <section id="contact-cta" className="py-24 px-6 md:px-12 z-10 relative bg-[#070707] border-t border-white/5">
+        <div className="max-w-4xl mx-auto text-center">
+          <span className="px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs uppercase tracking-widest text-indigo-300 mb-6 inline-block">
+            Consultancy & Advisory
+          </span>
+          <h2 className="text-4xl sm:text-6xl font-black tracking-tight mb-6">
+            Available for Consultation
+          </h2>
+          <p className="text-white/65 text-lg font-light leading-relaxed mb-10 max-w-2xl mx-auto">
+            Providing specialized advisory services in metallurgical engineering, computational materials science, materials informatics workflows, and mineral processing optimization.
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Link 
+              to="/contact" 
+              className="px-8 py-4 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs uppercase tracking-widest transition-all shadow-xl shadow-indigo-600/25 hover:scale-[1.02] flex items-center gap-2"
+            >
+              <Calendar size={16} /> Schedule 30-Min Discovery Call
+            </Link>
+            <a 
+              href={`mailto:${personalInfo.email}`} 
+              className="px-8 py-4 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 text-white font-bold text-xs uppercase tracking-widest transition-all hover:scale-[1.02] flex items-center gap-2"
+            >
+              <Mail size={16} /> Direct Email Inquiry
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Global Footer */}
+      <footer className="py-16 px-6 md:px-12 border-t border-white/10 z-10 relative bg-[#030303] text-white/50 text-xs">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex flex-col items-center md:items-start gap-2">
+            <span className="text-xl font-bold tracking-tighter text-white">
+              {personalInfo.name}
+            </span>
+            <p className="text-white/40">{personalInfo.title} • Lahore, Pakistan</p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <a href="#about" className="hover:text-white transition-colors">About</a>
+            <a href="#interests" className="hover:text-white transition-colors">Research</a>
+            <a href="#projects" className="hover:text-white transition-colors">Projects</a>
+            <a href="#publications" className="hover:text-white transition-colors">Publications</a>
+            <Link to="/blog" className="hover:text-indigo-300 transition-colors">Scientific Blog</Link>
+            <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
+            <Link to="/admin/login" className="text-white/30 hover:text-white/70 transition-colors flex items-center gap-1">
+              <Shield size={12} /> Admin
+            </Link>
+          </div>
+
+          <p className="text-white/30 text-center md:text-right">
+            © {new Date().getFullYear()} Abdul Rahman. All rights reserved.
+          </p>
+        </div>
+      </footer>
+
+      {/* Floating Theme Toggle */}
+      <ThemeToggle />
     </div>
   );
 }
 
 export default function App() {
+  useEffect(() => {
+    return useAuthStore.getState().initialize();
+  }, []);
+
   return (
-    <>
-      <Toaster position="top-right" theme="dark" closeButton richColors />
+    <CmsErrorBoundary>
+      <Toaster position="bottom-right" richColors />
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* Public Portfolio Routes */}
+        <Route path="/" element={<PortfolioHome />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/blog" element={<AllPostsPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
-        
-        {/* WordPress-Equivalent CMS Admin Panel Routes */}
+        <Route path="/blog-admin" element={<BlogAdminPage />} />
+
+        {/* CMS Administration Routes */}
+        <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
         <Route path="/admin/login" element={<CmsLogin />} />
         
-        <Route path="/admin" element={
-          <ProtectedRoute>
-            <CmsErrorBoundary>
+        <Route 
+          path="/admin/dashboard" 
+          element={
+            <ProtectedRoute>
               <CmsLayout>
                 <CmsDashboard />
               </CmsLayout>
-            </CmsErrorBoundary>
-          </ProtectedRoute>
-        } />
-        
-        <Route path="/admin/dashboard" element={
-          <ProtectedRoute>
-            <CmsErrorBoundary>
-              <CmsLayout>
-                <CmsDashboard />
-              </CmsLayout>
-            </CmsErrorBoundary>
-          </ProtectedRoute>
-        } />
-
-        <Route path="/admin/posts" element={
-          <ProtectedRoute>
-            <CmsErrorBoundary>
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/admin/posts" 
+          element={
+            <ProtectedRoute>
               <CmsLayout>
                 <CmsPosts />
               </CmsLayout>
-            </CmsErrorBoundary>
-          </ProtectedRoute>
-        } />
-
-        <Route path="/admin/media" element={
-          <ProtectedRoute>
-            <CmsErrorBoundary>
-              <CmsLayout>
-                <CmsMedia />
-              </CmsLayout>
-            </CmsErrorBoundary>
-          </ProtectedRoute>
-        } />
-
-        <Route path="/admin/categories" element={
-          <ProtectedRoute>
-            <CmsErrorBoundary>
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/admin/categories" 
+          element={
+            <ProtectedRoute>
               <CmsLayout>
                 <CmsCategories />
               </CmsLayout>
-            </CmsErrorBoundary>
-          </ProtectedRoute>
-        } />
-
-        <Route path="/admin/settings" element={
-          <ProtectedRoute>
-            <CmsErrorBoundary>
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/admin/media" 
+          element={
+            <ProtectedRoute>
+              <CmsLayout>
+                <CmsMedia />
+              </CmsLayout>
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/admin/settings" 
+          element={
+            <ProtectedRoute>
               <CmsLayout>
                 <CmsSettings />
               </CmsLayout>
-            </CmsErrorBoundary>
-          </ProtectedRoute>
-        } />
-
-        <Route path="/admin/profile" element={
-          <ProtectedRoute>
-            <CmsErrorBoundary>
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/admin/profile" 
+          element={
+            <ProtectedRoute>
               <CmsLayout>
                 <UserProfile />
               </CmsLayout>
-            </CmsErrorBoundary>
-          </ProtectedRoute>
-        } />
+            </ProtectedRoute>
+          } 
+        />
 
-        {/* Existing Fallback Admin Portals */}
-        <Route path="/blog/admin" element={<BlogAdminPage />} />
-        <Route path="/blog-admin" element={<BlogAdminPage />} />
+        {/* Fallback */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      <Footer />
-      <ThemeToggle />
-    </>
+    </CmsErrorBoundary>
   );
 }

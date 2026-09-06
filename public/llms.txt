@@ -1,0 +1,33 @@
+# Abdul Rahman — AI-Driven Materials Engineer
+
+> AI-driven Materials Engineer blending physical metallurgy with computational materials science, phase transformations, and sustainable mineral processing workflows using Machine Learning and CALPHAD-based modeling.
+
+## Core Identity & Details
+- Name: Abdul Rahman
+- Role: AI-Driven Materials Engineer & Senior Instructor
+- Organization: Pakistan Council of Scientific and Industrial Research (PCSIR)
+- Location: Lahore, Pakistan
+- Email: abdulrahmana18@pm.me
+- GitHub: https://github.com/ARahmankhn
+- LinkedIn: https://linkedin.com/in/arahmankhn
+
+## Research Pillars
+- Physical & Extractive Metallurgy: Phase transformations, microstructural evolution, sustainable mineral processing and beneficiation workflows.
+- Computational Materials Science: Materials Informatics, Machine Learning (ML), and CALPHAD-based modeling for accelerated alloy discovery.
+- Surfaces, Interfaces & Degradation: Nanotribology, multifunctional coatings, and environmental degradation mechanisms (corrosion, wear, oxidation).
+- Sustainable Materials & Circular Economy: Direct recycling and regeneration of NMC cathode battery materials.
+
+## Technical Skills
+- Informatics & AI: Python (Scikit-learn, Pandas), PyTorch, PyCalphad, Pymatgen, MatGL, Bayesian Optimization, Agentic AI Workflows, RAG.
+- Characterization: SEM/EDX, XRD (Rietveld refinement), XRF, Optical Metallography, Tensile & Hardness Testing, CSWIP 3.1.
+- Simulation & Tools: MATLAB, OriginPro, ImageJ, Schrödinger Materials Suite, Thermo-Calc, COMSOL Multiphysics, LAMMPS, Quantum ESPRESSO.
+
+## Selected Publications
+1. "Machine learning-driven design of self-healing epoxy coatings using MgO-loaded ZIF-8 nanocontainers for corrosion protection" — Springer Nature (2026).
+2. "Hybrid Generative and Multimodal Machine Learning for Quantum-Enhanced Design of Metal-Organic Frameworks" — AIMS-2025 (2025).
+3. "Agentic AI-Driven Digital Twin Framework for Accelerated Discovery of Rare-Earth Materials" — MSE 2026, DGM (2024).
+
+## Key Links
+- Portfolio & Overview: /
+- Scientific Blog: /blog
+- Consultation & Advisory Booking: /contact

@@ -1,234 +1,177 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
 @import "tailwindcss";
 
-@theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+:root {
+  color-scheme: dark;
+  --bg-main: #050505;
+  --bg-surface: #0a0a0a;
+  --bg-subtle: #080808;
+  --bg-card: #0a0a0a;
+  --text-main: #FAFAFA;
+  --text-secondary: rgba(255, 255, 255, 0.65);
+  --text-muted: rgba(255, 255, 255, 0.45);
+  --border-color: rgba(255, 255, 255, 0.1);
 }
 
+[data-theme="light"], [data-theme="bright"], .light {
+  color-scheme: light;
+  --bg-main: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f1f5f9;
+  --bg-card: #ffffff;
+  --text-main: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --border-color: rgba(15, 23, 42, 0.12);
+}
+
+/* Base HTML & Scrolling optimization for all browsers and crawlers */
 html {
+  overflow-x: clip;
   scroll-behavior: smooth;
-  scroll-snap-type: y proximity;
+  height: 100%;
 }
 
 body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  overflow-x: clip;
   background-color: #050505;
   color: #FAFAFA;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* Custom Minimalist Scrollbar */
+[data-theme="light"] body,
+[data-theme="bright"] body,
+.light body {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+::selection {
+  background-color: rgba(99, 102, 241, 0.35);
+  color: #ffffff;
+}
+
+/* Minimalist Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #333333;
-  border-radius: 10px;
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #555555;
+  background: rgba(148, 163, 184, 0.45);
 }
 
 /* ==========================================================================
-   BRIGHT THEME OVERRIDES
+   LIGHT THEME OVERRIDES FOR SEAMLESS DUAL-THEME SUPPORT
    ========================================================================== */
-html[data-theme="bright"],
-html[data-theme="bright"] body,
-html[data-theme="bright"] #root {
-  background-color: #FAFAFA !important;
-  color: #0F172A !important;
-}
+[data-theme="light"], [data-theme="bright"], .light {
+  /* Page Canvas */
+  & .bg-\[\#050505\],
+  &.bg-\[\#050505\] {
+    background-color: #f8fafc !important;
+  }
 
-html[data-theme="bright"] .min-h-screen {
-  background-color: #FAFAFA !important;
-  color: #0F172A !important;
-}
+  /* Sub-sections */
+  & .bg-\[\#070707\],
+  & .bg-\[\#080808\] {
+    background-color: #f1f5f9 !important;
+  }
 
-/* Background overrides */
-html[data-theme="bright"] .bg-\[\#050505\],
-html[data-theme="bright"] .bg-\[\#111\],
-html[data-theme="bright"] .bg-\[\#0a0a0a\],
-html[data-theme="bright"] .bg-\[\#020202\],
-html[data-theme="bright"] .bg-\[\#030303\],
-html[data-theme="bright"] .bg-\[\#080808\],
-html[data-theme="bright"] #interactive-footer,
-html[data-theme="bright"] .bg-neutral-900 {
-  background-color: #FFFFFF !important;
-  color: #0F172A !important;
-  border-color: #E2E8F0 !important;
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05) !important;
-}
+  /* Cards, panels, modal dialogs */
+  & .bg-\[\#0a0a0a\],
+  & .bg-\[\#0d0d0d\],
+  & .bg-\[\#111\],
+  & .bg-\[\#111111\],
+  & .bg-\[\#181818\] {
+    background-color: #ffffff !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05) !important;
+  }
 
-html[data-theme="bright"] .bg-\[\#050505\]\/75,
-html[data-theme="bright"] .bg-black\/50,
-html[data-theme="bright"] .bg-black\/80 {
-  background-color: rgba(255, 255, 255, 0.85) !important;
-  color: #0F172A !important;
-  border-color: rgba(226, 232, 240, 0.8) !important;
-}
+  /* Translucent chips & pills */
+  & .bg-white\/5 {
+    background-color: rgba(15, 23, 42, 0.04) !important;
+  }
+  & .bg-white\/10 {
+    background-color: rgba(15, 23, 42, 0.07) !important;
+  }
+  & .bg-white\/15 {
+    background-color: rgba(15, 23, 42, 0.10) !important;
+  }
+  & .bg-white\/20 {
+    background-color: rgba(15, 23, 42, 0.14) !important;
+  }
 
-html[data-theme="bright"] .bg-white\/5,
-html[data-theme="bright"] .bg-white\/10,
-html[data-theme="bright"] .bg-white\/\[0\.02\],
-html[data-theme="bright"] .bg-white\/\[0\.03\],
-html[data-theme="bright"] .bg-black\/30 {
-  background-color: #F8FAFC !important;
-  color: #0F172A !important;
-  border-color: #E2E8F0 !important;
-}
+  /* Borders */
+  & .border-white\/5,
+  & .border-white\/10 {
+    border-color: rgba(15, 23, 42, 0.08) !important;
+  }
+  & .border-white\/15,
+  & .border-white\/20,
+  & .border-white\/30 {
+    border-color: rgba(15, 23, 42, 0.16) !important;
+  }
 
-/* Text overrides */
-html[data-theme="bright"] .text-white,
-html[data-theme="bright"] .text-\[\#FAFAFA\],
-html[data-theme="bright"] .text-white\/90,
-html[data-theme="bright"] .text-white\/80,
-html[data-theme="bright"] .text-white\/70 {
-  color: #0F172A !important;
-}
+  /* Typography */
+  & .text-\[\#FAFAFA\],
+  & h1, & h2, & h3, & h4, & h5, & h6 {
+    color: #0f172a !important;
+  }
 
-html[data-theme="bright"] .text-white\/60,
-html[data-theme="bright"] .text-white\/50,
-html[data-theme="bright"] .text-white\/40,
-html[data-theme="bright"] .text-white\/30,
-html[data-theme="bright"] .text-white\/20 {
-  color: #475569 !important;
-}
+  /* Primary text that had text-white */
+  & :not(button):not(a[class*="bg-indigo"]):not(span[class*="bg-indigo"]):not(div[class*="bg-indigo"]).text-white {
+    color: #0f172a !important;
+  }
 
-/* Border overrides */
-html[data-theme="bright"] .border-white\/5,
-html[data-theme="bright"] .border-white\/10,
-html[data-theme="bright"] .border-white\/20,
-html[data-theme="bright"] .border-white\/50,
-html[data-theme="bright"] .border-y,
-html[data-theme="bright"] .border-b,
-html[data-theme="bright"] .border-t {
-  border-color: #E2E8F0 !important;
-}
+  /* Muted descriptions & subtitles */
+  & .text-white\/80,
+  & .text-white\/70,
+  & .text-white\/65,
+  & .text-white\/60 {
+    color: #334155 !important;
+  }
+  & .text-white\/50,
+  & .text-white\/40,
+  & .text-white\/30 {
+    color: #64748b !important;
+  }
 
-/* Navigation bar */
-html[data-theme="bright"] nav {
-  background: rgba(255, 255, 255, 0.88) !important;
-  color: #0F172A !important;
-  border-bottom: 1px solid #E2E8F0 !important;
-  mix-blend-mode: normal !important;
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04) !important;
-}
+  /* Inverted hero buttons (explore projects was bg-white text-black in dark mode) */
+  & .bg-white.text-black {
+    background-color: #0f172a !important;
+    color: #ffffff !important;
+  }
+  & .bg-white.text-black:hover {
+    background-color: #1e293b !important;
+  }
 
-html[data-theme="bright"] nav a,
-html[data-theme="bright"] nav span,
-html[data-theme="bright"] nav div {
-  color: #0F172A !important;
-}
+  /* Navigation Header blur */
+  & header.bg-\[\#050505\]\/85 {
+    background-color: rgba(248, 250, 252, 0.88) !important;
+    border-bottom-color: rgba(15, 23, 42, 0.08) !important;
+  }
 
-html[data-theme="bright"] nav a.bg-white {
-  background-color: #4F46E5 !important;
-  color: #FFFFFF !important;
-}
+  /* Inputs, selects, and textareas */
+  & input,
+  & select,
+  & textarea {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    border-color: rgba(15, 23, 42, 0.15) !important;
+  }
 
-/* Hero Titles & Gradients */
-html[data-theme="bright"] .bg-clip-text {
-  background-image: linear-gradient(to bottom, #0F172A, #475569) !important;
-  -webkit-background-clip: text !important;
-  color: transparent !important;
-}
-
-html[data-theme="bright"] .bg-gradient-to-r {
-  background: linear-gradient(to right, #EEF2FF, #F8FAFC, #EEF2FF) !important;
-  border-color: #C7D2FE !important;
-}
-
-/* Forms & Inputs */
-html[data-theme="bright"] input,
-html[data-theme="bright"] select,
-html[data-theme="bright"] textarea {
-  background-color: #FFFFFF !important;
-  color: #0F172A !important;
-  border: 1px solid #CBD5E1 !important;
-}
-
-html[data-theme="bright"] input::placeholder,
-html[data-theme="bright"] textarea::placeholder {
-  color: #94A3B8 !important;
-}
-
-html[data-theme="bright"] select option {
-  background-color: #FFFFFF !important;
-  color: #0F172A !important;
-}
-
-/* Footer */
-html[data-theme="bright"] footer {
-  background-color: #F1F5F9 !important;
-  color: #0F172A !important;
-  border-top: 1px solid #E2E8F0 !important;
-}
-
-html[data-theme="bright"] footer a {
-  color: #64748B !important;
-}
-
-html[data-theme="bright"] footer a:hover {
-  color: #4F46E5 !important;
-}
-
-/* Buttons & Accents */
-html[data-theme="bright"] .bg-indigo-600,
-html[data-theme="bright"] button[type="submit"] {
-  background-color: #4F46E5 !important;
-  color: #FFFFFF !important;
-}
-
-html[data-theme="bright"] .bg-indigo-600 *,
-html[data-theme="bright"] button[type="submit"] * {
-  color: #FFFFFF !important;
-}
-
-html[data-theme="bright"] .bg-indigo-500\/10,
-html[data-theme="bright"] .bg-indigo-500\/15,
-html[data-theme="bright"] .bg-indigo-500\/20 {
-  background-color: #EEF2FF !important;
-  color: #4F46E5 !important;
-  border-color: #C7D2FE !important;
-}
-
-html[data-theme="bright"] .text-indigo-400,
-html[data-theme="bright"] .text-indigo-300 {
-  color: #4F46E5 !important;
-}
-
-html[data-theme="bright"] .bg-green-500\/10,
-html[data-theme="bright"] .bg-green-500\/20 {
-  background-color: #DCFCE7 !important;
-  color: #15803D !important;
-}
-
-html[data-theme="bright"] .text-green-400 {
-  color: #15803D !important;
-}
-
-html[data-theme="bright"] .bg-red-500\/10 {
-  background-color: #FEE2E2 !important;
-  color: #B91C1C !important;
-}
-
-html[data-theme="bright"] .text-red-400 {
-  color: #B91C1C !important;
-}
-
-html[data-theme="bright"] .border-indigo-500\/20,
-html[data-theme="bright"] .border-indigo-500\/30 {
-  border-color: #C7D2FE !important;
-}
-
-/* Selection */
-html[data-theme="bright"] ::selection {
-  background-color: #4F46E5 !important;
-  color: #FFFFFF !important;
-}
-
-/* Custom cursor in bright theme */
-html[data-theme="bright"] .mix-blend-difference {
-  mix-blend-mode: normal !important;
-  border-color: rgba(15, 23, 42, 0.4) !important;
+  /* Soften ambient decorative blurs */
+  & .rounded-full[class*="blur-"] {
+    opacity: 0.15 !important;
+  }
 }

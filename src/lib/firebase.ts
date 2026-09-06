@@ -108,6 +108,204 @@ export function handleFirestoreError(error: unknown, operationType: OperationTyp
 // Pre-seeded high-quality blog posts to show immediately when database is empty
 export const defaultBlogPosts: BlogPost[] = [
   {
+    id: "pakistan-mineral-treasure-map",
+    title: "Part 2: Pakistan's Mineral Treasure Map — Province-Wise Resources, Scientific Formation, and Economic Potential",
+    slug: "pakistan-mineral-treasure-map",
+    date: "July 15, 2026",
+    summary: "A province-by-province geological inventory of Pakistan's rich metallic, industrial, and energy deposits, explaining the hydrothermal science of copper-gold formations and the strategic rise of critical minerals.",
+    category: "Physical Metallurgy",
+    author: "Abdul Rahman",
+    createdAt: new Date("2026-07-15T10:00:00Z"),
+    content: `
+# Part 2: Pakistan's Mineral Treasure Map — Province-Wise Resources, Scientific Formation, and Economic Potential
+
+## Pakistan's Mineral Wealth at a Glance
+
+Before exploring each province, it's important to understand the sheer scale and diversity of Pakistan's mineral resources. 
+
+Unlike many countries that specialize in only one or two valuable commodities, Pakistan possesses metallic minerals, industrial minerals, gemstones, energy minerals, and emerging critical minerals. This geological diversity gives Pakistan a unique strategic advantage in the global mining industry.
+
+The table below summarizes some of the country's most significant mineral resources:
+
+| Mineral | Estimated Reserve | Major Province(s) | Primary Uses | Global Importance |
+| :--- | :--- | :--- | :--- | :--- |
+| **Copper** | 13.18 million tonnes (Reko Diq) | Balochistan | Electrical wiring, EVs, renewable energy | Extremely High |
+| **Gold** | 17.9 million ounces (Reko Diq) | Balochistan | Investment, electronics, aerospace | Very High |
+| **Coal** | 175 billion tonnes | Sindh | Electricity generation | High |
+| **Rock Salt** | 25–30 billion tonnes | Punjab | Food, chemicals, pharmaceuticals | High |
+| **Limestone** | ~1,205 billion tonnes | Punjab, KP, Sindh | Cement and construction | High |
+| **Marble & Granite** | ~297 billion tonnes | KP, Balochistan | Construction, architecture | Medium |
+| **Chromite** | ~2.5 million tonnes | Balochistan, KP | Stainless steel, aerospace | High |
+| **Iron Ore** | ~500 million tonnes | Punjab, Balochistan | Steel manufacturing | High |
+| **Lead & Zinc** | ~28 million tonnes | Balochistan | Batteries, galvanization | High |
+| **Rare Earth Elements** | Under exploration | Balochistan | EVs, wind turbines, electronics | Strategic |
+
+---
+
+## Balochistan: Pakistan's Mineral Powerhouse
+
+If Pakistan's geology were compared to a treasure chest, **Balochistan would be its largest compartment**.
+
+Although the province occupies around **44% of Pakistan's land area**, it contains **more than half of the country's known mineral wealth**. Its rugged mountains and volcanic terrains were shaped by millions of years of tectonic activity, creating ideal conditions for the formation of valuable metallic ores.
+
+### Major Mineral Resources
+* **Copper & Gold** (World-class reserves)
+* **Chromite** (High metallurgical grade)
+* **Iron ore** (Dilband & Nok Kundi deposits)
+* **Barite, Fluorite, Lead & Zinc**
+* **Decorative Stones** (High-quality Onyx, Marble, and Granite)
+* **Antimony**
+
+The province is home to internationally significant mining projects such as **Reko Diq** and **Saindak**, which are expected to become major contributors to Pakistan's export economy.
+
+### 🔬 Scientific Insight: Hydrothermal Mineralization
+
+Most metallic minerals in Balochistan formed through a geological process known as **hydrothermal mineralization**.
+
+In simple terms, superheated water (ranging from 200°C to over 600°C) rich in dissolved metals circulated through deep structural fractures beneath ancient volcanoes. As these fluids migrated upward and cooled, the solubility of metals dropped rapidly. Copper, gold, silver, and other elements crystallized out of the solution, depositing into concentrated veins and micro-fractures in the host rock.
+
+These geological systems are known as **porphyry copper-gold deposits**, which represent some of the largest and most valuable mineral accumulations on Earth.
+
+### Reko Diq: One of the World's Largest Untapped Copper-Gold Deposits
+
+Among Pakistan's mineral assets, **Reko Diq** stands out as the absolute crown jewel. Located in the remote Chagai District of Balochistan, this massive porphyry system contains approximately:
+* **13.18 million tonnes of copper**
+* **17.9 million ounces of gold**
+
+The estimated in-ground value of this deposit exceeds **$180 billion**, making it one of the single most valuable undeveloped mineral assets in the world. 
+
+#### Why Copper Is So Valuable
+Copper is often called **the metal of electrification**. Its outstanding electrical and thermal conductivity makes it absolutely indispensable for:
+* **Electric Vehicles (EVs):** EVs use up to 4x more copper than internal combustion engine vehicles.
+* **Power Transmission:** Essential for connecting renewable energy sources (wind and solar) to the grid.
+* **Data Centers & AI Infrastructure:** High-performance processors require immense power delivery networks made of copper.
+* **Robotics & Telecommunications:** The nervous system of modern automated industries.
+
+As the world transitions toward cleaner energy, global copper demand is projected to double by 2035, positioning Balochistan as a key strategic supplier.
+
+### Saindak: Pakistan's First Modern Copper-Gold Mine
+Before Reko Diq captured global headlines, **Saindak** demonstrated that Pakistan could successfully operate a large-scale metallurgical mining enterprise. Located near the Iranian border, the project has been operating commercially since 2002, producing copper-gold blister for export and generating hundreds of millions of dollars in revenue. It serves as an essential training ground for the nation's mining engineering workforce.
+
+---
+
+## Sindh: Pakistan's Energy Province
+
+While Balochistan dominates metallic minerals, **Sindh is the country's energy heartland**.
+
+Its most famous geological resource is the **Thar Coalfield**, one of the largest continuous lignite coal deposits on Earth.
+
+* **Estimated Reserve:** **175 billion tonnes**
+* **Theoretical Energy Potential:** Capacity to generate electricity for centuries, reducing the country's dependence on expensive imported oil and LNG.
+
+### How Coal Forms: The Process of Coalification
+Lignite coal originates from ancient subtropical forests that thrived in swampy, low-lying coastal basins tens of millions of years ago. 
+
+Over geological time, massive volumes of dense vegetation died and accumulated under water, forming peat. This peat was buried beneath hundreds of meters of heavy sand, clay, and river silt. Subjected to rising temperatures and intense lithostatic pressure, the organic matter underwent **coalification**—progressively driving out moisture, carbon dioxide, and volatile gases, leaving behind a highly concentrated carbon fuel.
+
+The Thar deposits primarily consist of **lignite**, which is a lower-rank, high-moisture coal compared to bituminous coal. While it has lower energy density, its massive volume makes it a highly viable domestic energy resource when utilized near the mine site.
+
+### 🌿 Environmental Perspective
+While coal mining provides critical energy security, it presents acute environmental challenges:
+* **Carbon dioxide (CO2) emissions** causing greenhouse warming.
+* **Air quality issues** from ash, sulfur dioxide, and particulate emissions.
+* **Groundwater contamination** and drawdown affecting fragile desert aquifers.
+* **Land subsidence** and ecosystem disruption in the delicate desert environment.
+
+Modern operations in Thar are increasingly adopting strict environmental safeguards, mine-mouth power generation, water recycling, and long-term land rehabilitation frameworks to balance energy security with environmental stewardship.
+
+---
+
+## Punjab: Pakistan's Industrial Mineral Hub
+
+Punjab's mineral wealth differs significantly from the volcanic metallic belts of Balochistan. Instead of copper and gold, Punjab is exceptionally rich in **industrial minerals** that underpin the construction, chemical, and agricultural sectors.
+
+### Major Industrial Resources
+* **Rock Salt** (Enormous high-purity deposits)
+* **Limestone** (Feeding massive cement plants in the Salt Range)
+* **Gypsum & Silica Sand**
+* **Coal** (Sub-bituminous reserves)
+* **Iron Ore** (Chiniot-Rajoa deposits under active exploration)
+* **Rock Phosphate** (Essential for fertilizer production)
+
+These raw materials serve as the structural backbone of Pakistan's heavy manufacturing, chemical synthesis, and pharmaceutical industries.
+
+### Khewra Salt Mine: A Geological Wonder
+The famous **Khewra Salt Mine** is far more than a popular tourist destination; it is an extraordinary natural archive. 
+
+Formed approximately **600 million years ago** during the late Neoproterozoic era, these deposits are the remnant of an ancient inland sea (the Proto-Tethys) that underwent massive evaporation. Tectonic uplift during the collision of the Indian and Eurasian plates pushed these ancient salt layers to the surface, creating the majestic Salt Range.
+
+Today, Khewra holds an estimated **25 to 30 billion tonnes** of high-purity halite (rock salt) and is celebrated globally for producing premium, nutrient-rich **Himalayan Pink Salt**.
+
+#### Scientific Fact: The Origin of Pink
+The distinctive pink and red hues of Himalayan salt are completely natural. They result from trace amounts of mineral impurities incorporated into the sodium chloride crystal lattice during the ancient sea's evaporation, including **iron oxide**, **potassium**, **magnesium**, and **calcium**.
+
+---
+
+## Khyber Pakhtunkhwa (KP): Pakistan's Gemstone Kingdom
+
+Khyber Pakhtunkhwa (KP) is globally renowned for its spectacular ornamental stones and rare gemstones. Its rugged, metamorphosed mountain belts produce highly prized minerals:
+* **Emeralds** (The famous vibrant green Swat emeralds)
+* **Pink Topaz** (Unique to the Katlang region)
+* **Tourmaline, Aquamarine & Garnet**
+* **High-grade Industrial Marble & Granite** (Enormous reserves)
+
+### Why KP Produces Gemstones
+Gemstones form under extreme, rare geological conditions. The high-energy collision of the Indian continental plate into the Eurasian block squeezed and folded local rocks, exposing them to:
+1. **Intense metamorphic pressures & temperatures** deep in the crust.
+2. **Mineral-rich magmatic fluids** flowing through crustal fractures.
+3. **Extremely slow cooling rates**, allowing atoms to align into perfectly ordered, highly symmetric crystal lattices.
+
+This slow, pristine crystal growth is what gives KP's gemstones their exceptional transparency, high refractive index, and vivid brilliance. The emeralds of the Swat Valley are often compared to Colombia's finest specimens due to their stunning chromium-induced green hue.
+
+---
+
+## Gilgit-Baltistan: The Hidden Gem Capital
+
+Nestled in the collision zone of three mighty mountain ranges—the Himalayas, the Karakoram, and the Hindu Kush—**Gilgit-Baltistan remains one of the world's most promising, yet least explored gemstone regions**.
+
+GB hosts outstanding deposits of:
+* **Ruby & Sapphire**
+* **Aquamarine** (Stunning deep blue crystal specimens)
+* **Tourmaline & Topaz**
+* **Quartz crystals and high-purity feldspar**
+
+Due to extreme topography and lack of modern infrastructure, mining in GB remains largely artisanal. Geologists believe that massive, world-class deposits remain undiscovered deep beneath the high alpine glaciers. Promoting responsible mining here can catalyze local economic uplift while preserving the delicate mountain ecosystems.
+
+---
+
+## Why Critical Minerals Will Shape Pakistan's Future
+
+For much of the twentieth century, global geopolitics was dominated by the race for oil. **In the twenty-first century, the arena has shifted to critical minerals.**
+
+Critical minerals are elements that are essential for high-tech manufacturing, clean energy transitions, and national defense, but are subject to high supply risk.
+
+| Critical Mineral | Role in Clean Tech & Advanced Engineering |
+| :--- | :--- |
+| **Rare Earth Elements (REEs)** | Powerful neodymium magnets for EV motors and wind turbines. |
+| **Copper** | Indispensable electrical conductor for grids, motors, and batteries. |
+| **Graphite** | The primary anode material in lithium-ion batteries. |
+| **Nickel & Cobalt** | High-energy cathode materials for long-range electric vehicles. |
+| **Lithium** | The fundamental carrier ion for modern rechargeable battery chemistry. |
+| **Antimony** | Flame retardants, military semiconductors, and solar glass. |
+
+### 🧠 Expert Insight: The Value-Addition Imperative
+> "Mining raw ore alone does not create sustained national wealth. Selling unprocessed mineral concentrate is equivalent to exporting cheap soil. True economic prosperity is generated by establishing domestic chemical processing, metallurgical refining, and advanced manufacturing. Converting copper ore into high-purity copper cathodes, and then into electric vehicle wiring or power components, multiplies the economic value-add by a factor of 10x to 100x."
+
+By building domestic materials research, academic collaborations, and high-purity processing facilities, Pakistan can successfully transition from a simple raw exporter to a high-value technology-enabler on the global stage.
+
+---
+
+## What's Next?
+In **Part 3** of this series, we will transition from geology to macroeconomic policy, exploring:
+1. Why Pakistan's mining sector contributes a meager **2-3% of GDP** despite its immense $6 trillion potential.
+2. The concept of the **"Resource Curse"** and how other developing nations have navigated it.
+3. A comparative economic analysis of Pakistan's mineral policies versus mining giants like Australia, Chile, and Canada.
+4. Strategic recommendations for policy reform, international investment, and high-purity local refining.
+
+Stay tuned for our final chapter in this comprehensive materials analysis series.
+`
+  },
+  {
     id: "pakistan-6-trillion-mineral-wealth",
     title: "Pakistan's $6 Trillion Mineral Wealth: The Untapped Scientific Treasure That Could Transform the Nation",
     slug: "pakistan-6-trillion-mineral-wealth",
@@ -712,11 +910,10 @@ export const getComments = async (postId: string): Promise<BlogComment[]> => {
   try {
     const q = query(
       collection(db, commentsPath), 
-      where('postId', '==', postId),
-      orderBy('createdAt', 'desc')
+      where('postId', '==', postId)
     );
     const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => {
+    const list = snapshot.docs.map(doc => {
       const data = doc.data();
       return {
         id: doc.id,
@@ -726,6 +923,7 @@ export const getComments = async (postId: string): Promise<BlogComment[]> => {
         createdAt: data.createdAt instanceof Timestamp ? data.createdAt.toDate() : new Date(data.createdAt)
       } as BlogComment;
     });
+    return list.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   } catch (error) {
     console.warn('Comments query failed, returning empty list:', error);
     return [];

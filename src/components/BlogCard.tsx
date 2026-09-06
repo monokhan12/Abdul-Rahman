@@ -12,10 +12,10 @@ interface BlogCardProps {
 export default function BlogCard({ post, index }: BlogCardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ delay: index * 0.1, duration: 0.6 }}
+      viewport={{ once: true }}
+      transition={{ delay: Math.min(index * 0.08, 0.4), duration: 0.5 }}
       className="group relative flex flex-col justify-between bg-white/5 border border-white/10 hover:border-indigo-500/30 rounded-3xl p-6 md:p-8 transition-all hover:bg-white/10 duration-300 shadow-xl shadow-black/10"
     >
       <div className="space-y-4">

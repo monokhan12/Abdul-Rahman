@@ -221,24 +221,16 @@ export default function GoogleMeetScheduler() {
           <form onSubmit={handleScheduleSubmit} className="space-y-6">
             {/* Step 1: Topic */}
             <div>
-              <label className="block text-xs uppercase tracking-widest text-white/50 font-bold mb-2.5">1. Select Core Area</label>
-              <div className="grid grid-cols-1 gap-2">
+              <label className="block text-xs uppercase tracking-widest text-white/50 font-bold mb-2.5">1. Core Focus Area</label>
+              <select
+                value={topic}
+                onChange={(e) => setTopic(e.target.value)}
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 text-white font-medium"
+              >
                 {topics.map((t, i) => (
-                  <button
-                    type="button"
-                    key={i}
-                    onClick={() => setTopic(t)}
-                    className={`p-3.5 text-left text-xs rounded-xl border transition-all flex items-center justify-between cursor-pointer ${
-                      topic === t 
-                        ? 'bg-indigo-500/15 border-indigo-500 text-white font-bold shadow-md shadow-indigo-500/10' 
-                        : 'bg-white/5 border-white/5 hover:bg-white/10 text-white/70'
-                    }`}
-                  >
-                    <span>{t}</span>
-                    {topic === t && <Check size={16} className="text-indigo-400 shrink-0 ml-2" />}
-                  </button>
+                  <option key={i} value={t} className="bg-neutral-900 text-white py-2">{t}</option>
                 ))}
-              </div>
+              </select>
             </div>
 
             {/* Step-by-Step Info */}
