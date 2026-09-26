@@ -28,7 +28,13 @@ export default function BlogSection() {
 
   return (
     <section id="blog" className="py-32 px-6 md:px-16 z-10 relative bg-[#050505] border-b border-white/5">
-      <div className="max-w-7xl mx-auto">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.12 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="max-w-7xl mx-auto"
+      >
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-xl">
@@ -70,7 +76,7 @@ export default function BlogSection() {
             ))}
           </div>
         )}
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -232,7 +232,13 @@ function PortfolioHome() {
 
       {/* Research Focus / Interests */}
       <section id="interests" className="py-28 px-6 md:px-12 z-10 relative border-t border-white/5">
-        <div className="max-w-7xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.12 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-7xl mx-auto"
+        >
           <div className="mb-16 max-w-2xl">
             <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs uppercase tracking-widest text-indigo-300 mb-4 inline-block">
               Core Pillars
@@ -247,8 +253,12 @@ function PortfolioHome() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {interests.map((item, idx) => (
-              <div 
+              <motion.div 
                 key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
                 className="p-8 rounded-3xl bg-[#0a0a0a] border border-white/10 hover:border-indigo-500/40 transition-all group relative overflow-hidden"
               >
                 <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 group-hover:bg-indigo-500 group-hover:text-white transition-all">
@@ -263,15 +273,21 @@ function PortfolioHome() {
                 <p className="text-white/60 text-sm leading-relaxed">
                   {item.details}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Technical Skills & Competencies */}
       <section id="skills" className="py-28 px-6 md:px-12 z-10 relative bg-[#080808] border-t border-white/5">
-        <div className="max-w-7xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.12 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-7xl mx-auto"
+        >
           <div className="mb-16 max-w-2xl">
             <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs uppercase tracking-widest text-indigo-300 mb-4 inline-block">
               Technical Arsenal
@@ -285,7 +301,13 @@ function PortfolioHome() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="p-8 rounded-3xl bg-[#050505] border border-white/10">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+              className="p-8 rounded-3xl bg-[#050505] border border-white/10"
+            >
               <div className="flex items-center gap-3 mb-6 text-indigo-400">
                 <Binary size={22} />
                 <h3 className="text-lg font-bold text-white">Materials Informatics & AI</h3>
@@ -300,9 +322,15 @@ function PortfolioHome() {
                   </span>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
-            <div className="p-8 rounded-3xl bg-[#050505] border border-white/10">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+              className="p-8 rounded-3xl bg-[#050505] border border-white/10"
+            >
               <div className="flex items-center gap-3 mb-6 text-indigo-400">
                 <Microscope size={22} />
                 <h3 className="text-lg font-bold text-white">Advanced Characterization</h3>
@@ -317,9 +345,15 @@ function PortfolioHome() {
                   </span>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
-            <div className="p-8 rounded-3xl bg-[#050505] border border-white/10">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5, delay: 0.19, ease: [0.22, 1, 0.36, 1] }}
+              className="p-8 rounded-3xl bg-[#050505] border border-white/10"
+            >
               <div className="flex items-center gap-3 mb-6 text-indigo-400">
                 <Cpu size={22} />
                 <h3 className="text-lg font-bold text-white">Scientific Software & Tools</h3>
@@ -334,14 +368,20 @@ function PortfolioHome() {
                   </span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* Professional Experience */}
+      {/* Professional Experience (Years omitted per instructions) */}
       <section id="experience" className="py-28 px-6 md:px-12 z-10 relative border-t border-white/5">
-        <div className="max-w-7xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.12 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-7xl mx-auto"
+        >
           <div className="mb-16 max-w-2xl">
             <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs uppercase tracking-widest text-indigo-300 mb-4 inline-block">
               Career Trajectory
@@ -356,18 +396,17 @@ function PortfolioHome() {
 
           <div className="space-y-12">
             {experience.map((exp, idx) => (
-              <div 
+              <motion.div 
                 key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 className="p-8 md:p-10 rounded-3xl bg-[#0a0a0a] border border-white/10 hover:border-white/20 transition-all"
               >
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 pb-6 border-b border-white/5 gap-2">
-                  <div>
-                    <h3 className="text-2xl font-bold text-white">{exp.role}</h3>
-                    <p className="text-indigo-400 text-base font-medium">{exp.company}</p>
-                  </div>
-                  <span className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-white/60 self-start md:self-auto">
-                    {exp.date}
-                  </span>
+                <div className="mb-6 pb-6 border-b border-white/5">
+                  <h3 className="text-2xl font-bold text-white">{exp.role}</h3>
+                  <p className="text-indigo-400 text-base font-medium mt-1">{exp.company}</p>
                 </div>
 
                 <ul className="space-y-3">
@@ -378,15 +417,21 @@ function PortfolioHome() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Education (Years and GPA omitted per instructions) */}
       <section id="education" className="py-28 px-6 md:px-12 z-10 relative bg-[#080808] border-t border-white/5">
-        <div className="max-w-7xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.12 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-7xl mx-auto"
+        >
           <div className="mb-16 max-w-2xl">
             <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs uppercase tracking-widest text-indigo-300 mb-4 inline-block">
               Academic Background
@@ -401,8 +446,12 @@ function PortfolioHome() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {education.map((edu, idx) => (
-              <div 
+              <motion.div 
                 key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 className="p-8 rounded-3xl bg-[#050505] border border-white/10 flex flex-col justify-between"
               >
                 <div>
@@ -419,15 +468,21 @@ function PortfolioHome() {
                     {edu.details}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Featured Projects */}
       <section id="projects" className="py-28 px-6 md:px-12 z-10 relative border-t border-white/5">
-        <div className="max-w-7xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.12 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-7xl mx-auto"
+        >
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div className="max-w-2xl">
               <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs uppercase tracking-widest text-indigo-300 mb-4 inline-block">
@@ -453,8 +508,12 @@ function PortfolioHome() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map((proj, idx) => (
-              <div 
+              <motion.div 
                 key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 className="p-8 rounded-3xl bg-[#0a0a0a] border border-white/10 hover:border-indigo-500/40 transition-all flex flex-col justify-between group"
               >
                 <div>
@@ -485,15 +544,21 @@ function PortfolioHome() {
                     </span>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Publications */}
       <section id="publications" className="py-28 px-6 md:px-12 z-10 relative bg-[#080808] border-t border-white/5">
-        <div className="max-w-7xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.12 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-7xl mx-auto"
+        >
           <div className="mb-16 max-w-2xl">
             <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs uppercase tracking-widest text-indigo-300 mb-4 inline-block">
               Scholarly Output
@@ -508,8 +573,12 @@ function PortfolioHome() {
 
           <div className="space-y-6">
             {publications.map((pub, idx) => (
-              <div 
+              <motion.div 
                 key={idx}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
                 className="p-8 rounded-3xl bg-[#050505] border border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-6"
               >
                 <div className="max-w-3xl">
@@ -524,12 +593,18 @@ function PortfolioHome() {
                     {pub.details}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
           {/* Affiliations & Memberships */}
-          <div className="mt-16 p-8 rounded-3xl bg-[#0a0a0a] border border-white/10 flex flex-col md:flex-row justify-between gap-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-16 p-8 rounded-3xl bg-[#0a0a0a] border border-white/10 flex flex-col md:flex-row justify-between gap-6"
+          >
             <div>
               <h4 className="text-xs uppercase tracking-widest text-white/40 font-bold mb-2">Professional Memberships</h4>
               <p className="text-sm text-white/80 font-light">{additional.memberships}</p>
@@ -538,8 +613,8 @@ function PortfolioHome() {
               <h4 className="text-xs uppercase tracking-widest text-white/40 font-bold mb-2">Leadership & Community</h4>
               <p className="text-sm text-white/80 font-light">{additional.leadership}</p>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Scientific Blog Section (Live Firestore Posts) */}
@@ -547,7 +622,13 @@ function PortfolioHome() {
 
       {/* Consultation & Advisory Section */}
       <section id="contact-cta" className="py-24 px-6 md:px-12 z-10 relative bg-[#070707] border-t border-white/5">
-        <div className="max-w-4xl mx-auto text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-4xl mx-auto text-center"
+        >
           <span className="px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs uppercase tracking-widest text-indigo-300 mb-6 inline-block">
             Consultancy & Advisory
           </span>
@@ -572,7 +653,7 @@ function PortfolioHome() {
               <Mail size={16} /> Direct Email Inquiry
             </a>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Global Footer */}

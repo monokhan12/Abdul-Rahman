@@ -26,7 +26,6 @@ export const experience = [
   {
     role: "Research Engineer & Senior Instructor",
     company: "Pakistan Council of Scientific and Industrial Research (PCSIR)",
-    date: "July 2017 – Present",
     details: [
       "Process Optimization: Engineered characterization-driven workflows for the beneficiation of indigenous mineral resources, successfully upgrading low-grade ore (36% Fe) to metallurgical-grade concentrate (65% Fe).",
       "Structural Materials & Degradation: Evaluated microstructural integrity and mechanical performance of Zn-based alloys and structural steels; analyzed interfacial stability and degradation rates in complex environments.",
@@ -38,7 +37,6 @@ export const experience = [
   {
     role: "Project Engineer",
     company: "Machine Zone Ltd.",
-    date: "June 2019 – Dec 2019",
     details: [
       "Process Planning: Directed process planning for a powder metallurgy facility; optimized sintering parameters to improve the density and mechanical properties of manufactured components."
     ]

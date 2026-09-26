@@ -11,7 +11,7 @@
 - **LinkedIn:** https://linkedin.com/in/arahmankhn
 
 ### Professional Summary
-AI-driven Materials Engineer blending physical metallurgy with computational materials science, phase transformations, predictive modeling, and sustainable mineral processing workflows using Machine Learning and CALPHAD-based modeling. Over 7 years of combined industrial testing, research engineering, and technical instruction.
+AI-driven Materials Engineer blending physical metallurgy with computational materials science, phase transformations, predictive modeling, and sustainable mineral processing workflows using Machine Learning and CALPHAD-based modeling. Extensive background in industrial testing, research engineering, and technical instruction.
 
 ---
 
@@ -46,7 +46,7 @@ AI-driven Materials Engineer blending physical metallurgy with computational mat
 
 ### Senior Instructor & Research Engineer
 - **Employer:** Pakistan Council of Scientific and Industrial Research (PCSIR)
-- **Period:** 2017 – Present | Lahore, Pakistan
+- **Location:** Lahore, Pakistan
 - **Key Responsibilities & Achievements:**
   - Led advanced metallurgical testing, failure analysis, and chemical characterization of engineering alloys and mineral specimens.
   - Developed and delivered rigorous training programs in physical metallurgy, materials characterization, and welding inspection.
@@ -54,7 +54,7 @@ AI-driven Materials Engineer blending physical metallurgy with computational mat
 
 ### Project Engineer
 - **Employer:** Machine Zone Ltd.
-- **Period:** 2019 | Lahore, Pakistan
+- **Location:** Lahore, Pakistan
 - **Key Responsibilities & Achievements:**
   - Oversaw quality control, heat treatment verification, and metallurgical compliance for manufacturing components.
   - Implemented standard operating procedures (SOPs) for non-destructive and mechanical testing.
@@ -64,7 +64,6 @@ AI-driven Materials Engineer blending physical metallurgy with computational mat
 ## Academic Background
 - **Degree:** Bachelor of Science in Materials Science and Engineering
 - **Institution:** University of Engineering and Technology (UET), Lahore
-- **Graduation:** 2017
 
 ---
 
