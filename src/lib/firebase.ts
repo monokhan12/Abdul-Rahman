@@ -111,12 +111,14 @@ export const defaultBlogPosts: BlogPost[] = [
     id: "pakistan-mineral-treasure-map",
     title: "Part 2: Pakistan's Mineral Treasure Map — Province-Wise Resources, Scientific Formation, and Economic Potential",
     slug: "pakistan-mineral-treasure-map",
-    date: "July 15, 2026",
+    date: "October 11, 2026",
     summary: "A province-by-province geological inventory of Pakistan's rich metallic, industrial, and energy deposits, explaining the hydrothermal science of copper-gold formations and the strategic rise of critical minerals.",
     category: "Physical Metallurgy",
     author: "Abdul Rahman",
-    createdAt: new Date("2026-07-15T10:00:00Z"),
+    createdAt: new Date("2026-10-11T12:00:00Z"),
     content: `
+👈 **[Read Part 1: Pakistan's $6 Trillion Mineral Wealth: The Untapped Scientific Treasure That Could Transform the Nation](/blog/pakistan-6-trillion-mineral-wealth)**
+
 # Part 2: Pakistan's Mineral Treasure Map — Province-Wise Resources, Scientific Formation, and Economic Potential
 
 ## Pakistan's Mineral Wealth at a Glance
@@ -309,11 +311,11 @@ Stay tuned for our final chapter in this comprehensive materials analysis series
     id: "pakistan-6-trillion-mineral-wealth",
     title: "Pakistan's $6 Trillion Mineral Wealth: The Untapped Scientific Treasure That Could Transform the Nation",
     slug: "pakistan-6-trillion-mineral-wealth",
-    date: "July 7, 2026",
-    summary: "Pakistan possesses an estimated $6 trillion in mineral wealth, including copper, gold, rare earth elements, coal, iron ore, gemstones, and industrial minerals. Discover the science behind these resources.",
+    date: "October 12, 2026",
+    summary: "Pakistan possesses an estimated $6 trillion in mineral wealth, including copper, gold, rare earth elements, coal, iron ore, gemstones, and industrial minerals. Discover the science behind these resources, why they remain underutilized, and how they could reshape Pakistan's future economy.",
     category: "Physical Metallurgy",
     author: "Abdul Rahman",
-    createdAt: new Date("2026-07-07T10:00:00Z"),
+    createdAt: new Date("2026-10-12T12:00:00Z"),
     content: `
 ![The Mineral Map of Pakistan](/src/assets/images/pakistan_mineral_map_1783445793899.jpg)
 
@@ -605,6 +607,8 @@ In the next section, we'll examine:
 * Exclusive infographics and geological maps
 
 The next part will continue seamlessly from here, maintaining the same publication-quality style.
+
+👉 **[Read Part 2: Pakistan's Mineral Treasure Map — Province-Wise Resources, Scientific Formation, and Economic Potential →](/blog/pakistan-mineral-treasure-map)**
 `
   },
   {
@@ -728,11 +732,79 @@ For example, when optimizing the upgrading of low-grade iron ore at PCSIR (upgra
 
 By shielding researchers from tedious searching and presenting synthesized, citation-backed physical data, LARA-HPC showcases the transformative power of Agentic AI inside the research laboratory.
     `
+  },
+  {
+    id: "corrosion-kinetics-harsh-environments",
+    title: "Corrosion Kinetics and Interface Degradation in Harsh Environments",
+    slug: "corrosion-kinetics-harsh-environments",
+    date: "May 10, 2026",
+    summary: "Electrochemical impedance spectroscopy (EIS), potentiodynamic polarization, and nanocontainer-based smart self-healing coatings for offshore and industrial infrastructure.",
+    category: "Physical Metallurgy",
+    author: "Abdul Rahman",
+    createdAt: new Date("2026-05-10T12:00:00Z"),
+    content: `
+### Corrosion Protection in Extreme Marine Environments
+
+Corrosion degradation inflicts a catastrophic multi-billion-dollar toll on global industrial and offshore infrastructure. Traditional barrier coatings (such as standard epoxies) inevitably suffer from micro-cracking and mechanical scratching during operational lifetimes, permitting rapid chloride ion diffusion and catastrophic localized galvanic attack.
+
+Our research at PCSIR and UET Lahore addresses this vulnerability by developing active, autonomous **self-healing nanocontainer-doped smart coatings**.
+
+### Nanocontainer Synthesis & Triggered Release
+
+We encapsulated eco-friendly green corrosion inhibitors within mesoporous Metal-Organic Frameworks (ZIF-8) and layered double hydroxides (LDHs):
+
+1. **pH-Responsive Triggering:** Localized corrosion causes cathodic alkalinity (pH > 9) or anodic acidity (pH < 4). The coordination bonds in our ZIF-8 nanocontainers break selectively under these pH shifts, releasing active inhibitors strictly when and where damage occurs.
+2. **Electrochemical Impedance Spectroscopy (EIS):** After 30 days of continuous immersion in 3.5 wt% NaCl electrolyte, the low-frequency impedance modulus (|Z| at 0.01 Hz) of the self-healing coatings remained above 10^9 Ohm·cm², indicating complete passivating film restoration across deliberately scribed artificial defects.
+3. **Potentiodynamic Polarization:** Corrosion current density (Icorr) dropped by more than two orders of magnitude compared to uninhibited epoxy counterparts.
+
+### Industrial Applications
+
+By pairing advanced characterization with physical kinetics modeling, we can design proactive coatings for subsea pipelines, chemical processing vessels, and marine mining equipment, substantially extending maintenance intervals and safeguarding infrastructure.
+    `
+  },
+  {
+    id: "sem-eds-microstructural-analysis-guide",
+    title: "Practical Guide to SEM/EDS Microstructural & Compositional Analysis",
+    slug: "sem-eds-microstructural-analysis-guide",
+    date: "March 28, 2026",
+    summary: "Best practices for sample preparation, accelerating voltage optimization, ZAF matrix correction, and elemental mapping in metallurgical failure analysis.",
+    category: "Physical Metallurgy",
+    author: "Abdul Rahman",
+    createdAt: new Date("2026-03-28T12:00:00Z"),
+    content: `
+### The Cornerstone of Metallurgical Characterization
+
+Scanning Electron Microscopy (SEM) paired with Energy-Dispersive X-ray Spectroscopy (EDS) is the premier workhorse of physical metallurgy and forensic failure investigation. However, acquiring reliable, publication-grade micrographs and quantitative microanalysis demands meticulous parameter optimization.
+
+### Key Parameter Optimization Strategies
+
+#### 1. Accelerating Voltage (kV) Selection
+A frequent blunder in EDS is selecting an accelerating voltage that is either too low (failing to excite high-energy K or L characteristic X-ray lines) or too high (creating an excessively large interaction volume that samples several microns beyond the precipitate of interest).
+* **General Rule of Thumb:** Set the overvoltage ratio (U = E0 / Ec) between **1.5 and 2.5**, where E0 is beam energy and Ec is the critical excitation energy of the highest-energy element.
+* **For Light Elements (C, N, O):** Use 5–10 kV to minimize subsurface scattering and optimize surface sensitivity.
+* **For Transition Metals (Fe, Cr, Ni, Cu):** Use 15–20 kV to sufficiently excite Kα lines (e.g., Cu Kα at 8.04 keV).
+
+#### 2. ZAF vs. Phi-Rho-Z Matrix Corrections
+Raw EDS peak intensities never translate linearly to elemental concentrations. Modern quantification requires robust matrix correction:
+* **Z (Atomic Number Effect):** Corrects for backscattering losses and electron stopping power.
+* **A (Absorption Correction):** Accounts for characteristic X-rays absorbed by the sample matrix before reaching the silicon drift detector (SDD).
+* **F (Fluorescence Correction):** Adjusts for secondary X-ray generation stimulated by higher-energy primary characteristic photons.
+
+#### 3. Sample Surface Preparation
+Quantitative EDS requires a pristine, mirror-polished flat surface (down to 0.05 µm colloidal silica). Rough fracture surfaces yield severe shadow effects and path-length distortions that invalidate quantitative matrix calculations. When conducting fractography on broken components, stick to qualitative point spectra and secondary electron (SE) topographic imaging.
+
+Mastering these foundational electron microscopy principles ensures accurate phase identification and reliable failure diagnosis in industrial metallurgy.
+    `
   }
 ];
 
-// Seed default posts to Firestore if none exist or any are missing (for seamless startup and updates)
+// Seed default posts to Firestore if none exist or any are missing (only when admin is signed in)
 export const seedDefaultPostsIfEmpty = async () => {
+  // Only attempt write operations if an authorized administrator is actively signed in
+  if (!auth.currentUser || auth.currentUser.email !== 'quanticschool@gmail.com') {
+    return;
+  }
+
   try {
     const postsRef = collection(db, 'posts');
     const postsSnapshotPromise = getDocs(postsRef);
@@ -742,12 +814,10 @@ export const seedDefaultPostsIfEmpty = async () => {
       console.warn("Skipping seeding because Firestore query timed out.");
       return;
     }
-    const existingSlugs = new Set(postsSnapshot.docs.map(doc => doc.id));
     
     let seededCount = 0;
     for (const post of defaultBlogPosts) {
       const docId = post.id || post.slug;
-      // Overwrite default posts to ensure they have the latest rich images and text!
       const { id, ...postData } = post;
       const postDocRef = doc(db, 'posts', docId);
       await setDoc(postDocRef, {
@@ -809,23 +879,40 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
   }
 };
 
+// Slug aliases to map between full titles and short slugs
+export const slugAliases: Record<string, string> = {
+  'materials-informatics-accelerating-alloy-design': 'alloy-optimization-ml',
+  'direct-recycling-nmc-cathode-materials': 'direct-cathode-recycling',
+  'alloy-optimization-ml': 'materials-informatics-accelerating-alloy-design',
+  'direct-cathode-recycling': 'direct-recycling-nmc-cathode-materials'
+};
+
+const findStaticPost = (slug: string): BlogPost | null => {
+  const alias = slugAliases[slug];
+  return defaultBlogPosts.find(p => 
+    p.slug === slug || 
+    p.id === slug || 
+    (alias && (p.slug === alias || p.id === alias))
+  ) || null;
+};
+
 // Fetch a single post by slug
 export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> => {
   const postsPath = 'posts';
+  const alias = slugAliases[slug];
+  const querySlugs = alias ? [slug, alias] : [slug];
+
   try {
-    const q = query(collection(db, postsPath), where('slug', '==', slug));
+    const q = query(collection(db, postsPath), where('slug', 'in', querySlugs));
     const fetchPromise = getDocs(q).then((snapshot) => {
       if (snapshot.empty) {
-        // Search in default static blog posts
-        const staticPost = defaultBlogPosts.find(p => p.slug === slug);
-        return staticPost || null;
+        return findStaticPost(slug);
       }
 
       const docSnap = snapshot.docs[0];
       const data = docSnap.data();
       if (!data || !data.title || !data.slug) {
-        const staticPost = defaultBlogPosts.find(p => p.slug === slug);
-        return staticPost || null;
+        return findStaticPost(slug);
       }
       return {
         id: docSnap.id,
@@ -841,11 +928,10 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
       } as BlogPost;
     });
 
-    return await withTimeout(fetchPromise, 2000, defaultBlogPosts.find(p => p.slug === slug) || null);
+    return await withTimeout(fetchPromise, 2000, findStaticPost(slug));
   } catch (error) {
     console.warn(`Firestore slug fetch failed, checking static: ${slug}`, error);
-    const staticPost = defaultBlogPosts.find(p => p.slug === slug);
-    return staticPost || null;
+    return findStaticPost(slug);
   }
 };
 
@@ -907,10 +993,13 @@ export const deleteComment = async (commentId: string): Promise<void> => {
 // Fetch comments for a specific post
 export const getComments = async (postId: string): Promise<BlogComment[]> => {
   const commentsPath = 'comments';
+  const alias = slugAliases[postId];
+  const queryIds = alias && alias !== postId ? [postId, alias] : [postId];
+
   try {
     const q = query(
       collection(db, commentsPath), 
-      where('postId', '==', postId)
+      where('postId', 'in', queryIds)
     );
     const snapshot = await getDocs(q);
     const list = snapshot.docs.map(doc => {

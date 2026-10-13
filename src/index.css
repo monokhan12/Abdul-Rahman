@@ -12,7 +12,8 @@
   --border-color: rgba(255, 255, 255, 0.1);
 }
 
-[data-theme="light"], [data-theme="bright"], .light {
+html[data-theme="light"],
+html.light {
   color-scheme: light;
   --bg-main: #f8fafc;
   --bg-surface: #ffffff;
@@ -24,18 +25,17 @@
   --border-color: rgba(15, 23, 42, 0.12);
 }
 
-/* Base HTML & Scrolling optimization for all browsers and crawlers */
+/* Base HTML & Scrolling optimization for all search engines and browsers */
 html {
-  overflow-x: clip;
   scroll-behavior: smooth;
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
   margin: 0;
   padding: 0;
-  min-height: 100%;
-  overflow-x: clip;
+  min-height: 100vh;
+  overflow-x: hidden;
   background-color: #050505;
   color: #FAFAFA;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -43,9 +43,8 @@ body {
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-[data-theme="light"] body,
-[data-theme="bright"] body,
-.light body {
+html[data-theme="light"] body,
+html.light body {
   background-color: #f8fafc;
   color: #0f172a;
 }
@@ -71,107 +70,230 @@ body {
   background: rgba(148, 163, 184, 0.45);
 }
 
+/* Accessibility & Crawler Animation Normalization */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 /* ==========================================================================
-   LIGHT THEME OVERRIDES FOR SEAMLESS DUAL-THEME SUPPORT
+   ROBUST LIGHT THEME STYLING RULES
    ========================================================================== */
-[data-theme="light"], [data-theme="bright"], .light {
-  /* Page Canvas */
-  & .bg-\[\#050505\],
-  &.bg-\[\#050505\] {
-    background-color: #f8fafc !important;
-  }
 
-  /* Sub-sections */
-  & .bg-\[\#070707\],
-  & .bg-\[\#080808\] {
-    background-color: #f1f5f9 !important;
-  }
+/* Page Backgrounds & Canvases */
+html[data-theme="light"] .min-h-screen,
+html.light .min-h-screen,
+html[data-theme="light"] .bg-\[\#050505\],
+html.light .bg-\[\#050505\],
+html[data-theme="light"] .bg-\[\#070707\],
+html.light .bg-\[\#070707\],
+html[data-theme="light"] .bg-\[\#080808\],
+html.light .bg-\[\#080808\],
+html[data-theme="light"] .bg-black,
+html.light .bg-black {
+  background-color: #f8fafc !important;
+}
 
-  /* Cards, panels, modal dialogs */
-  & .bg-\[\#0a0a0a\],
-  & .bg-\[\#0d0d0d\],
-  & .bg-\[\#111\],
-  & .bg-\[\#111111\],
-  & .bg-\[\#181818\] {
-    background-color: #ffffff !important;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05) !important;
-  }
+/* Card, Panel, & Surface containers */
+html[data-theme="light"] .bg-\[\#0a0a0a\],
+html.light .bg-\[\#0a0a0a\],
+html[data-theme="light"] .bg-\[\#0d0d0d\],
+html.light .bg-\[\#0d0d0d\],
+html[data-theme="light"] .bg-\[\#0e0e10\],
+html.light .bg-\[\#0e0e10\],
+html[data-theme="light"] .bg-\[\#111\],
+html.light .bg-\[\#111\],
+html[data-theme="light"] .bg-\[\#111111\],
+html.light .bg-\[\#111111\],
+html[data-theme="light"] .bg-\[\#181818\],
+html.light .bg-\[\#181818\] {
+  background-color: #ffffff !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05) !important;
+}
 
-  /* Translucent chips & pills */
-  & .bg-white\/5 {
-    background-color: rgba(15, 23, 42, 0.04) !important;
-  }
-  & .bg-white\/10 {
-    background-color: rgba(15, 23, 42, 0.07) !important;
-  }
-  & .bg-white\/15 {
-    background-color: rgba(15, 23, 42, 0.10) !important;
-  }
-  & .bg-white\/20 {
-    background-color: rgba(15, 23, 42, 0.14) !important;
-  }
+/* Section Gradients */
+html[data-theme="light"] .bg-gradient-to-b.from-\[\#0e0e10\].to-\[\#080808\],
+html.light .bg-gradient-to-b.from-\[\#0e0e10\].to-\[\#080808\] {
+  background-image: linear-gradient(to bottom, #ffffff, #f1f5f9) !important;
+  box-shadow: 0 4px 20px -2px rgba(99, 102, 241, 0.08) !important;
+}
 
-  /* Borders */
-  & .border-white\/5,
-  & .border-white\/10 {
-    border-color: rgba(15, 23, 42, 0.08) !important;
-  }
-  & .border-white\/15,
-  & .border-white\/20,
-  & .border-white\/30 {
-    border-color: rgba(15, 23, 42, 0.16) !important;
-  }
+html[data-theme="light"] nav.bg-gradient-to-b,
+html.light nav.bg-gradient-to-b {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.75), transparent) !important;
+  color: #0f172a !important;
+}
 
-  /* Typography */
-  & .text-\[\#FAFAFA\],
-  & h1, & h2, & h3, & h4, & h5, & h6 {
-    color: #0f172a !important;
-  }
+/* Headers & Navigation */
+html[data-theme="light"] header.bg-\[\#050505\]\/85,
+html.light header.bg-\[\#050505\]\/85,
+html[data-theme="light"] nav.bg-\[\#050505\]\/85,
+html.light nav.bg-\[\#050505\]\/85 {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(16px) !important;
+  border-bottom-color: rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03) !important;
+}
 
-  /* Primary text that had text-white */
-  & :not(button):not(a[class*="bg-indigo"]):not(span[class*="bg-indigo"]):not(div[class*="bg-indigo"]).text-white {
-    color: #0f172a !important;
-  }
+/* Unscrolled nav link text */
+html[data-theme="light"] nav a.text-white\/60,
+html.light nav a.text-white\/60 {
+  color: #475569 !important;
+}
+html[data-theme="light"] nav a.text-white\/60:hover,
+html.light nav a.text-white\/60:hover {
+  color: #0f172a !important;
+}
 
-  /* Muted descriptions & subtitles */
-  & .text-white\/80,
-  & .text-white\/70,
-  & .text-white\/65,
-  & .text-white\/60 {
-    color: #334155 !important;
-  }
-  & .text-white\/50,
-  & .text-white\/40,
-  & .text-white\/30 {
-    color: #64748b !important;
-  }
+/* Mobile Nav Drawer */
+html[data-theme="light"] .bg-\[\#0a0a0a\].border-b,
+html.light .bg-\[\#0a0a0a\].border-b {
+  background-color: #ffffff !important;
+  border-bottom-color: rgba(15, 23, 42, 0.1) !important;
+}
+html[data-theme="light"] .bg-\[\#0a0a0a\] a,
+html.light .bg-\[\#0a0a0a\] a {
+  color: #1e293b !important;
+}
 
-  /* Inverted hero buttons (explore projects was bg-white text-black in dark mode) */
-  & .bg-white.text-black {
-    background-color: #0f172a !important;
-    color: #ffffff !important;
-  }
-  & .bg-white.text-black:hover {
-    background-color: #1e293b !important;
-  }
+/* Borders */
+html[data-theme="light"] .border-white\/5,
+html.light .border-white\/5,
+html[data-theme="light"] .border-white\/10,
+html.light .border-white\/10 {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
 
-  /* Navigation Header blur */
-  & header.bg-\[\#050505\]\/85 {
-    background-color: rgba(248, 250, 252, 0.88) !important;
-    border-bottom-color: rgba(15, 23, 42, 0.08) !important;
-  }
+html[data-theme="light"] .border-white\/15,
+html.light .border-white\/15,
+html[data-theme="light"] .border-white\/20,
+html.light .border-white\/20,
+html[data-theme="light"] .border-white\/30,
+html.light .border-white\/30 {
+  border-color: rgba(15, 23, 42, 0.15) !important;
+}
 
-  /* Inputs, selects, and textareas */
-  & input,
-  & select,
-  & textarea {
-    background-color: #ffffff !important;
-    color: #0f172a !important;
-    border-color: rgba(15, 23, 42, 0.15) !important;
-  }
+/* Translucent Chips & Badges */
+html[data-theme="light"] .bg-white\/5,
+html.light .bg-white\/5 {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+html[data-theme="light"] .bg-white\/10,
+html.light .bg-white\/10 {
+  background-color: rgba(15, 23, 42, 0.07) !important;
+}
+html[data-theme="light"] .bg-white\/15,
+html.light .bg-white\/15 {
+  background-color: rgba(15, 23, 42, 0.10) !important;
+}
+html[data-theme="light"] .bg-white\/20,
+html.light .bg-white\/20 {
+  background-color: rgba(15, 23, 42, 0.14) !important;
+}
 
-  /* Soften ambient decorative blurs */
-  & .rounded-full[class*="blur-"] {
-    opacity: 0.15 !important;
-  }
+/* Typography & Headings */
+html[data-theme="light"] .text-\[\#FAFAFA\],
+html.light .text-\[\#FAFAFA\],
+html[data-theme="light"] h1,
+html.light h1,
+html[data-theme="light"] h2,
+html.light h2,
+html[data-theme="light"] h3,
+html.light h3,
+html[data-theme="light"] h4,
+html.light h4,
+html[data-theme="light"] h5,
+html.light h5 {
+  color: #0f172a !important;
+}
+
+/* General text-white override (except elements with primary solid backgrounds) */
+html[data-theme="light"] :not([class*="bg-indigo"]):not([class*="bg-purple"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-rose"]):not([class*="bg-red"]).text-white,
+html.light :not([class*="bg-indigo"]):not([class*="bg-purple"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-rose"]):not([class*="bg-red"]).text-white {
+  color: #0f172a !important;
+}
+
+/* Muted & Subtitle Text */
+html[data-theme="light"] .text-white\/90,
+html.light .text-white\/90,
+html[data-theme="light"] .text-white\/80,
+html.light .text-white\/80 {
+  color: #1e293b !important;
+}
+
+html[data-theme="light"] .text-white\/70,
+html.light .text-white\/70,
+html[data-theme="light"] .text-white\/65,
+html.light .text-white\/65,
+html[data-theme="light"] .text-white\/60,
+html.light .text-white\/60 {
+  color: #334155 !important;
+}
+
+html[data-theme="light"] .text-white\/50,
+html.light .text-white\/50,
+html[data-theme="light"] .text-white\/40,
+html.light .text-white\/40 {
+  color: #64748b !important;
+}
+
+html[data-theme="light"] .text-white\/30,
+html.light .text-white\/30,
+html[data-theme="light"] .text-white\/20,
+html.light .text-white\/20 {
+  color: #94a3b8 !important;
+}
+
+/* Inverted buttons (e.g. bg-white text-black in dark mode -> dark button in light mode) */
+html[data-theme="light"] .bg-white.text-black,
+html.light .bg-white.text-black {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+}
+html[data-theme="light"] .bg-white.text-black:hover,
+html.light .bg-white.text-black:hover {
+  background-color: #1e293b !important;
+}
+
+/* Secondary Action Buttons (e.g., Book Call button) */
+html[data-theme="light"] a.bg-white\/10.border-white\/10,
+html.light a.bg-white\/10.border-white\/10 {
+  background-color: rgba(15, 23, 42, 0.05) !important;
+  border-color: rgba(15, 23, 42, 0.15) !important;
+  color: #0f172a !important;
+}
+html[data-theme="light"] a.bg-white\/10.border-white\/10:hover,
+html.light a.bg-white\/10.border-white\/10:hover {
+  background-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+/* Form Inputs, Selects, and Textareas */
+html[data-theme="light"] input,
+html.light input,
+html[data-theme="light"] select,
+html.light select,
+html[data-theme="light"] textarea,
+html.light textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: rgba(15, 23, 42, 0.16) !important;
+}
+
+/* Code and Inline Pre */
+html[data-theme="light"] code,
+html.light code {
+  background-color: rgba(99, 102, 241, 0.08) !important;
+  color: #4338ca !important;
+  border-color: rgba(99, 102, 241, 0.2) !important;
+}
+
+/* Faint ambient glow orbs */
+html[data-theme="light"] .rounded-full[class*="blur-"],
+html.light .rounded-full[class*="blur-"] {
+  opacity: 0.12 !important;
 }

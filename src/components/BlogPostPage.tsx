@@ -1,4 +1,4 @@
-import { useState, useEffect, FormEvent } from 'react';
+import { useState, useEffect, FormEvent, ReactNode } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -13,8 +13,10 @@ import {
   Clock,
   Shield,
   CheckCircle,
-  ExternalLink
+  ExternalLink,
+  Check
 } from 'lucide-react';
+import { toast } from 'sonner';
 import { 
   getBlogPostBySlug, 
   getComments, 
@@ -24,25 +26,133 @@ import {
   auth
 } from '../lib/firebase';
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, User as FirebaseUser } from 'firebase/auth';
+import ThemeToggle from './ThemeToggle';
 
-// Custom Markdown renderer for beautiful, zero-dependency typesetting
+// Helper for inline markdown formatting
+const formatInline = (text: string) => {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-white">$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em class="italic text-white/90">$1</em>')
+    .replace(/`(.*?)`/g, '<code class="bg-white/10 px-1.5 py-0.5 rounded text-indigo-300 font-mono text-xs border border-white/5">$1</code>')
+    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-indigo-400 hover:text-indigo-300 underline font-medium underline-offset-2">$1</a>');
+};
+
+// Rich Markdown renderer with tables, code blocks, checklists, images, and blockquotes
 const renderMarkdown = (text: string) => {
   if (!text) return null;
-  
-  return text.split('\n').map((line, index) => {
-    // Images
-    if (line.trim().startsWith('![') && line.trim().endsWith(')')) {
-      const match = line.trim().match(/^!\[(.*?)\]\((.*?)\)$/);
+  const lines = text.split('\n');
+  const elements: ReactNode[] = [];
+  let inCodeBlock = false;
+  let codeBlockLang = '';
+  let codeBlockLines: string[] = [];
+  let inTable = false;
+  let tableRows: string[][] = [];
+
+  const flushCodeBlock = (key: string | number) => {
+    if (codeBlockLines.length > 0) {
+      elements.push(
+        <div key={`code-${key}`} className="my-6 rounded-2xl overflow-hidden border border-white/10 bg-neutral-950 p-4 font-mono text-xs md:text-sm text-indigo-200 overflow-x-auto shadow-inner">
+          {codeBlockLang && (
+            <div className="text-[10px] text-white/30 uppercase tracking-widest mb-2 border-b border-white/5 pb-1 font-sans">
+              {codeBlockLang}
+            </div>
+          )}
+          <pre className="leading-relaxed">
+            <code>{codeBlockLines.join('\n')}</code>
+          </pre>
+        </div>
+      );
+      codeBlockLines = [];
+    }
+    inCodeBlock = false;
+    codeBlockLang = '';
+  };
+
+  const flushTable = (key: string | number) => {
+    if (tableRows.length > 0) {
+      const headerRow = tableRows[0];
+      const bodyRows = tableRows.slice(1).filter(r => !r.every(cell => cell.trim().match(/^:?-+:?$/)));
+      elements.push(
+        <div key={`tbl-${key}`} className="my-8 overflow-x-auto rounded-2xl border border-white/10 bg-white/[0.02]">
+          <table className="w-full text-left text-xs md:text-sm border-collapse">
+            <thead>
+              <tr className="border-b border-white/10 bg-white/5">
+                {headerRow.map((cell, cIdx) => (
+                  <th key={cIdx} className="p-3 md:p-4 font-bold text-white tracking-wide" dangerouslySetInnerHTML={{ __html: formatInline(cell.trim()) }} />
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/5">
+              {bodyRows.map((row, rIdx) => (
+                <tr key={rIdx} className="hover:bg-white/[0.02] transition-colors">
+                  {row.map((cell, cIdx) => (
+                    <td key={cIdx} className="p-3 md:p-4 text-white/80 leading-relaxed" dangerouslySetInnerHTML={{ __html: formatInline(cell.trim()) }} />
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+      tableRows = [];
+    }
+    inTable = false;
+  };
+
+  lines.forEach((line, index) => {
+    const trimmed = line.trim();
+
+    // Code blocks
+    if (trimmed.startsWith('```')) {
+      if (inTable) flushTable(`before-code-${index}`);
+      if (inCodeBlock) {
+        flushCodeBlock(index);
+      } else {
+        inCodeBlock = true;
+        codeBlockLang = trimmed.replace('```', '').trim();
+      }
+      return;
+    }
+
+    if (inCodeBlock) {
+      codeBlockLines.push(line);
+      return;
+    }
+
+    // Markdown Table rows
+    if (trimmed.startsWith('|') && trimmed.endsWith('|')) {
+      inTable = true;
+      const cells = trimmed
+        .slice(1, -1)
+        .split('|')
+        .map(c => c.trim());
+      tableRows.push(cells);
+      return;
+    } else if (inTable) {
+      flushTable(index);
+    }
+
+    // Images: ![alt](url)
+    if (trimmed.startsWith('![') && trimmed.endsWith(')')) {
+      const match = trimmed.match(/^!\[(.*?)\]\((.*?)\)$/);
       if (match) {
         const alt = match[1];
-        const src = match[2];
-        return (
-          <div key={index} className="my-8 rounded-3xl overflow-hidden border border-white/10 bg-white/5 p-2">
+        let src = match[2];
+        // Allow automatic fallback if path is relative
+        return elements.push(
+          <div key={`img-${index}`} className="my-8 rounded-3xl overflow-hidden border border-white/10 bg-white/5 p-2">
             <img 
               src={src} 
               alt={alt} 
-              referrerPolicy="no-referrer" 
-              className="w-full h-auto rounded-2xl object-cover max-h-[500px]" 
+              loading="lazy"
+              onError={(e) => {
+                // Fallback to /images/ if /src/assets/images/ fails
+                const target = e.currentTarget;
+                if (src.includes('/src/assets/images/')) {
+                  target.src = src.replace('/src/assets/images/', '/images/');
+                }
+              }}
+              className="w-full h-auto rounded-2xl object-cover max-h-[520px]" 
             />
             {alt && (
               <p className="text-center text-xs text-white/40 mt-3 font-mono">
@@ -53,88 +163,104 @@ const renderMarkdown = (text: string) => {
         );
       }
     }
-    // Heading 1
+
+    // Horizontal Rule
+    if (trimmed === '---' || trimmed === '***') {
+      return elements.push(<hr key={`hr-${index}`} className="my-10 border-white/10" />);
+    }
+
+    // Headings
     if (line.startsWith('# ')) {
-      return (
-        <h1 key={index} className="text-3xl md:text-4xl font-black mt-12 mb-6 text-white border-b-2 border-indigo-500/30 pb-3 tracking-tight">
+      return elements.push(
+        <h1 key={`h1-${index}`} className="text-3xl md:text-4xl font-black mt-12 mb-6 text-white border-b-2 border-indigo-500/30 pb-3 tracking-tight">
           {line.replace('# ', '')}
         </h1>
       );
     }
-    // Heading 2
     if (line.startsWith('## ')) {
-      return (
-        <h2 key={index} className="text-2xl md:text-3xl font-extrabold mt-10 mb-5 text-white/90 border-b border-white/10 pb-2 tracking-tight">
+      return elements.push(
+        <h2 key={`h2-${index}`} className="text-2xl md:text-3xl font-extrabold mt-10 mb-5 text-white/90 border-b border-white/10 pb-2 tracking-tight">
           {line.replace('## ', '')}
         </h2>
       );
     }
-    // Heading 3
     if (line.startsWith('### ')) {
-      return (
-        <h3 key={index} className="text-xl md:text-2xl font-bold mt-8 mb-4 text-white/80 tracking-tight">
+      return elements.push(
+        <h3 key={`h3-${index}`} className="text-xl md:text-2xl font-bold mt-8 mb-4 text-white/80 tracking-tight">
           {line.replace('### ', '')}
         </h3>
       );
     }
-    // Heading 4
     if (line.startsWith('#### ')) {
-      return (
-        <h4 key={index} className="text-lg font-bold mt-6 mb-3 text-indigo-400 tracking-tight">
+      return elements.push(
+        <h4 key={`h4-${index}`} className="text-lg font-bold mt-6 mb-3 text-indigo-400 tracking-tight">
           {line.replace('#### ', '')}
         </h4>
       );
     }
-    // Unordered lists
-    if (line.startsWith('* ')) {
-      return (
-        <li key={index} className="list-disc ml-6 my-2 text-sm md:text-base text-white/80 leading-relaxed pl-1">
-          {line.replace('* ', '')}
+
+    // Key takeaway checkmark items: ✔
+    if (line.startsWith('✔ ') || trimmed.startsWith('✔')) {
+      const itemContent = line.replace(/^[✔\s]+/, '');
+      return elements.push(
+        <div key={`check-${index}`} className="flex items-start gap-3 my-2.5 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+          <Check size={16} className="text-emerald-400 mt-1 shrink-0" />
+          <span 
+            className="text-sm md:text-base text-white/90 leading-relaxed font-normal"
+            dangerouslySetInnerHTML={{ __html: formatInline(itemContent) }}
+          />
+        </div>
+      );
+    }
+
+    // Unordered lists: * or -
+    if (line.startsWith('* ') || line.startsWith('- ')) {
+      const itemContent = line.replace(/^[\*\-]\s+/, '');
+      return elements.push(
+        <li key={`ul-${index}`} className="list-disc ml-6 my-2 text-sm md:text-base text-white/80 leading-relaxed pl-1">
+          <span dangerouslySetInnerHTML={{ __html: formatInline(itemContent) }} />
         </li>
       );
     }
-    // Numbered lists
-    if (line.startsWith('1. ') || line.match(/^\d+\.\s/)) {
-      return (
-        <li key={index} className="list-decimal ml-6 my-2 text-sm md:text-base text-white/80 leading-relaxed pl-1">
-          {line.replace(/^\d+\.\s/, '')}
+
+    // Numbered lists: 1.
+    if (line.match(/^\d+\.\s/)) {
+      const itemContent = line.replace(/^\d+\.\s/, '');
+      return elements.push(
+        <li key={`ol-${index}`} className="list-decimal ml-6 my-2 text-sm md:text-base text-white/80 leading-relaxed pl-1">
+          <span dangerouslySetInnerHTML={{ __html: formatInline(itemContent) }} />
         </li>
       );
     }
-    // Blockquote
+
+    // Blockquote: >
     if (line.startsWith('> ')) {
-      return (
-        <blockquote key={index} className="border-l-4 border-indigo-500 pl-4 py-2 my-6 bg-indigo-500/5 text-white/70 italic rounded-r-xl">
-          {line.replace('> ', '')}
+      return elements.push(
+        <blockquote key={`quote-${index}`} className="border-l-4 border-indigo-500 pl-4 py-3 my-6 bg-indigo-500/5 text-white/80 italic rounded-r-xl">
+          <span dangerouslySetInnerHTML={{ __html: formatInline(line.replace('> ', '')) }} />
         </blockquote>
       );
     }
-    // Code blocks placeholder
-    if (line.startsWith('```')) {
-      return null; // Handle inside block code or simple styling
-    }
+
     // Empty line
-    if (line.trim() === '') {
-      return <div key={index} className="h-4"></div>;
+    if (trimmed === '') {
+      return elements.push(<div key={`sp-${index}`} className="h-4" />);
     }
-    
-    // Standard paragraph with bold, italic, and inline code formatting
-    let styledLine = line;
-    // bold
-    styledLine = styledLine.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-white">$1</strong>');
-    // italic
-    styledLine = styledLine.replace(/\*(.*?)\*/g, '<em class="italic text-white/90">$1</em>');
-    // inline code
-    styledLine = styledLine.replace(/`(.*?)`/g, '<code class="bg-white/10 px-1.5 py-0.5 rounded text-indigo-300 font-mono text-xs border border-white/5">$1</code>');
-    
-    return (
+
+    // Standard paragraph
+    return elements.push(
       <p 
-        key={index} 
+        key={`p-${index}`} 
         className="text-sm md:text-base text-white/70 leading-relaxed my-3 font-light"
-        dangerouslySetInnerHTML={{ __html: styledLine }}
+        dangerouslySetInnerHTML={{ __html: formatInline(line) }}
       />
     );
   });
+
+  if (inCodeBlock) flushCodeBlock('end');
+  if (inTable) flushTable('end');
+
+  return elements;
 };
 
 export default function BlogPostPage() {
@@ -214,8 +340,12 @@ export default function BlogPostPage() {
       if (result.user.displayName) {
         setCommenterName(result.user.displayName);
       }
-    } catch (err) {
-      console.error('Login error:', err);
+      toast.success(`Signed in as ${result.user.displayName || result.user.email}`);
+    } catch (err: any) {
+      if (err?.code !== 'auth/popup-closed-by-user') {
+        console.error('Login error:', err);
+        toast.error('Google sign-in was not completed.');
+      }
     }
   };
 
@@ -232,11 +362,12 @@ export default function BlogPostPage() {
       });
       
       setCommentText('');
+      toast.success('Comment posted successfully!');
       // Reload comments
       await loadComments(post.id || post.slug);
     } catch (err: any) {
       console.error('Failed to add comment:', err);
-      alert('Could not submit comment. Please check your network connection.');
+      toast.error('Could not submit comment. Please check your network connection.');
     } finally {
       setSubmittingComment(false);
     }
@@ -277,9 +408,10 @@ export default function BlogPostPage() {
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full px-6 py-8 md:px-16 flex justify-between items-center z-50 bg-gradient-to-b from-black/80 via-black/40 to-transparent backdrop-blur-sm text-white">
+      <nav className="fixed top-0 w-full px-6 py-6 md:px-16 flex justify-between items-center z-50 bg-[#050505]/75 backdrop-blur-sm text-white border-b border-white/5 shadow-lg shadow-black/10">
         <Link to="/" className="text-2xl font-bold tracking-tighter">AR.</Link>
-        <div className="flex gap-8 text-xs font-semibold uppercase tracking-[0.2em] items-center">
+        <div className="flex gap-4 md:gap-8 text-xs font-semibold uppercase tracking-[0.2em] items-center">
+          <ThemeToggle variant="nav" />
           <Link to="/blog" className="hover:text-indigo-400 transition-colors text-indigo-300">Blog</Link>
           <Link to="/" className="hover:text-indigo-400 transition-colors">Portfolio</Link>
         </div>

@@ -51,10 +51,20 @@ export default function CmsCategories() {
   };
 
   const handleDelete = (id: string, name: string) => {
-    if (confirm(`Are you sure you want to delete category "${name}"?`)) {
-      setCategories(categories.filter(c => c.id !== id));
-      toast.success('Category deleted.');
-    }
+    toast(`Delete category "${name}"?`, {
+      description: 'This taxonomy will be removed from local categories.',
+      action: {
+        label: 'Delete',
+        onClick: () => {
+          setCategories(prev => prev.filter(c => c.id !== id));
+          toast.success('Category deleted.');
+        }
+      },
+      cancel: {
+        label: 'Cancel',
+        onClick: () => {}
+      }
+    });
   };
 
   return (

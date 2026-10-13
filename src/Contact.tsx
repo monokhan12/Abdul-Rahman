@@ -13,6 +13,7 @@ import {
 import { Link } from 'react-router-dom';
 import { personalInfo } from './data';
 import GoogleMeetScheduler from './components/GoogleMeetScheduler';
+import ThemeToggle from './components/ThemeToggle';
 
 export default function Contact() {
   return (
@@ -27,9 +28,12 @@ export default function Contact() {
       {/* Navigation */}
       <nav className="fixed top-0 w-full px-6 py-6 md:px-16 flex justify-between items-center z-50 bg-[#050505]/85 backdrop-blur-md border-b border-white/5 shadow-xl shadow-black/10">
         <Link to="/" className="text-2xl font-black tracking-tighter hover:opacity-80 transition-opacity">AR<span className="text-indigo-500">.</span></Link>
-        <Link to="/" className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] hover:text-indigo-400 transition-colors">
-          <ChevronLeft size={16} /> Back to Home
-        </Link>
+        <div className="flex items-center gap-4">
+          <ThemeToggle variant="nav" />
+          <Link to="/" className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] hover:text-indigo-400 transition-colors">
+            <ChevronLeft size={16} /> Back to Home
+          </Link>
+        </div>
       </nav>
 
       <section className="relative min-h-[90vh] flex flex-col justify-center px-6 md:px-16 z-10 pt-32 pb-16">

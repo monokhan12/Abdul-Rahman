@@ -47,13 +47,11 @@ export const education = [
   {
     degree: "Master of Science in Metallurgical and Materials Engineering",
     institution: "University of Engineering and Technology (UET), Lahore",
-    date: "Expected Jan 2027",
     details: "Thesis: Direct Recycling and Regeneration Strategies for Nickel-Rich LiNixMnyCozO2 (NMC) Cathode Materials."
   },
   {
     degree: "Bachelor of Science in Metallurgical and Materials Engineering",
     institution: "University of Engineering and Technology (UET), Lahore",
-    date: "2011 – 2015",
     details: "Thesis: Effect of Welding Parameters and PWHT on Cladding Characteristics and Ferrite Number of 316L Stainless Steel Weld Cladding."
   }
 ];

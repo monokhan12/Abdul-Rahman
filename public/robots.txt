@@ -56,8 +56,9 @@ Allow: /
 User-agent: Diffbot
 Allow: /
 
-Sitemap: /sitemap.xml
-# AI Documentation files
+Sitemap: https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/sitemap.xml
+Sitemap: https://ais-pre-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/sitemap.xml
+# AI Documentation endpoints
 # https://llmstxt.org/
 # /llms.txt
 # /llms-full.txt

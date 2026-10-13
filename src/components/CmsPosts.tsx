@@ -52,15 +52,25 @@ export default function CmsPosts() {
       return;
     }
 
-    if (confirm(`Are you sure you want to permanently delete "${title}"?`)) {
-      try {
-        await deleteBlogPost(slug);
-        toast.success('Article deleted successfully.');
-        loadPosts();
-      } catch (err) {
-        toast.error('Deletion failed. Check security rules permissions.');
+    toast(`Permanently delete "${title}"?`, {
+      description: 'This will remove the publication from the live database.',
+      action: {
+        label: 'Delete',
+        onClick: async () => {
+          try {
+            await deleteBlogPost(slug);
+            toast.success('Article deleted successfully.');
+            loadPosts();
+          } catch (err) {
+            toast.error('Deletion failed. Check security rules permissions.');
+          }
+        }
+      },
+      cancel: {
+        label: 'Cancel',
+        onClick: () => {}
       }
-    }
+    });
   };
 
   const categories = ['All', ...Array.from(new Set(posts.map(p => p.category)))];

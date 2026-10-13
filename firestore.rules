@@ -25,9 +25,9 @@ service cloud.firestore {
       return post.title is string && post.title.size() > 0 && post.title.size() <= 200 &&
              post.slug is string && post.slug.size() > 0 && post.slug.size() <= 100 &&
              post.date is string && post.date.size() > 0 && post.date.size() <= 50 &&
-             post.summary is string && post.summary.size() > 0 && post.summary.size() <= 1000 &&
-             post.content is string && post.content.size() > 0 && post.content.size() <= 50000 &&
-             post.category is string && post.category.size() > 0 && post.category.size() <= 50 &&
+             post.summary is string && post.summary.size() > 0 && post.summary.size() <= 2000 &&
+             post.content is string && post.content.size() > 0 && post.content.size() <= 100000 &&
+             post.category is string && post.category.size() > 0 && post.category.size() <= 100 &&
              post.author is string && post.author.size() > 0 && post.author.size() <= 100 &&
              post.createdAt is timestamp;
     }
@@ -36,13 +36,13 @@ service cloud.firestore {
     function isValidComment(comment) {
       return comment.postId is string && comment.postId.size() > 0 && comment.postId.size() <= 128 &&
              comment.authorName is string && comment.authorName.size() > 0 && comment.authorName.size() <= 100 &&
-             comment.content is string && comment.content.size() > 0 && comment.content.size() <= 2000 &&
+             comment.content is string && comment.content.size() > 0 && comment.content.size() <= 4000 &&
              comment.createdAt is timestamp;
     }
 
     // Posts Collection
     match /posts/{postId} {
-      allow read, list: if true;
+      allow read: if true;
       allow create: if isAdmin() && isValidPost(request.resource.data);
       allow update: if isAdmin() && isValidPost(request.resource.data);
       allow delete: if isAdmin();
@@ -50,9 +50,22 @@ service cloud.firestore {
 
     // Comments Collection
     match /comments/{commentId} {
-      allow read, list: if true;
+      allow read: if true;
       allow create: if isValidComment(request.resource.data);
       allow delete: if isAdmin();
+    }
+
+    // Users Collection (for user profiles and auth synchronization)
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow create, update: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    // Settings Collection (global metadata & CMS settings)
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
   }
 }

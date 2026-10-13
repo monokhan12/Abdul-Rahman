@@ -103,6 +103,7 @@ function PortfolioHome() {
 
           {/* Action CTAs */}
           <div className="hidden sm:flex items-center gap-4">
+            <ThemeToggle variant="nav" />
             <Link 
               to="/contact" 
               className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-xs font-semibold uppercase tracking-wider text-white transition-all hover:scale-[1.02]"
@@ -117,14 +118,17 @@ function PortfolioHome() {
             </Link>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <button 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-white/70 hover:text-white transition-colors"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Menu & Theme Toggle */}
+          <div className="lg:hidden flex items-center gap-2">
+            <ThemeToggle variant="nav" />
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 text-white/70 hover:text-white transition-colors"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Nav Overlay */}
@@ -145,13 +149,19 @@ function PortfolioHome() {
                 <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="py-2 text-white/70 hover:text-white">Projects</a>
                 <a href="#publications" onClick={() => setMobileMenuOpen(false)} className="py-2 text-white/70 hover:text-white">Publications</a>
                 <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="py-2 text-indigo-400">Scientific Blog</Link>
+                
+                {/* Mobile Theme Toggle */}
+                <div className="py-2">
+                  <ThemeToggle variant="mobile" />
+                </div>
+
                 <div className="pt-4 border-t border-white/10 flex gap-3">
-                  <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="flex-1 py-2.5 bg-indigo-600 text-center rounded-xl text-xs font-bold uppercase tracking-wider">
+                  <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="flex-1 py-2.5 bg-indigo-600 text-center rounded-xl text-xs font-bold uppercase tracking-wider text-white">
                     Contact
                   </Link>
-                  <a href="#schedule-meeting" onClick={() => setMobileMenuOpen(false)} className="flex-1 py-2.5 bg-white/10 text-center rounded-xl text-xs font-bold uppercase tracking-wider">
+                  <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="flex-1 py-2.5 bg-white/10 text-center rounded-xl text-xs font-bold uppercase tracking-wider text-white">
                     Book Call
-                  </a>
+                  </Link>
                 </div>
               </div>
             </motion.div>
@@ -683,9 +693,6 @@ function PortfolioHome() {
           </p>
         </div>
       </footer>
-
-      {/* Floating Theme Toggle */}
-      <ThemeToggle />
     </div>
   );
 }
@@ -697,7 +704,6 @@ export default function App() {
 
   return (
     <CmsErrorBoundary>
-      <Toaster position="bottom-right" richColors />
       <Routes>
         {/* Public Portfolio Routes */}
         <Route path="/" element={<PortfolioHome />} />
@@ -774,6 +780,8 @@ export default function App() {
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <Toaster position="bottom-right" richColors theme="dark" />
+      <ThemeToggle variant="floating" />
     </CmsErrorBoundary>
   );
 }

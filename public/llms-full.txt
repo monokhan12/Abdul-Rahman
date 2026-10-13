@@ -86,19 +86,28 @@ AI-driven Materials Engineer blending physical metallurgy with computational mat
 ## Featured Research Articles & Scientific Blog
 
 ### Article 1: Unlocking Pakistan’s $6 Trillion Mineral Wealth: A Metallurgical Blueprint
+- **URL:** `/blog/pakistan-6-trillion-mineral-wealth`
 - **Topic:** Geoeconomic analysis and processing roadmap for Pakistan's massive mineral reserves, including Reko Diq copper-gold deposits (5.9 billion tonnes), Saindak, Dilband iron ore, and Chiniot-Rajoa deposits.
 - **Key Technologies:** Hydrometallurgical bioleaching, automated sensor-based ore sorting, froth flotation modeling, and downstream value-addition smelter infrastructure.
 
-### Article 2: Materials Informatics: Accelerating Alloy Design via Machine Learning
+### Article 2: Part 2: Pakistan's Mineral Treasure Map — Province-Wise Resources, Scientific Formation, and Economic Potential
+- **URL:** `/blog/pakistan-mineral-treasure-map`
+- **Topic:** Geological inventory of Pakistan's rich metallic, industrial, and energy deposits, explaining the hydrothermal science of copper-gold formations and the strategic rise of critical minerals.
+
+### Article 3: Materials Informatics: Accelerating Alloy Design via Machine Learning
+- **URL:** `/blog/materials-informatics-accelerating-alloy-design`
 - **Topic:** Replacing traditional Edisonian trial-and-error metallurgy with active learning loops, CALPHAD thermodynamic modeling, and Bayesian optimization to discover high-performance high-entropy alloys (HEAs).
 
-### Article 3: Corrosion Kinetics and Interface Degradation in Harsh Environments
+### Article 4: Corrosion Kinetics and Interface Degradation in Harsh Environments
+- **URL:** `/blog/corrosion-kinetics-harsh-environments`
 - **Topic:** Electrochemical impedance spectroscopy (EIS), potentiodynamic polarization, and nanocontainer-based smart self-healing coatings for offshore and industrial infrastructure.
 
-### Article 4: Direct Recycling and Relithiation of Spent NMC Battery Cathodes
+### Article 5: Direct Recycling and Relithiation of Spent NMC Battery Cathodes
+- **URL:** `/blog/direct-recycling-nmc-cathode-materials`
 - **Topic:** Green, low-carbon circular recycling of lithium nickel manganese cobalt oxides through solid-state thermal relithiation, restoring electrochemical capacity without hazardous acid leaching.
 
-### Article 5: Practical Guide to SEM/EDS Microstructural & Compositional Analysis
+### Article 6: Practical Guide to SEM/EDS Microstructural & Compositional Analysis
+- **URL:** `/blog/sem-eds-microstructural-analysis-guide`
 - **Topic:** Best practices for sample preparation, accelerating voltage optimization, ZAF matrix correction, and elemental mapping in metallurgical failure analysis.
 
 ---

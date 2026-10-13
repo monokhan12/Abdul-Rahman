@@ -3,6 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('abdul_rahman_theme');
+          var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+          var theme = (saved === 'light' || (!saved && prefersLight)) ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+          if (theme === 'light') {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+          } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          }
+        } catch (e) {}
+      })();
+    </script>
     <title>Abdul Rahman - AI-Driven Materials Engineer</title>
     <meta name="description" content="Portfolio, scientific research blog, and consultancy booking for Abdul Rahman, AI-Driven Materials Engineer specializing in physical metallurgy, computational materials science, and AI workflows." />
     
@@ -93,6 +110,32 @@
           "publisher": {
             "@id": "https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/#person"
           }
+        },
+        {
+          "@type": "BlogPosting",
+          "@id": "https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/blog/pakistan-6-trillion-mineral-wealth#article",
+          "headline": "Pakistan's $6 Trillion Mineral Wealth: The Untapped Scientific Treasure That Could Transform the Nation",
+          "description": "Pakistan possesses an estimated $6 trillion in mineral wealth, including copper, gold, rare earth elements, coal, iron ore, gemstones, and industrial minerals.",
+          "url": "https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/blog/pakistan-6-trillion-mineral-wealth",
+          "datePublished": "2026-10-12T12:00:00Z",
+          "dateModified": "2026-10-12T12:00:00Z",
+          "author": {
+            "@id": "https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/#person"
+          },
+          "keywords": ["Pakistan mineral wealth", "Reko Diq", "Thar coal", "critical minerals", "geology", "physical metallurgy"]
+        },
+        {
+          "@type": "BlogPosting",
+          "@id": "https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/blog/pakistan-mineral-treasure-map#article",
+          "headline": "Part 2: Pakistan's Mineral Treasure Map — Province-Wise Resources, Scientific Formation, and Economic Potential",
+          "description": "A province-by-province geological inventory of Pakistan's rich metallic, industrial, and energy deposits, explaining the hydrothermal science of copper-gold formations and the strategic rise of critical minerals.",
+          "url": "https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/blog/pakistan-mineral-treasure-map",
+          "datePublished": "2026-10-11T12:00:00Z",
+          "dateModified": "2026-10-11T12:00:00Z",
+          "author": {
+            "@id": "https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/#person"
+          },
+          "keywords": ["Pakistan mineral treasure map", "Balochistan mining", "hydrothermal mineralization", "porphyry copper", "gemstones", "Swat emeralds"]
         }
       ]
     }
@@ -205,6 +248,7 @@
           <h2 style="font-size: 32px; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 24px;">Published Scientific Blog Articles</h2>
           <ul>
             <li style="margin-bottom: 12px;"><strong>Unlocking Pakistan’s $6 Trillion Mineral Wealth: A Metallurgical Blueprint</strong> — Strategic analysis of Reko Diq copper-gold, Saindak, and Dilband mineral reserves with bioleaching and modern pyrometallurgy roadmaps. (<a href="/blog/pakistan-6-trillion-mineral-wealth" style="color: #818cf8;">Read Article</a>)</li>
+            <li style="margin-bottom: 12px;"><strong>Part 2: Pakistan's Mineral Treasure Map — Province-Wise Resources, Scientific Formation, and Economic Potential</strong> — Comprehensive geological breakdown of Chagai magmatic arc, Thar coalfields, Khewra salt, and strategic critical minerals. (<a href="/blog/pakistan-mineral-treasure-map" style="color: #818cf8;">Read Article</a>)</li>
             <li style="margin-bottom: 12px;"><strong>Materials Informatics: Accelerating Alloy Design via Machine Learning</strong> — Replacing Edisonian trial-and-error with Bayesian active learning loops and CALPHAD modeling. (<a href="/blog/materials-informatics-accelerating-alloy-design" style="color: #818cf8;">Read Article</a>)</li>
             <li style="margin-bottom: 12px;"><strong>Corrosion Kinetics and Interface Degradation in Harsh Environments</strong> — Electrochemical impedance spectroscopy and smart self-healing coatings. (<a href="/blog/corrosion-kinetics-harsh-environments" style="color: #818cf8;">Read Article</a>)</li>
             <li style="margin-bottom: 12px;"><strong>Direct Recycling and Relithiation of Spent NMC Battery Cathodes</strong> — Green circular recycling of spent lithium-ion battery cathodes. (<a href="/blog/direct-recycling-nmc-cathode-materials" style="color: #818cf8;">Read Article</a>)</li>

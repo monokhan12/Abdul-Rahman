@@ -46,6 +46,7 @@ import {
   seedDefaultPostsIfEmpty
 } from '../lib/firebase';
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut, User as FirebaseUser } from 'firebase/auth';
+import { toast } from 'sonner';
 
 type ActiveTab = 'editor' | 'manage' | 'comments';
 
@@ -154,8 +155,9 @@ export default function BlogAdminPage() {
       const result = await signInWithPopup(auth, provider);
       if (result.user.email && adminEmails.includes(result.user.email)) {
         setIsAdmin(true);
+        toast.success(`Welcome, Admin (${result.user.email})!`);
       } else {
-        alert(`Authenticated as ${result.user.email}. Note: Only authorized administrator emails can modify records.`);
+        toast.error(`Authenticated as ${result.user.email}. Note: Only authorized administrator emails can modify records.`);
       }
     } catch (err) {
       console.error('Google login error:', err);
@@ -343,24 +345,22 @@ export default function BlogAdminPage() {
   };
 
   const handleDeletePost = async (postSlug: string, postTitle: string) => {
-    if (confirm(`Are you sure you want to permanently delete "${postTitle}"? This cannot be undone.`)) {
-      try {
-        await deleteBlogPost(postSlug);
-        await loadPosts();
-      } catch (err: any) {
-        alert('Failed to delete post. Permissions check failed.');
-      }
+    try {
+      await deleteBlogPost(postSlug);
+      toast.success(`Deleted "${postTitle}" successfully.`);
+      await loadPosts();
+    } catch (err: any) {
+      toast.error('Failed to delete post. Permissions check failed.');
     }
   };
 
   const handleDeleteComment = async (commentId: string) => {
-    if (confirm('Are you sure you want to delete this comment?')) {
-      try {
-        await deleteComment(commentId);
-        await loadComments();
-      } catch (err) {
-        alert('Failed to delete comment.');
-      }
+    try {
+      await deleteComment(commentId);
+      toast.success('Comment deleted.');
+      await loadComments();
+    } catch (err) {
+      toast.error('Failed to delete comment.');
     }
   };
 

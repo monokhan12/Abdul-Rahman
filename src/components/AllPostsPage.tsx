@@ -26,6 +26,8 @@ import {
   seedDefaultPostsIfEmpty
 } from '../lib/firebase';
 import BlogCard from './BlogCard';
+import ThemeToggle from './ThemeToggle';
+import { toast } from 'sonner';
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, User as FirebaseUser } from 'firebase/auth';
 
 export default function AllPostsPage() {
@@ -100,9 +102,15 @@ export default function AllPostsPage() {
       setUser(result.user);
       if (result.user.email && adminEmails.includes(result.user.email)) {
         setIsAdmin(true);
+        toast.success(`Welcome back, ${result.user.displayName || 'Admin'}!`);
+      } else {
+        toast.success(`Signed in as ${result.user.displayName || result.user.email}`);
       }
-    } catch (err) {
-      console.error('Login error:', err);
+    } catch (err: any) {
+      if (err?.code !== 'auth/popup-closed-by-user') {
+        console.error('Login error:', err);
+        toast.error('Google sign-in was not completed.');
+      }
     }
   };
 
@@ -120,7 +128,7 @@ export default function AllPostsPage() {
   const handleSubmitPost = async (e: FormEvent) => {
     e.preventDefault();
     if (!title || !slug || !summary || !content || !category) {
-      alert('Please fill out all required fields.');
+      toast.error('Please fill out all required fields.');
       return;
     }
 
@@ -148,12 +156,13 @@ export default function AllPostsPage() {
       setSummary('');
       setContent('');
       setShowAddModal(false);
+      toast.success('Blog post published successfully!');
 
       // Reload posts
       await loadAllPosts();
     } catch (err: any) {
       console.error('Error creating post:', err);
-      alert('Error creating blog post. Ensure you have authorized permission.');
+      toast.error('Error creating blog post. Ensure you have authorized permission.');
     } finally {
       setSubmittingPost(false);
     }
@@ -176,9 +185,10 @@ export default function AllPostsPage() {
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full px-6 py-8 md:px-16 flex justify-between items-center z-50 bg-[#050505]/75 backdrop-blur-sm text-white border-b border-white/5 shadow-lg shadow-black/10">
+      <nav className="fixed top-0 w-full px-6 py-6 md:px-16 flex justify-between items-center z-50 bg-[#050505]/75 backdrop-blur-sm text-white border-b border-white/5 shadow-lg shadow-black/10">
         <Link to="/" className="text-2xl font-bold tracking-tighter">AR.</Link>
-        <div className="flex gap-8 text-xs font-semibold uppercase tracking-[0.2em] items-center">
+        <div className="flex gap-4 md:gap-8 text-xs font-semibold uppercase tracking-[0.2em] items-center">
+          <ThemeToggle variant="nav" />
           <Link to="/" className="hover:text-indigo-400 transition-colors">Portfolio</Link>
           <Link to="/contact" className="px-5 py-2 bg-white text-black rounded-full hover:bg-gray-200 transition-colors font-bold tracking-widest text-[10px]">Consultancy</Link>
         </div>
