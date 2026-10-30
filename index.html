@@ -4,269 +4,128 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
-      (function() {
+      (function () {
         try {
           var saved = localStorage.getItem('abdul_rahman_theme');
           var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-          var theme = (saved === 'light' || (!saved && prefersLight)) ? 'light' : 'dark';
+          var theme = saved === 'light' || (!saved && prefersLight) ? 'light' : 'dark';
           document.documentElement.setAttribute('data-theme', theme);
-          if (theme === 'light') {
-            document.documentElement.classList.add('light');
-            document.documentElement.classList.remove('dark');
-          } else {
-            document.documentElement.classList.add('dark');
-            document.documentElement.classList.remove('light');
-          }
+          document.documentElement.classList.add(theme);
+          document.documentElement.classList.remove(theme === 'light' ? 'dark' : 'light');
         } catch (e) {}
       })();
     </script>
-    <title>Abdul Rahman - AI-Driven Materials Engineer</title>
-    <meta name="description" content="Portfolio, scientific research blog, and consultancy booking for Abdul Rahman, AI-Driven Materials Engineer specializing in physical metallurgy, computational materials science, and AI workflows." />
-    
-    <!-- Open Web & AI Crawler Permissions (Google, OpenAI ChatGPT, Gemini, Anthropic Claude, Perplexity) -->
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="GPTBot" content="index, follow" />
-    <meta name="ChatGPT-User" content="index, follow" />
-    <meta name="OAI-SearchBot" content="index, follow" />
-    <meta name="Google-Extended" content="index, follow" />
-    <meta name="PerplexityBot" content="index, follow" />
-    <meta name="ClaudeBot" content="index, follow" />
-    <meta name="anthropic-ai" content="index, follow" />
-    <meta name="Claude-Web" content="index, follow" />
-    <meta name="CCBot" content="index, follow" />
-    <meta name="Applebot" content="index, follow" />
-    <meta name="Applebot-Extended" content="index, follow" />
-    <meta name="facebookexternalhit" content="index, follow" />
 
-    <!-- OpenGraph & Social Sharing -->
-    <meta property="og:title" content="Abdul Rahman - AI-Driven Materials Engineer" />
-    <meta property="og:description" content="Portfolio, scientific research blog, and consultancy booking for Abdul Rahman, AI-Driven Materials Engineer specializing in physical metallurgy, computational materials science, and AI workflows." />
+    <!--SEO:START-->
+    <title>Abdul Rahman | AI-Driven Materials Engineer &amp; Entrepreneur, Lahore</title>
+    <meta name="description" content="Abdul Rahman is an AI-driven materials engineer and entrepreneur in Lahore, Pakistan. Metallurgy, materials informatics, SEM/EDS and XRD analysis, and founder of C2F, EduCon and Jobs4DAE." />
+    <link rel="canonical" href="__SITE_URL__/" />
+    <meta property="og:title" content="Abdul Rahman | AI-Driven Materials Engineer &amp; Entrepreneur, Lahore" />
+    <meta property="og:description" content="Abdul Rahman is an AI-driven materials engineer and entrepreneur in Lahore, Pakistan. Metallurgy, materials informatics, SEM/EDS and XRD analysis, and founder of C2F, EduCon and Jobs4DAE." />
+    <meta property="og:url" content="__SITE_URL__/" />
     <meta property="og:type" content="profile" />
-    <meta property="og:url" content="https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/" />
+    <meta name="twitter:title" content="Abdul Rahman | AI-Driven Materials Engineer &amp; Entrepreneur, Lahore" />
+    <meta name="twitter:description" content="Abdul Rahman is an AI-driven materials engineer and entrepreneur in Lahore, Pakistan. Metallurgy, materials informatics, SEM/EDS and XRD analysis, and founder of C2F, EduCon and Jobs4DAE." />
+    <!--SEO:END-->
+    <meta property="og:site_name" content="Abdul Rahman" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="__SITE_URL__/images/pakistan_mineral_map_1783445793899.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Abdul Rahman - AI-Driven Materials Engineer" />
-    <meta name="twitter:description" content="AI-driven Materials Engineer blending physical metallurgy with computational materials science and machine learning workflows." />
+    <meta name="author" content="Abdul Rahman" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#12161c" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#eef1f2" media="(prefers-color-scheme: light)" />
+    <meta name="geo.region" content="PK-PB" />
+    <meta name="geo.placename" content="Lahore" />
 
-    <!-- Direct Text & Documentation Endpoints for LLMs & AI Scrapers -->
-    <link rel="help" type="text/plain" href="/llms.txt" title="LLM Brief Summary" />
-    <link rel="alternate" type="text/markdown" href="/llms-full.txt" title="Full Markdown Knowledge Base for AI" />
+    <!-- Plain-text summaries for AI answer engines -->
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="Summary for language models" />
+    <link rel="alternate" type="text/plain" href="/llms-full.txt" title="Full knowledge base for language models" />
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
-    <!-- Structured Data (JSON-LD) for LLMs, Google, and AI Search Engines -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Person",
-          "@id": "https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/#person",
-          "name": "Abdul Rahman",
-          "jobTitle": "AI-Driven Materials Engineer & Senior Instructor",
-          "worksFor": {
-            "@type": "Organization",
-            "name": "Pakistan Council of Scientific and Industrial Research (PCSIR)"
-          },
-          "email": "abdulrahmana18@pm.me",
-          "telephone": "+92-3244862934",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Lahore",
-            "addressCountry": "Pakistan"
-          },
-          "sameAs": [
-            "https://github.com/ARahmankhn",
-            "https://linkedin.com/in/arahmankhn"
-          ],
-          "description": "AI-driven Materials Engineer blending physical metallurgy with computational materials science. Specializing in phase transformations, predictive modeling, and sustainable mineral processing workflows using Machine Learning and CALPHAD-based modeling.",
-          "knowsAbout": [
-            "Physical Metallurgy",
-            "Extractive Metallurgy",
-            "Computational Materials Science",
-            "Materials Informatics",
-            "Machine Learning in Metallurgy",
-            "CALPHAD Modeling",
-            "PyCalphad",
-            "Pymatgen",
-            "Scanning Electron Microscopy (SEM)",
-            "Energy-Dispersive X-ray Spectroscopy (EDS/EDX)",
-            "X-ray Diffraction (XRD) & Rietveld Refinement",
-            "X-ray Fluorescence (XRF)",
-            "Corrosion Kinetics & Nanotribology",
-            "Battery Materials Recycling (NMC Cathodes)"
-          ],
-          "alumniOf": {
-            "@type": "EducationalOrganization",
-            "name": "University of Engineering and Technology (UET), Lahore"
-          }
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/#website",
-          "url": "https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/",
-          "name": "Abdul Rahman - AI-Driven Materials Engineer Portfolio",
-          "description": "Research portfolio, materials informatics publications, scientific blog, and technical consulting.",
-          "publisher": {
-            "@id": "https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/#person"
-          }
-        },
-        {
-          "@type": "BlogPosting",
-          "@id": "https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/blog/pakistan-6-trillion-mineral-wealth#article",
-          "headline": "Pakistan's $6 Trillion Mineral Wealth: The Untapped Scientific Treasure That Could Transform the Nation",
-          "description": "Pakistan possesses an estimated $6 trillion in mineral wealth, including copper, gold, rare earth elements, coal, iron ore, gemstones, and industrial minerals.",
-          "url": "https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/blog/pakistan-6-trillion-mineral-wealth",
-          "datePublished": "2026-10-12T12:00:00Z",
-          "dateModified": "2026-10-12T12:00:00Z",
-          "author": {
-            "@id": "https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/#person"
-          },
-          "keywords": ["Pakistan mineral wealth", "Reko Diq", "Thar coal", "critical minerals", "geology", "physical metallurgy"]
-        },
-        {
-          "@type": "BlogPosting",
-          "@id": "https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/blog/pakistan-mineral-treasure-map#article",
-          "headline": "Part 2: Pakistan's Mineral Treasure Map — Province-Wise Resources, Scientific Formation, and Economic Potential",
-          "description": "A province-by-province geological inventory of Pakistan's rich metallic, industrial, and energy deposits, explaining the hydrothermal science of copper-gold formations and the strategic rise of critical minerals.",
-          "url": "https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/blog/pakistan-mineral-treasure-map",
-          "datePublished": "2026-10-11T12:00:00Z",
-          "dateModified": "2026-10-11T12:00:00Z",
-          "author": {
-            "@id": "https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/#person"
-          },
-          "keywords": ["Pakistan mineral treasure map", "Balochistan mining", "hydrothermal mineralization", "porphyry copper", "gemstones", "Swat emeralds"]
-        }
-      ]
-    }
-    </script>
+    <!--LD:START-->
+    <script type="application/ld+json" id="ld-home">__LD_HOME__</script>
+    <!--LD:END-->
 
+    <style>
+      body { margin: 0; background: #12161c; color: #e6e9ec; }
+      html.light body { background: #eef1f2; color: #161b21; }
+      .prerender { max-width: 70ch; margin: 0 auto; padding: 1.5rem 1rem; font: 17px/1.6 system-ui, sans-serif; }
+      .prerender a { color: inherit; }
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body class="bg-[#050505] text-[#FAFAFA]">
-    <!-- Accessible semantic pre-render for AI crawlers, LLMs (ChatGPT, Gemini, Claude, Perplexity), and Googlebot -->
+  <body>
     <div id="root">
-      <header role="banner" style="padding: 24px; border-bottom: 1px solid rgba(255,255,255,0.1);">
-        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
-          <div>
-            <strong style="font-size: 24px; font-weight: 900;">Abdul Rahman</strong> — <span>AI-Driven Materials Engineer</span>
-          </div>
-          <nav role="navigation" aria-label="Main Navigation">
-            <a href="#about" style="margin-right: 16px; color: #818cf8;">About</a>
-            <a href="#interests" style="margin-right: 16px; color: #818cf8;">Research</a>
-            <a href="#skills" style="margin-right: 16px; color: #818cf8;">Skills</a>
-            <a href="#experience" style="margin-right: 16px; color: #818cf8;">Experience</a>
-            <a href="#publications" style="margin-right: 16px; color: #818cf8;">Publications</a>
-            <a href="/blog" style="margin-right: 16px; color: #818cf8;">Scientific Blog</a>
-            <a href="/contact" style="color: #818cf8;">Consultation Booking</a>
-          </nav>
-        </div>
+      <!-- Static content for crawlers and AI answer engines that do not run JavaScript. React replaces it on load. -->
+      <!--SSR:START-->
+      <div class="prerender">
+      <header>
+        <p><strong>Abdul Rahman</strong>, AI-driven materials engineer and entrepreneur</p>
+        <nav aria-label="Main">
+          <a href="/#research">Research</a> | <a href="/#experience">Experience</a> |
+          <a href="/#publications">Publications</a> | <a href="/ventures">Entrepreneur</a>
+          (<a href="/ventures/c2f">C2F</a>, <a href="/ventures/educon">EduCon</a>, <a href="/ventures/jobs4dae">Jobs4DAE</a>) |
+          <a href="/blog">Blog</a> | <a href="/contact">Book a consultation</a>
+        </nav>
       </header>
+      <main>
+        <h1>Abdul Rahman</h1>
+        <p>
+          Abdul Rahman is an AI-driven materials engineer and entrepreneur in Lahore, Pakistan. He combines physical
+          metallurgy with machine learning and CALPHAD modeling, works as a research engineer and senior instructor at
+          the Pakistan Council of Scientific and Industrial Research (PCSIR), and founded Connected 2 Future (C2F),
+          EduCon and Jobs4DAE.
+        </p>
 
-      <main id="main-content" role="main" style="max-width: 1200px; margin: 0 auto; padding: 48px 24px; line-height: 1.7;">
-        <section id="about" style="margin-bottom: 64px;">
-          <h1 style="font-size: 48px; font-weight: 900; margin-bottom: 16px;">Abdul Rahman</h1>
-          <p style="font-size: 24px; color: #a5b4fc; margin-bottom: 24px;">AI-Driven Materials Engineer &amp; Senior Instructor</p>
-          <p style="font-size: 18px; margin-bottom: 24px;">
-            AI-driven Materials Engineer blending physical metallurgy with computational materials science. Specializing in phase transformations, predictive modeling, and sustainable mineral processing workflows using Machine Learning and CALPHAD-based modeling.
-          </p>
-          <p>
-            <strong>Location:</strong> Lahore, Pakistan | <strong>Email:</strong> <a href="mailto:abdulrahmana18@pm.me" style="color: #818cf8;">abdulrahmana18@pm.me</a> | 
-            <strong>GitHub:</strong> <a href="https://github.com/ARahmankhn" style="color: #818cf8;">github.com/ARahmankhn</a> | 
-            <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/arahmankhn" style="color: #818cf8;">linkedin.com/in/arahmankhn</a>
-          </p>
-        </section>
+        <h2 id="research">Research in metallurgy and materials informatics</h2>
+        <ul>
+          <li><strong>Physical and extractive metallurgy:</strong> phase transformations, microstructural evolution and sustainable mineral processing.</li>
+          <li><strong>Computational materials science:</strong> materials informatics, machine learning and CALPHAD-based modeling for accelerated discovery.</li>
+          <li><strong>Surfaces, interfaces and degradation:</strong> nanotribology, multifunctional coatings, corrosion, wear and oxidation.</li>
+          <li><strong>Sustainable materials:</strong> direct recycling and regeneration of NMC lithium-ion battery cathodes.</li>
+        </ul>
 
-        <section id="interests" style="margin-bottom: 64px;">
-          <h2 style="font-size: 32px; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 24px;">Research Focus &amp; Core Pillars</h2>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-            <div>
-              <h3 style="font-size: 20px; font-weight: 700; color: #818cf8;">1. Physical &amp; Extractive Metallurgy</h3>
-              <p>Phase transformations, microstructural evolution, sustainable mineral processing, froth flotation modeling, hydrometallurgy, and pyrometallurgical extraction workflows.</p>
-            </div>
-            <div>
-              <h3 style="font-size: 20px; font-weight: 700; color: #818cf8;">2. Computational Materials Science &amp; Informatics</h3>
-              <p>Materials Informatics, Machine Learning (ML), and CALPHAD-based modeling for accelerated alloy discovery. Active learning loops and Bayesian optimization for high-entropy alloys.</p>
-            </div>
-            <div>
-              <h3 style="font-size: 20px; font-weight: 700; color: #818cf8;">3. Surfaces, Interfaces &amp; Degradation</h3>
-              <p>Nanotribology, multifunctional protective coatings, and environmental degradation mechanisms including marine corrosion kinetics, wear, and high-temperature oxidation.</p>
-            </div>
-            <div>
-              <h3 style="font-size: 20px; font-weight: 700; color: #818cf8;">4. Sustainable Materials &amp; Circular Economy</h3>
-              <p>Direct recycling and regeneration of NMC lithium-ion battery cathode materials, thermal relithiation, and morphological restoration.</p>
-            </div>
-          </div>
-        </section>
+        <h2>Toolkit: SEM/EDS, XRD, Python and CALPHAD</h2>
+        <p>Python (scikit-learn, pandas), PyTorch, PyCalphad, Pymatgen, MatGL, Bayesian optimization, agentic AI workflows; SEM/EDX, XRD with Rietveld refinement, XRF, optical metallography, hardness and tensile testing, CSWIP 3.1; MATLAB, OriginPro, ImageJ, Thermo-Calc, COMSOL Multiphysics, LAMMPS and Quantum ESPRESSO.</p>
 
-        <section id="skills" style="margin-bottom: 64px;">
-          <h2 style="font-size: 32px; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 24px;">Technical Skills &amp; Competencies</h2>
-          <ul>
-            <li><strong>Materials Informatics &amp; AI:</strong> Python (Scikit-learn, Pandas, NumPy), PyTorch, PyCalphad, Pymatgen, MatGL graph neural networks, Bayesian Optimization, Agentic AI Workflows, RAG systems.</li>
-            <li><strong>Advanced Characterization:</strong> Scanning Electron Microscopy (SEM), Energy-Dispersive X-ray Spectroscopy (EDS/EDX), X-ray Diffraction (XRD with Rietveld refinement), XRF, Optical Metallography, Tensile &amp; Hardness Testing, CSWIP 3.1.</li>
-            <li><strong>Scientific Software &amp; Simulation:</strong> MATLAB, OriginPro, ImageJ, Schrödinger Materials Suite, Thermo-Calc, COMSOL Multiphysics, LAMMPS, Quantum ESPRESSO.</li>
-          </ul>
-        </section>
+        <h2 id="experience">Experience and education</h2>
+        <ul>
+          <li><strong>Research Engineer &amp; Senior Instructor</strong>, Pakistan Council of Scientific and Industrial Research (PCSIR), Lahore. Upgraded low-grade iron ore from 36% to 65% Fe, ran SEM/EDS, XRD and XRF on 50+ projects, managed ISO 17025 quality systems and built CBT&amp;A curricula with GIZ.</li>
+          <li><strong>Project Engineer</strong>, Machine Zone Ltd. Process planning and sintering optimization for a powder metallurgy facility.</li>
+          <li><strong>MSc Metallurgical and Materials Engineering</strong>, UET Lahore. Thesis on direct recycling of nickel-rich NMC cathodes.</li>
+          <li><strong>BSc Metallurgical and Materials Engineering</strong>, UET Lahore. Thesis on 316L stainless steel weld cladding.</li>
+        </ul>
 
-        <section id="experience" style="margin-bottom: 64px;">
-          <h2 style="font-size: 32px; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 24px;">Professional Experience</h2>
-          <article style="margin-bottom: 24px;">
-            <h3 style="font-size: 20px; font-weight: 700;">Research Engineer &amp; Senior Instructor — Pakistan Council of Scientific and Industrial Research (PCSIR)</h3>
-            <p><em>Lahore, Pakistan</em></p>
-            <p>Directing metallurgical failure investigations, advanced mechanical and chemical characterization, and training engineering cohorts in metallurgy and materials science.</p>
-          </article>
-          <article style="margin-bottom: 24px;">
-            <h3 style="font-size: 20px; font-weight: 700;">Project Engineer — Machine Zone Ltd.</h3>
-            <p><em>Lahore, Pakistan</em></p>
-            <p>Supervised quality assurance, metallurgical heat treatment verification, and standard compliance for precision components.</p>
-          </article>
-        </section>
+        <h2 id="publications">Publications and conference work</h2>
+        <ul>
+          <li>Machine learning-driven design of self-healing epoxy coatings using MgO-loaded ZIF-8 nanocontainers for corrosion protection. Submitted to a Springer Nature journal (2026).</li>
+          <li>Hybrid Generative and Multimodal Machine Learning for Quantum-Enhanced Design of Metal-Organic Frameworks. Accepted abstract, AIMS-2025.</li>
+          <li>Agentic AI-Driven Digital Twin Framework for Accelerated Discovery of Rare-Earth Materials. Poster, MSE, Deutsche Gesellschaft für Materialkunde.</li>
+        </ul>
 
-        <section id="education" style="margin-bottom: 64px;">
-          <h2 style="font-size: 32px; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 24px;">Academic Background</h2>
-          <p><strong>Bachelor of Science in Materials Science and Engineering</strong> — University of Engineering and Technology (UET), Lahore.</p>
-        </section>
+        <h2 id="ventures">Ventures founded by Abdul Rahman</h2>
+        <ul>
+          <li><a href="/ventures/c2f"><strong>Connected 2 Future (C2F)</strong></a>: AI automation, web development and digital marketing. Founder and CEO since 2020.</li>
+          <li><a href="/ventures/educon"><strong>EduCon</strong></a>: education and career guidance for students.</li>
+          <li><a href="/ventures/jobs4dae"><strong>Jobs4DAE</strong></a>: jobs, higher-education guides and AI tools for DAE students in Pakistan.</li>
+        </ul>
 
-        <section id="publications" style="margin-bottom: 64px;">
-          <h2 style="font-size: 32px; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 24px;">Publications &amp; Scientific Research</h2>
-          <ol>
-            <li style="margin-bottom: 16px;">
-              <strong>Machine learning-driven design of self-healing epoxy coatings using MgO-loaded ZIF-8 nanocontainers for corrosion protection</strong> (Springer Nature, 2026).
-            </li>
-            <li style="margin-bottom: 16px;">
-              <strong>Hybrid Generative and Multimodal Machine Learning for Quantum-Enhanced Design of Metal-Organic Frameworks</strong> (AIMS-2025, 2025).
-            </li>
-            <li style="margin-bottom: 16px;">
-              <strong>Agentic AI-Driven Digital Twin Framework for Accelerated Discovery of Rare-Earth Materials</strong> (MSE 2026, DGM, 2024).
-            </li>
-          </ol>
-        </section>
+        <h2 id="faq">Questions people ask</h2>
+        <h3>Who is Abdul Rahman?</h3>
+        <p>Abdul Rahman is an AI-driven materials engineer and entrepreneur based in Lahore, Pakistan. He is a research engineer and senior instructor at PCSIR, holds BSc and MSc degrees in metallurgical and materials engineering from UET Lahore, and founded Connected 2 Future (C2F), EduCon and Jobs4DAE.</p>
+        <h3>Can I hire Abdul Rahman as a consultant?</h3>
+        <p>Yes. He advises on metallurgical failure analysis, SEM/EDS and XRD characterization, materials informatics workflows and mineral processing. Book a 30-minute discovery call at <a href="/contact">/contact</a>.</p>
 
-        <section id="blog-preview" style="margin-bottom: 64px;">
-          <h2 style="font-size: 32px; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 24px;">Published Scientific Blog Articles</h2>
-          <ul>
-            <li style="margin-bottom: 12px;"><strong>Unlocking Pakistan’s $6 Trillion Mineral Wealth: A Metallurgical Blueprint</strong> — Strategic analysis of Reko Diq copper-gold, Saindak, and Dilband mineral reserves with bioleaching and modern pyrometallurgy roadmaps. (<a href="/blog/pakistan-6-trillion-mineral-wealth" style="color: #818cf8;">Read Article</a>)</li>
-            <li style="margin-bottom: 12px;"><strong>Part 2: Pakistan's Mineral Treasure Map — Province-Wise Resources, Scientific Formation, and Economic Potential</strong> — Comprehensive geological breakdown of Chagai magmatic arc, Thar coalfields, Khewra salt, and strategic critical minerals. (<a href="/blog/pakistan-mineral-treasure-map" style="color: #818cf8;">Read Article</a>)</li>
-            <li style="margin-bottom: 12px;"><strong>Materials Informatics: Accelerating Alloy Design via Machine Learning</strong> — Replacing Edisonian trial-and-error with Bayesian active learning loops and CALPHAD modeling. (<a href="/blog/materials-informatics-accelerating-alloy-design" style="color: #818cf8;">Read Article</a>)</li>
-            <li style="margin-bottom: 12px;"><strong>Corrosion Kinetics and Interface Degradation in Harsh Environments</strong> — Electrochemical impedance spectroscopy and smart self-healing coatings. (<a href="/blog/corrosion-kinetics-harsh-environments" style="color: #818cf8;">Read Article</a>)</li>
-            <li style="margin-bottom: 12px;"><strong>Direct Recycling and Relithiation of Spent NMC Battery Cathodes</strong> — Green circular recycling of spent lithium-ion battery cathodes. (<a href="/blog/direct-recycling-nmc-cathode-materials" style="color: #818cf8;">Read Article</a>)</li>
-            <li style="margin-bottom: 12px;"><strong>Practical Guide to SEM/EDS Microstructural &amp; Compositional Analysis</strong> — Accelerating voltages, ZAF matrix corrections, and failure analysis procedures. (<a href="/blog/sem-eds-microstructural-analysis-guide" style="color: #818cf8;">Read Article</a>)</li>
-          </ul>
-        </section>
-
-        <section id="contact" style="margin-bottom: 64px; padding: 32px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px;">
-          <h2 style="font-size: 32px; font-weight: 800; margin-bottom: 16px;">Consultation &amp; Advisory Services</h2>
-          <p style="margin-bottom: 20px;">Available for advisory services in metallurgical engineering, computational materials science, materials informatics workflows, and mineral processing plant optimization.</p>
-          <p><a href="/contact" style="display: inline-block; padding: 12px 24px; background: #4f46e5; color: #ffffff; text-decoration: none; font-weight: bold; border-radius: 9999px;">Book 30-Min Discovery Call</a> or email directly at <a href="mailto:abdulrahmana18@pm.me" style="color: #818cf8;">abdulrahmana18@pm.me</a>.</p>
-        </section>
+        <p>Contact: <a href="mailto:abdulrahmana18@pm.me">abdulrahmana18@pm.me</a> | <a href="https://linkedin.com/in/arahmankhn">LinkedIn</a> | <a href="https://github.com/ARahmankhn">GitHub</a></p>
       </main>
-
-      <footer role="contentinfo" style="border-top: 1px solid rgba(255,255,255,0.1); padding: 32px 24px; text-align: center; color: rgba(255,255,255,0.6);">
-        <p>&copy; 2026 Abdul Rahman. All rights reserved. Materials Engineering &amp; Computational Informatics.</p>
-        <p><a href="/llms.txt" style="color: #818cf8;">LLM Summary (/llms.txt)</a> | <a href="/llms-full.txt" style="color: #818cf8;">Full Knowledge Base (/llms-full.txt)</a> | <a href="/sitemap.xml" style="color: #818cf8;">Sitemap</a></p>
-      </footer>
+      </div>
+      <!--SSR:END-->
     </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

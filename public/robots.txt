@@ -1,6 +1,8 @@
 # Allow all search engines, AI models, and LLM crawlers to access, scroll, and index the entire site
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /blog-admin
 
 # OpenAI ChatGPT & Search
 User-agent: GPTBot
@@ -56,10 +58,6 @@ Allow: /
 User-agent: Diffbot
 Allow: /
 
-Sitemap: https://ais-dev-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/sitemap.xml
-Sitemap: https://ais-pre-jgpcog5crdx67bii2sc3sj-568342192631.asia-southeast1.run.app/sitemap.xml
-# AI Documentation endpoints
-# https://llmstxt.org/
-# /llms.txt
-# /llms-full.txt
+Sitemap: __SITE_URL__/sitemap.xml
 
+# Summaries for language models: __SITE_URL__/llms.txt and __SITE_URL__/llms-full.txt

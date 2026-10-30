@@ -1,0 +1,146 @@
+{
+  "site": {
+    "url": "https://monokhan12.github.io/abdul-rahman",
+    "name": "Abdul Rahman",
+    "defaultTitle": "Abdul Rahman | AI-Driven Materials Engineer & Entrepreneur, Lahore",
+    "defaultDescription": "Abdul Rahman is an AI-driven materials engineer and entrepreneur in Lahore, Pakistan. Metallurgy, materials informatics, SEM/EDS and XRD analysis, and founder of C2F, EduCon and Jobs4DAE.",
+    "ogImage": "/images/pakistan_mineral_map_1783445793899.jpg"
+  },
+  "ventures": [
+    {
+      "slug": "c2f",
+      "symbol": "Cf",
+      "name": "Connected 2 Future",
+      "short": "C2F",
+      "role": "Founder & CEO",
+      "since": "2020",
+      "url": "",
+      "title": "Connected 2 Future (C2F) | AI Automation & Web Development Agency",
+      "description": "Connected 2 Future (C2F), founded by Abdul Rahman in 2020, builds AI automations, websites and digital marketing campaigns for growing businesses.",
+      "tagline": "AI automation, web development and digital marketing for growing businesses.",
+      "answer": "Connected 2 Future (C2F) is a digital agency founded by Abdul Rahman in 2020. It helps businesses grow with AI automation, web development and digital marketing, and prepares free proposals for new clients.",
+      "offers": [
+        "AI automation for repetitive business workflows",
+        "Website and web application development",
+        "Digital marketing and lead generation",
+        "Free project proposals for new clients"
+      ],
+      "keywords": [
+        "Connected 2 Future",
+        "C2F",
+        "AI automation agency Pakistan",
+        "web development company Lahore",
+        "digital marketing agency"
+      ],
+      "faq": [
+        {
+          "q": "What is Connected 2 Future (C2F)?",
+          "a": "Connected 2 Future (C2F) is a digital agency that builds AI automations, websites and digital marketing campaigns for businesses. Abdul Rahman founded it in 2020 and leads it as CEO."
+        },
+        {
+          "q": "Who is the CEO of Connected 2 Future?",
+          "a": "Abdul Rahman is the founder and CEO of Connected 2 Future (C2F)."
+        },
+        {
+          "q": "How do I get a proposal from C2F?",
+          "a": "Book a short call through the contact page or send an email describing your project. C2F prepares a free proposal for new clients."
+        }
+      ]
+    },
+    {
+      "slug": "educon",
+      "symbol": "Ed",
+      "name": "EduCon",
+      "short": "EduCon",
+      "role": "Founder",
+      "since": "",
+      "url": "",
+      "title": "EduCon | Education & Career Guidance by Abdul Rahman",
+      "description": "EduCon, founded by Abdul Rahman, guides students on study options, admissions and career pathways, with a focus on technical and engineering education.",
+      "tagline": "Education and career guidance for students planning their next step.",
+      "answer": "EduCon is an education venture founded by Abdul Rahman that guides students on study options, admissions and career pathways.",
+      "offers": [
+        "Guidance on study options and admissions",
+        "Career pathway planning for students",
+        "Support for technical and engineering education"
+      ],
+      "keywords": [
+        "EduCon",
+        "education consultancy Pakistan",
+        "student career guidance Lahore"
+      ],
+      "faq": [
+        {
+          "q": "What is EduCon?",
+          "a": "EduCon is an education venture founded by Abdul Rahman that helps students choose study options, prepare for admissions and plan their careers."
+        },
+        {
+          "q": "Who founded EduCon?",
+          "a": "EduCon was founded by Abdul Rahman, a materials engineer and senior instructor based in Lahore, Pakistan."
+        }
+      ]
+    },
+    {
+      "slug": "jobs4dae",
+      "symbol": "Jd",
+      "name": "Jobs4DAE",
+      "short": "Jobs4DAE",
+      "role": "Founder",
+      "since": "",
+      "url": "",
+      "title": "Jobs4DAE | DAE Jobs in Pakistan, Career Guides & AI Tools",
+      "description": "Jobs4DAE lists government and private DAE jobs in Pakistan, explains higher-education routes after DAE, and offers AI tools for diploma engineers.",
+      "tagline": "Jobs, higher-education guides and AI tools for DAE students in Pakistan.",
+      "answer": "Jobs4DAE is an AI-powered career portal for Diploma of Associate Engineering (DAE) students and diploma holders in Pakistan, founded by Abdul Rahman. It lists government and private jobs, explains higher-education routes after DAE, and offers engineering AI tools.",
+      "offers": [
+        "Government and private job listings for DAE fields such as electrical, mechanical, civil and electronics",
+        "Higher-education guides for diploma holders",
+        "AI tools built for engineering students"
+      ],
+      "keywords": [
+        "Jobs4DAE",
+        "DAE jobs Pakistan",
+        "DAE jobs 2026",
+        "Diploma of Associate Engineering jobs",
+        "jobs for DAE electrical",
+        "jobs for DAE mechanical"
+      ],
+      "faq": [
+        {
+          "q": "What is Jobs4DAE?",
+          "a": "Jobs4DAE is a career portal for Diploma of Associate Engineering (DAE) students in Pakistan. It collects job openings, higher-education guides and AI tools for diploma holders."
+        },
+        {
+          "q": "Which DAE fields does Jobs4DAE cover?",
+          "a": "Jobs4DAE covers the main DAE technologies, including electrical, mechanical, civil and electronics, with listings from government departments and private employers."
+        },
+        {
+          "q": "Who founded Jobs4DAE?",
+          "a": "Jobs4DAE was founded by Abdul Rahman, a materials engineer and technical instructor in Lahore who trains diploma-level engineers."
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Who is Abdul Rahman?",
+      "a": "Abdul Rahman is an AI-driven materials engineer and entrepreneur based in Lahore, Pakistan. He is a research engineer and senior instructor at the Pakistan Council of Scientific and Industrial Research (PCSIR), holds BSc and MSc degrees in metallurgical and materials engineering from UET Lahore, and founded Connected 2 Future (C2F), EduCon and Jobs4DAE."
+    },
+    {
+      "q": "What does Abdul Rahman specialize in?",
+      "a": "He specializes in physical and extractive metallurgy, materials informatics (machine learning and CALPHAD modeling), materials characterization with SEM/EDS, XRD and XRF, corrosion and protective coatings, and direct recycling of lithium-ion battery cathodes."
+    },
+    {
+      "q": "Which companies has Abdul Rahman founded?",
+      "a": "Abdul Rahman founded Connected 2 Future (C2F), a digital agency for AI automation, web development and digital marketing, which he has led as CEO since 2020. He also founded EduCon, an education venture, and Jobs4DAE, a career portal for DAE students in Pakistan."
+    },
+    {
+      "q": "Can I hire Abdul Rahman as a consultant?",
+      "a": "Yes. He advises on metallurgical failure analysis, SEM/EDS and XRD characterization, materials informatics workflows and mineral processing. You can book a 30-minute discovery call on the contact page."
+    },
+    {
+      "q": "What has Abdul Rahman published?",
+      "a": "His work includes machine learning-driven design of self-healing epoxy coatings with MgO-loaded ZIF-8 nanocontainers (submitted to a Springer Nature journal), hybrid generative machine learning for metal-organic frameworks (AIMS-2025), and an agentic AI digital twin for rare-earth materials discovery (MSE, DGM)."
+    }
+  ]
+}

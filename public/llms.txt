@@ -1,33 +1,30 @@
-# Abdul Rahman — AI-Driven Materials Engineer
+# Abdul Rahman
 
-> AI-driven Materials Engineer blending physical metallurgy with computational materials science, phase transformations, and sustainable mineral processing workflows using Machine Learning and CALPHAD-based modeling.
+> Abdul Rahman is an AI-driven materials engineer and entrepreneur in Lahore, Pakistan. He combines physical metallurgy with machine learning and CALPHAD modeling, works as a research engineer and senior instructor at the Pakistan Council of Scientific and Industrial Research (PCSIR), and founded Connected 2 Future (C2F), EduCon and Jobs4DAE.
 
-## Core Identity & Details
+## Quick facts
 - Name: Abdul Rahman
-- Role: AI-Driven Materials Engineer & Senior Instructor
-- Organization: Pakistan Council of Scientific and Industrial Research (PCSIR)
-- Location: Lahore, Pakistan
-- Email: abdulrahmana18@pm.me
-- GitHub: https://github.com/ARahmankhn
+- Roles: AI-driven materials engineer; Research Engineer & Senior Instructor at PCSIR; founder and CEO of Connected 2 Future (C2F) since 2020; founder of EduCon and Jobs4DAE
+- Location: Lahore, Punjab, Pakistan
+- Education: MSc and BSc in Metallurgical and Materials Engineering, University of Engineering and Technology (UET), Lahore
+- Contact: abdulrahmana18@pm.me
 - LinkedIn: https://linkedin.com/in/arahmankhn
+- GitHub: https://github.com/ARahmankhn
 
-## Research Pillars
-- Physical & Extractive Metallurgy: Phase transformations, microstructural evolution, sustainable mineral processing and beneficiation workflows.
-- Computational Materials Science: Materials Informatics, Machine Learning (ML), and CALPHAD-based modeling for accelerated alloy discovery.
-- Surfaces, Interfaces & Degradation: Nanotribology, multifunctional coatings, and environmental degradation mechanisms (corrosion, wear, oxidation).
-- Sustainable Materials & Circular Economy: Direct recycling and regeneration of NMC cathode battery materials.
+## Expertise
+- Physical and extractive metallurgy, mineral beneficiation (upgraded 36% Fe ore to 65% Fe concentrate)
+- Materials informatics: Python, PyTorch, PyCalphad, Pymatgen, MatGL, Bayesian optimization, agentic AI and RAG
+- Characterization: SEM/EDS, XRD with Rietveld refinement, XRF, metallography, mechanical testing, CSWIP 3.1
+- Corrosion, protective coatings, and direct recycling of NMC lithium-ion battery cathodes
 
-## Technical Skills
-- Informatics & AI: Python (Scikit-learn, Pandas), PyTorch, PyCalphad, Pymatgen, MatGL, Bayesian Optimization, Agentic AI Workflows, RAG.
-- Characterization: SEM/EDX, XRD (Rietveld refinement), XRF, Optical Metallography, Tensile & Hardness Testing, CSWIP 3.1.
-- Simulation & Tools: MATLAB, OriginPro, ImageJ, Schrödinger Materials Suite, Thermo-Calc, COMSOL Multiphysics, LAMMPS, Quantum ESPRESSO.
+## Ventures
+- [Connected 2 Future (C2F)](__SITE_URL__/ventures/c2f): digital agency for AI automation, web development and digital marketing. Founded 2020; Abdul Rahman is CEO.
+- [EduCon](__SITE_URL__/ventures/educon): education and career guidance for students.
+- [Jobs4DAE](__SITE_URL__/ventures/jobs4dae): AI-powered career portal for Diploma of Associate Engineering (DAE) students in Pakistan, with job listings, higher-education guides and engineering AI tools.
 
-## Selected Publications
-1. "Machine learning-driven design of self-healing epoxy coatings using MgO-loaded ZIF-8 nanocontainers for corrosion protection" — Springer Nature (2026).
-2. "Hybrid Generative and Multimodal Machine Learning for Quantum-Enhanced Design of Metal-Organic Frameworks" — AIMS-2025 (2025).
-3. "Agentic AI-Driven Digital Twin Framework for Accelerated Discovery of Rare-Earth Materials" — MSE 2026, DGM (2024).
-
-## Key Links
-- Portfolio & Overview: /
-- Scientific Blog: /blog
-- Consultation & Advisory Booking: /contact
+## Pages
+- [Home](__SITE_URL__/): profile, research, experience, publications, FAQ
+- [Ventures](__SITE_URL__/ventures)
+- [Scientific blog](__SITE_URL__/blog): metallurgy, Pakistan's mineral resources, materials informatics
+- [Book a consultation](__SITE_URL__/contact): 30-minute discovery call
+- [Full knowledge base](__SITE_URL__/llms-full.txt)

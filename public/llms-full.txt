@@ -112,6 +112,75 @@ AI-driven Materials Engineer blending physical metallurgy with computational mat
 
 ---
 
+## Ventures founded by Abdul Rahman
+
+### Connected 2 Future (C2F)
+- Role: Founder & CEO since 2020
+- Page: __SITE_URL__/ventures/c2f
+- Connected 2 Future (C2F) is a digital agency founded by Abdul Rahman in 2020. It helps businesses grow with AI automation, web development and digital marketing, and prepares free proposals for new clients.
+- Offers: AI automation for repetitive business workflows
+- Offers: Website and web application development
+- Offers: Digital marketing and lead generation
+- Offers: Free project proposals for new clients
+
+Q: What is Connected 2 Future (C2F)?
+A: Connected 2 Future (C2F) is a digital agency that builds AI automations, websites and digital marketing campaigns for businesses. Abdul Rahman founded it in 2020 and leads it as CEO.
+
+Q: Who is the CEO of Connected 2 Future?
+A: Abdul Rahman is the founder and CEO of Connected 2 Future (C2F).
+
+Q: How do I get a proposal from C2F?
+A: Book a short call through the contact page or send an email describing your project. C2F prepares a free proposal for new clients.
+
+### EduCon
+- Role: Founder
+- Page: __SITE_URL__/ventures/educon
+- EduCon is an education venture founded by Abdul Rahman that guides students on study options, admissions and career pathways.
+- Offers: Guidance on study options and admissions
+- Offers: Career pathway planning for students
+- Offers: Support for technical and engineering education
+
+Q: What is EduCon?
+A: EduCon is an education venture founded by Abdul Rahman that helps students choose study options, prepare for admissions and plan their careers.
+
+Q: Who founded EduCon?
+A: EduCon was founded by Abdul Rahman, a materials engineer and senior instructor based in Lahore, Pakistan.
+
+### Jobs4DAE
+- Role: Founder
+- Page: __SITE_URL__/ventures/jobs4dae
+- Jobs4DAE is an AI-powered career portal for Diploma of Associate Engineering (DAE) students and diploma holders in Pakistan, founded by Abdul Rahman. It lists government and private jobs, explains higher-education routes after DAE, and offers engineering AI tools.
+- Offers: Government and private job listings for DAE fields such as electrical, mechanical, civil and electronics
+- Offers: Higher-education guides for diploma holders
+- Offers: AI tools built for engineering students
+
+Q: What is Jobs4DAE?
+A: Jobs4DAE is a career portal for Diploma of Associate Engineering (DAE) students in Pakistan. It collects job openings, higher-education guides and AI tools for diploma holders.
+
+Q: Which DAE fields does Jobs4DAE cover?
+A: Jobs4DAE covers the main DAE technologies, including electrical, mechanical, civil and electronics, with listings from government departments and private employers.
+
+Q: Who founded Jobs4DAE?
+A: Jobs4DAE was founded by Abdul Rahman, a materials engineer and technical instructor in Lahore who trains diploma-level engineers.
+
+## Frequently asked questions
+
+Q: Who is Abdul Rahman?
+A: Abdul Rahman is an AI-driven materials engineer and entrepreneur based in Lahore, Pakistan. He is a research engineer and senior instructor at the Pakistan Council of Scientific and Industrial Research (PCSIR), holds BSc and MSc degrees in metallurgical and materials engineering from UET Lahore, and founded Connected 2 Future (C2F), EduCon and Jobs4DAE.
+
+Q: What does Abdul Rahman specialize in?
+A: He specializes in physical and extractive metallurgy, materials informatics (machine learning and CALPHAD modeling), materials characterization with SEM/EDS, XRD and XRF, corrosion and protective coatings, and direct recycling of lithium-ion battery cathodes.
+
+Q: Which companies has Abdul Rahman founded?
+A: Abdul Rahman founded Connected 2 Future (C2F), a digital agency for AI automation, web development and digital marketing, which he has led as CEO since 2020. He also founded EduCon, an education venture, and Jobs4DAE, a career portal for DAE students in Pakistan.
+
+Q: Can I hire Abdul Rahman as a consultant?
+A: Yes. He advises on metallurgical failure analysis, SEM/EDS and XRD characterization, materials informatics workflows and mineral processing. You can book a 30-minute discovery call on the contact page.
+
+Q: What has Abdul Rahman published?
+A: His work includes machine learning-driven design of self-healing epoxy coatings with MgO-loaded ZIF-8 nanocontainers (submitted to a Springer Nature journal), hybrid generative machine learning for metal-organic frameworks (AIMS-2025), and an agentic AI digital twin for rare-earth materials discovery (MSE, DGM).
+
+
 ## Consultation & Booking Services
 - **Offerings:** Technical advisory on alloy selection, failure analysis, machine learning workflows for materials discovery, mineral processing plant optimization, and RAG/Agentic AI systems for scientific laboratories.
 - **Direct Scheduling:** 30-minute Google Meet consultation available at `/contact`.
