@@ -25,7 +25,7 @@ export default function Contact() {
       <section className="ar-hero">
         <div className="ar-wrap ar-split">
           <div>
-            <h1 className="ar-display" style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4.25rem)' }}>Book a consultation</h1>
+            <h1 className="ar-display" style={{ fontSize: 'clamp(2.2rem, 3.6vw, 3.5rem)' }}>Book a consultation</h1>
             <p className="ar-lead" style={{ marginTop: '1.25rem' }}>
               A free 30-minute video call about failure analysis, SEM/EDS and XRD interpretation, materials informatics,
               or an AI automation project with C2F. I work remotely with teams in the United States and worldwide.
