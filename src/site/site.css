@@ -276,11 +276,15 @@ html .ar-page h3 {
 .ar-drawer .ar-drawer__venture { display: flex; align-items: center; gap: 0.75rem; }
 .ar-drawer .ar-btn { display: inline-flex; margin-top: 1rem; border-bottom: 1px solid transparent; }
 
+.ar-brand, .ar-btn, .ar-nav__link, .ar-nav__trigger { white-space: nowrap; }
 @media (min-width: 64rem) {
   .ar-nav { display: flex; }
-  .ar-header__cta { display: inline-flex; }
   .ar-header__burger { display: none; }
   .ar-drawer { display: none; }
+}
+/* The header CTA joins once there is room; the hero and contact CTAs cover narrower desktops. */
+@media (min-width: 76rem) {
+  .ar-header__cta { display: inline-flex; }
 }
 
 /* ---------- Element tile (the signature) ---------- */
