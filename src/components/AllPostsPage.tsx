@@ -26,7 +26,7 @@ import {
   seedDefaultPostsIfEmpty
 } from '../lib/firebase';
 import BlogCard from './BlogCard';
-import ThemeToggle from './ThemeToggle';
+import SiteHeader from '../site/SiteHeader';
 import { toast } from 'sonner';
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, User as FirebaseUser } from 'firebase/auth';
 
@@ -177,24 +177,15 @@ export default function AllPostsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#050505] text-[#FAFAFA] font-sans selection:bg-white selection:text-black pb-32">
+    <div className="ar-page ar-legacy min-h-screen bg-[#050505] text-[#FAFAFA] font-sans selection:bg-white selection:text-black pb-32">
       {/* Background blobs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-950/20 blur-[130px]" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-purple-950/10 blur-[150px]" />
       </div>
+      <SiteHeader />
 
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full px-6 py-6 md:px-16 flex justify-between items-center z-50 bg-[#050505]/75 backdrop-blur-sm text-white border-b border-white/5 shadow-lg shadow-black/10">
-        <Link to="/" className="text-2xl font-bold tracking-tighter">AR.</Link>
-        <div className="flex gap-4 md:gap-8 text-xs font-semibold uppercase tracking-[0.2em] items-center">
-          <ThemeToggle variant="nav" />
-          <Link to="/" className="hover:text-indigo-400 transition-colors">Portfolio</Link>
-          <Link to="/contact" className="px-5 py-2 bg-white text-black rounded-full hover:bg-gray-200 transition-colors font-bold tracking-widest text-[10px]">Consultancy</Link>
-        </div>
-      </nav>
-
-      <div className="max-w-7xl mx-auto px-6 pt-36 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 pt-12 relative z-10">
         {/* Header Back button */}
         <Link 
           to="/" 

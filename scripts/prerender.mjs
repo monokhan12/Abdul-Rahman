@@ -27,7 +27,7 @@ const person = {
   url: abs('/'),
   jobTitle: ['AI-Driven Materials Engineer', 'Research Engineer & Senior Instructor', 'Entrepreneur'],
   description:
-    'AI-driven materials engineer and entrepreneur in Lahore, Pakistan, working across physical metallurgy, materials informatics and materials characterization, and founder of Connected 2 Future (C2F), EduCon and Jobs4DAE.',
+    'AI-driven materials engineer and entrepreneur based in Lahore, Pakistan, who consults remotely for companies in the United States on metallurgical failure analysis, materials characterization and materials informatics, and founder of Connected 2 Future (C2F), EduCon and Jobs4DAE.',
   email: 'mailto:abdulrahmana18@pm.me',
   address: { '@type': 'PostalAddress', addressLocality: 'Lahore', addressRegion: 'Punjab', addressCountry: 'PK' },
   worksFor: [
@@ -52,7 +52,7 @@ const website = {
   url: abs('/'),
   name: 'Abdul Rahman',
   publisher: { '@id': PERSON_ID },
-  inLanguage: 'en',
+  inLanguage: 'en-US',
 };
 const org = (v) => {
   const page = abs(`/ventures/${v.slug}`);
@@ -67,6 +67,26 @@ const org = (v) => {
     ...(v.since ? { foundingDate: v.since } : {}),
     knowsAbout: v.offers,
   };
+};
+const service = {
+  '@type': 'ProfessionalService',
+  '@id': `${SITE_URL}/#consulting`,
+  name: 'Abdul Rahman Materials Engineering Consulting',
+  url: abs('/'),
+  description: content.site.defaultDescription,
+  provider: { '@id': PERSON_ID },
+  founder: { '@id': PERSON_ID },
+  areaServed: [{ '@type': 'Country', name: 'United States' }, { '@type': 'Place', name: 'Worldwide' }],
+  availableLanguage: 'English',
+  address: { '@type': 'PostalAddress', addressLocality: 'Lahore', addressCountry: 'PK' },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Consulting services',
+    itemListElement: content.services.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: s.title, description: s.body, areaServed: 'United States' },
+    })),
+  },
 };
 const faq = (items) => ({
   '@type': 'FAQPage',
@@ -97,7 +117,14 @@ const navHtml = `<header><p><strong><a href="${link('/')}">Abdul Rahman</a></str
           .join(', ')}) | <a href="${link('/blog')}">Blog</a> | <a href="${link('/contact')}">Book a consultation</a></nav></header>`;
 const faqHtml = (items) => items.map((f) => `<h3>${esc(f.q)}</h3>\n<p>${esc(f.a)}</p>`).join('\n');
 
-const template = readFileSync(join(dist, 'index.html'), 'utf8');
+const servicesHtml = `<h2 id="services">Materials engineering consulting for US companies</h2>
+<p>Abdul Rahman works remotely with engineering, manufacturing and R&amp;D teams in the United States and worldwide.</p>
+${content.services.map((s) => `<h3>${esc(s.title)}</h3>\n<p>${esc(s.body)}</p>`).join('\n')}`;
+const homeFaqHtml = `<h2 id="faq">Questions people ask</h2>\n${faqHtml(content.faq)}`;
+
+const template = readFileSync(join(dist, 'index.html'), 'utf8')
+  .replace('<!--SSR:SERVICES-->', servicesHtml)
+  .replace('<!--SSR:FAQ-->', homeFaqHtml);
 
 function render(html, { seo, graph, body }) {
   let out = html;
@@ -115,7 +142,8 @@ function write(route, html) {
 
 // Home
 const homeHtml = render(template, {
-  graph: [person, website, ...content.ventures.map(org), faq(content.faq)],
+  seo: { title: content.site.defaultTitle, description: content.site.defaultDescription, path: '/' },
+  graph: [person, website, service, ...content.ventures.map(org), faq(content.faq)],
 });
 write('/', homeHtml);
 

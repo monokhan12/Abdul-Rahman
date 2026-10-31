@@ -1,9 +1,9 @@
 {
   "site": {
-    "url": "https://monokhan12.github.io/abdul-rahman",
+    "url": "https://monokhan12.github.io/Abdul-Rahman",
     "name": "Abdul Rahman",
-    "defaultTitle": "Abdul Rahman | AI-Driven Materials Engineer & Entrepreneur, Lahore",
-    "defaultDescription": "Abdul Rahman is an AI-driven materials engineer and entrepreneur in Lahore, Pakistan. Metallurgy, materials informatics, SEM/EDS and XRD analysis, and founder of C2F, EduCon and Jobs4DAE.",
+    "defaultTitle": "Materials Informatics & Failure Analysis Consultant | Abdul Rahman",
+    "defaultDescription": "Remote materials engineering consultant for US companies: metallurgical failure analysis, SEM/EDS and XRD interpretation, and machine learning for R&D.",
     "ogImage": "/images/pakistan_mineral_map_1783445793899.jpg"
   },
   "ventures": [
@@ -14,28 +14,36 @@
       "short": "C2F",
       "role": "Founder & CEO",
       "since": "2020",
-      "url": "",
-      "title": "Connected 2 Future (C2F) | AI Automation & Web Development Agency",
-      "description": "Connected 2 Future (C2F), founded by Abdul Rahman in 2020, builds AI automations, websites and digital marketing campaigns for growing businesses.",
-      "tagline": "AI automation, web development and digital marketing for growing businesses.",
-      "answer": "Connected 2 Future (C2F) is a digital agency founded by Abdul Rahman in 2020. It helps businesses grow with AI automation, web development and digital marketing, and prepares free proposals for new clients.",
+      "url": "https://c2f.lovable.app/",
+      "title": "Connected 2 Future (C2F) | AI Automation Agency & Web Development",
+      "description": "Connected 2 Future (C2F) is an AI automation agency founded by Abdul Rahman: AI automation, web development, AR/VR, blockchain and digital marketing.",
+      "tagline": "AI automation, web development, AR/VR, blockchain and digital marketing.",
+      "answer": "Connected 2 Future (C2F) is a digital agency founded by Abdul Rahman in 2020. It delivers end-to-end digital solutions for businesses worldwide, including the United States: AI automation, web development, AR/VR development, blockchain solutions and digital marketing.",
       "offers": [
         "AI automation for repetitive business workflows",
         "Website and web application development",
+        "AR/VR development",
+        "Blockchain solutions",
         "Digital marketing and lead generation",
         "Free project proposals for new clients"
       ],
       "keywords": [
         "Connected 2 Future",
         "C2F",
-        "AI automation agency Pakistan",
-        "web development company Lahore",
-        "digital marketing agency"
+        "AI automation agency",
+        "AI for small business",
+        "artificial intelligence automation agency",
+        "web development agency",
+        "AR/VR development company"
       ],
       "faq": [
         {
           "q": "What is Connected 2 Future (C2F)?",
-          "a": "Connected 2 Future (C2F) is a digital agency that builds AI automations, websites and digital marketing campaigns for businesses. Abdul Rahman founded it in 2020 and leads it as CEO."
+          "a": "Connected 2 Future (C2F) is a digital agency that delivers AI automation, web development, AR/VR development, blockchain solutions and digital marketing for businesses worldwide, including the United States. Abdul Rahman founded it in 2020 and leads it as CEO."
+        },
+        {
+          "q": "What is an AI automation agency?",
+          "a": "An AI automation agency builds software that uses artificial intelligence to handle repetitive business work, such as answering inquiries, qualifying leads, processing documents and syncing data between tools. Connected 2 Future (C2F) is one such agency."
         },
         {
           "q": "Who is the CEO of Connected 2 Future?",
@@ -43,7 +51,7 @@
         },
         {
           "q": "How do I get a proposal from C2F?",
-          "a": "Book a short call through the contact page or send an email describing your project. C2F prepares a free proposal for new clients."
+          "a": "Visit c2f.lovable.app or book a short call through the contact page and describe your project. C2F prepares a free proposal for new clients."
         }
       ]
     },
@@ -135,12 +143,51 @@
       "a": "Abdul Rahman founded Connected 2 Future (C2F), a digital agency for AI automation, web development and digital marketing, which he has led as CEO since 2020. He also founded EduCon, an education venture, and Jobs4DAE, a career portal for DAE students in Pakistan."
     },
     {
+      "q": "Does Abdul Rahman work with companies in the United States?",
+      "a": "Yes. He consults remotely for companies in the United States and worldwide. Engagements start with a 30-minute video call booked online, followed by a written proposal; data such as SEM images, EDS spectra and XRD patterns are shared securely online."
+    },
+    {
+      "q": "What is materials informatics?",
+      "a": "Materials informatics applies data science and machine learning to materials science. It uses data from experiments, simulations and databases to predict how a material's composition and processing affect its properties, which reduces the number of experiments needed to develop new alloys, coatings and battery materials."
+    },
+    {
+      "q": "What does a metallurgical failure analysis include?",
+      "a": "A metallurgical failure analysis typically includes visual and fractographic examination, SEM/EDS analysis of fracture surfaces and deposits, metallography, hardness or mechanical testing and chemical analysis, ending in a root-cause finding and recommendations to prevent recurrence."
+    },
+    {
       "q": "Can I hire Abdul Rahman as a consultant?",
       "a": "Yes. He advises on metallurgical failure analysis, SEM/EDS and XRD characterization, materials informatics workflows and mineral processing. You can book a 30-minute discovery call on the contact page."
     },
     {
       "q": "What has Abdul Rahman published?",
       "a": "His work includes machine learning-driven design of self-healing epoxy coatings with MgO-loaded ZIF-8 nanocontainers (submitted to a Springer Nature journal), hybrid generative machine learning for metal-organic frameworks (AIMS-2025), and an agentic AI digital twin for rare-earth materials discovery (MSE, DGM)."
+    }
+  ],
+  "services": [
+    {
+      "id": "failure-analysis",
+      "title": "Metallurgical failure analysis consulting",
+      "body": "Root-cause analysis of cracked, corroded or worn metal parts: fractography, metallography and chemistry, with a clear report on what failed, why, and what to change."
+    },
+    {
+      "id": "sem-xrd",
+      "title": "SEM/EDS and XRD data interpretation",
+      "body": "Send your SEM images, EDS spectra or XRD patterns and get phase identification, Rietveld refinement and a written interpretation your team can act on."
+    },
+    {
+      "id": "materials-informatics",
+      "title": "Materials informatics and machine learning for R&D",
+      "body": "Machine learning models, Bayesian optimization and CALPHAD modeling that predict properties from composition and processing, so you run fewer experiments."
+    },
+    {
+      "id": "battery-minerals",
+      "title": "Battery recycling and critical minerals",
+      "body": "Direct recycling and relithiation of NMC lithium-ion cathodes, and characterization-led beneficiation of low-grade ores."
+    },
+    {
+      "id": "corrosion-coatings",
+      "title": "Corrosion and protective coatings",
+      "body": "Corrosion kinetics, electrochemical testing data and machine learning-guided design of self-healing protective coatings."
     }
   ]
 }

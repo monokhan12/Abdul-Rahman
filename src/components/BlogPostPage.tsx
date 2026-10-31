@@ -27,7 +27,7 @@ import {
   auth
 } from '../lib/firebase';
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, User as FirebaseUser } from 'firebase/auth';
-import ThemeToggle from './ThemeToggle';
+import SiteHeader from '../site/SiteHeader';
 
 // Helper for inline markdown formatting
 const formatInline = (text: string) => {
@@ -402,24 +402,15 @@ export default function BlogPostPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-white selection:text-black pb-32">
+    <div className="ar-page ar-legacy min-h-screen bg-[#050505] text-white font-sans selection:bg-white selection:text-black pb-32">
       {/* Background glow */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[10%] left-[20%] w-[500px] h-[500px] rounded-full bg-indigo-900/10 blur-[130px]" />
       </div>
-
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full px-6 py-6 md:px-16 flex justify-between items-center z-50 bg-[#050505]/75 backdrop-blur-sm text-white border-b border-white/5 shadow-lg shadow-black/10">
-        <Link to="/" className="text-2xl font-bold tracking-tighter">AR.</Link>
-        <div className="flex gap-4 md:gap-8 text-xs font-semibold uppercase tracking-[0.2em] items-center">
-          <ThemeToggle variant="nav" />
-          <Link to="/blog" className="hover:text-indigo-400 transition-colors text-indigo-300">Blog</Link>
-          <Link to="/" className="hover:text-indigo-400 transition-colors">Portfolio</Link>
-        </div>
-      </nav>
+      <SiteHeader />
 
       {/* Main Container */}
-      <div className="max-w-4xl mx-auto px-6 pt-36 relative z-10">
+      <div className="max-w-4xl mx-auto px-6 pt-12 relative z-10">
         {/* Back Button */}
         <Link 
           to="/blog" 

@@ -23,7 +23,7 @@ export function personSchema() {
     url: absoluteUrl('/'),
     jobTitle: ['AI-Driven Materials Engineer', 'Research Engineer & Senior Instructor', 'Entrepreneur'],
     description:
-      'AI-driven materials engineer and entrepreneur in Lahore, Pakistan, working across physical metallurgy, materials informatics and materials characterization, and founder of Connected 2 Future (C2F), EduCon and Jobs4DAE.',
+      'AI-driven materials engineer and entrepreneur based in Lahore, Pakistan, who consults remotely for companies in the United States on metallurgical failure analysis, materials characterization and materials informatics, and founder of Connected 2 Future (C2F), EduCon and Jobs4DAE.',
     email: `mailto:${personalInfo.email}`,
     address: { '@type': 'PostalAddress', addressLocality: 'Lahore', addressRegion: 'Punjab', addressCountry: 'PK' },
     worksFor: [
@@ -62,6 +62,30 @@ export function ventureSchema(v: Venture) {
     founder: { '@id': PERSON_ID },
     ...(v.since ? { foundingDate: v.since } : {}),
     knowsAbout: v.offers,
+  };
+}
+
+/** Consulting practice, marked as serving the United States for local-intent searches. */
+export function serviceSchema() {
+  return {
+    '@type': 'ProfessionalService',
+    '@id': `${SITE_URL}/#consulting`,
+    name: 'Abdul Rahman Materials Engineering Consulting',
+    url: absoluteUrl('/'),
+    description: content.site.defaultDescription,
+    provider: { '@id': PERSON_ID },
+    founder: { '@id': PERSON_ID },
+    areaServed: [{ '@type': 'Country', name: 'United States' }, { '@type': 'Place', name: 'Worldwide' }],
+    availableLanguage: 'English',
+    address: { '@type': 'PostalAddress', addressLocality: 'Lahore', addressCountry: 'PK' },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Consulting services',
+      itemListElement: content.services.map((s) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: s.title, description: s.body, areaServed: 'United States' },
+      })),
+    },
   };
 }
 

@@ -553,7 +553,7 @@ html .ar-page h3 {
 
 /* Harmonise the existing live blog section with the new palette */
 html .ar-page #blog {
-  background: var(--ar-bg) !important;
+  background: var(--ar-surface) !important;
   border-color: var(--ar-line) !important;
   border-top: 1px solid var(--ar-line);
   padding-block: clamp(3.5rem, 8vw, 6rem) !important;
@@ -568,3 +568,189 @@ html .ar-page #blog .bg-\[\#050505\] { background: var(--ar-surface) !important;
 
 /* Keep anchored headings clear of the sticky header */
 .ar-page [id] { scroll-margin-top: 5.5rem; }
+
+/* ==========================================================================
+   Scroll flight hero (scroll-world technique, code-rendered)
+   ========================================================================== */
+.fl { position: relative; }
+.fl-track { position: relative; height: 570vh; }
+.fl-stage {
+  position: sticky;
+  top: 4.25rem;
+  height: calc(100vh - 4.25rem);
+  height: calc(100svh - 4.25rem);
+  overflow: hidden;
+  background: var(--ar-bg);
+}
+.fl-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.fl-panel {
+  position: absolute;
+  left: var(--ar-gutter);
+  right: var(--ar-gutter);
+  bottom: max(1.5rem, env(safe-area-inset-bottom));
+  max-width: 34rem;
+  opacity: 0;
+  visibility: hidden;
+  will-change: opacity, transform;
+}
+.fl-panel[data-first] { opacity: 1; visibility: visible; }
+.fl-panel__card {
+  padding: 1.25rem 1.25rem 1.4rem;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--ar-bg) 82%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--ar-line);
+}
+.fl-panel h1.ar-display { font-size: clamp(2.6rem, 11vw, 5.25rem); }
+.fl-panel h2 { font-size: clamp(1.6rem, 6vw, 2.6rem); font-weight: 750; font-stretch: 112%; line-height: 1.08; }
+.fl-panel p { margin-top: 0.85rem; color: var(--ar-ink-2); }
+.fl-panel .ar-hero__role { margin-top: 0.9rem; color: var(--ar-ink); }
+.fl-panel .ar-hero__actions { margin-top: 1.25rem; }
+@media (max-width: 56.24rem) {
+  .fl-panel h1.ar-display { font-size: clamp(2.2rem, 10vw, 3rem); }
+  .fl-panel__more { display: none; }
+  .fl-panel .ar-btn { padding: 0.65rem 1.05rem; font-size: 0.92rem; }
+}
+.fl-ventures { list-style: none; margin: 0.9rem 0 0; padding: 0; display: grid; gap: 0.35rem; }
+.fl-ventures a { color: var(--ar-venture); font-weight: 600; text-decoration: none; }
+.fl-ventures a:hover { text-decoration: underline; }
+.fl-ventures span { color: var(--ar-ink-2); }
+
+.fl-rail {
+  position: absolute;
+  right: var(--ar-gutter);
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+  flex-direction: column;
+  gap: 0.2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.fl-rail button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.35rem 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--ar-ink-3);
+}
+.fl-rail button::after {
+  content: '';
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 2px;
+  border: 1.5px solid currentColor;
+}
+.fl-rail button:hover { color: var(--ar-ink); }
+.fl-rail button[aria-current] { color: var(--ar-ink); }
+.fl-rail button[aria-current]::after { background: var(--ar-research); border-color: var(--ar-research); }
+.fl-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 1.25rem;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  color: var(--ar-ink-3);
+  pointer-events: none;
+  display: none;
+}
+.fl-skip {
+  position: absolute;
+  top: 1rem;
+  right: var(--ar-gutter);
+  font-size: 0.88rem;
+  color: var(--ar-ink-3);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.fl-skip:hover { color: var(--ar-ink); }
+
+@media (min-width: 56.25rem) {
+  .fl-panel {
+    top: 50%;
+    bottom: auto;
+    right: auto;
+    width: min(36rem, 40vw);
+    max-width: none;
+    margin-top: 0;
+  }
+  .fl-panel__card { background: transparent; border: 0; padding: 0; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .fl-panel { translate: 0 -50%; }
+  .fl-rail { display: flex; }
+  .fl-hint { display: block; }
+  /* Scrim so the pinned copy stays readable over busy scenes */
+  .fl-stage::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 52%;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(90deg, var(--ar-bg) 0%, color-mix(in srgb, var(--ar-bg) 85%, transparent) 55%, transparent 100%);
+  }
+  .fl-panel, .fl-rail, .fl-hint, .fl-skip { z-index: 2; }
+}
+
+/* Without the engine (no JS yet, or it failed) every scene's copy stacks normally. */
+.fl:not([data-ready]) .fl-track { height: auto; }
+.fl:not([data-ready]) .fl-stage::before { display: none; }
+.fl:not([data-ready]) .fl-stage { position: relative; height: auto; overflow: visible; padding: 6rem 0 3rem; }
+.fl:not([data-ready]) canvas,
+.fl:not([data-ready]) .fl-rail,
+.fl:not([data-ready]) .fl-hint { display: none; }
+.fl:not([data-ready]) .fl-panel { position: static; opacity: 1; visibility: visible; translate: none; margin: 0 auto 2.5rem; width: auto; max-width: 40rem; padding-inline: var(--ar-gutter); }
+
+/* ==========================================================================
+   Legacy pages (blog list, blog post) and the booking widget:
+   map the old near-black + indigo palette onto the site tokens, both themes.
+   ========================================================================== */
+html .ar-legacy,
+html .ar-legacy .bg-\[\#050505\],
+html .ar-legacy .bg-\[\#070707\],
+html .ar-legacy .bg-\[\#080808\] { background-color: var(--ar-bg) !important; color: var(--ar-ink); }
+html .ar-legacy .bg-\[\#0a0a0a\],
+html .ar-legacy .bg-\[\#0d0d0d\],
+html .ar-legacy .bg-\[\#0e0e10\],
+html .ar-legacy .bg-\[\#111\],
+html .ar-legacy .bg-\[\#111111\],
+html .ar-scheduler [class*='bg-[#0'],
+html .ar-scheduler [class*='bg-[#1'] { background-color: var(--ar-surface) !important; box-shadow: none !important; }
+html .ar-legacy .rounded-full[class*='blur-'] { display: none; }
+html .ar-legacy [class*='text-indigo-'],
+html .ar-legacy [class*='text-purple-'],
+html .ar-scheduler [class*='text-indigo-'] { color: var(--ar-research) !important; }
+html .ar-legacy [class*='bg-indigo-500\/'],
+html .ar-scheduler [class*='bg-indigo-500\/'] { background-color: color-mix(in srgb, var(--ar-research) 12%, transparent) !important; border-color: color-mix(in srgb, var(--ar-research) 30%, transparent) !important; }
+html .ar-legacy .bg-indigo-600,
+html .ar-scheduler .bg-indigo-600,
+html .ar-scheduler [class*='bg-indigo-600'] { background-color: var(--ar-research) !important; color: var(--ar-research-ink) !important; box-shadow: none !important; }
+html .ar-legacy .bg-indigo-600:hover,
+html .ar-scheduler .bg-indigo-600:hover { filter: brightness(1.08); }
+html .ar-legacy [class*='border-white\/'],
+html .ar-scheduler [class*='border-white\/'] { border-color: var(--ar-line) !important; }
+html .ar-legacy [class*='text-white\/'],
+html .ar-scheduler [class*='text-white\/'] { color: var(--ar-ink-2) !important; }
+html .ar-legacy .text-white,
+html .ar-legacy .text-\[\#FAFAFA\],
+html .ar-scheduler .text-white { color: var(--ar-ink) !important; }
+html .ar-legacy .bg-white.text-black { background: var(--ar-ink) !important; color: var(--ar-bg) !important; }
+html .ar-legacy .tracking-widest.uppercase,
+html .ar-legacy .uppercase.tracking-widest { letter-spacing: 0.04em; }
+html .ar-legacy h1 { font-stretch: 112%; letter-spacing: -0.02em; }
+html .ar-legacy article,
+html .ar-legacy .prose { color: var(--ar-ink-2); }
+html .ar-legacy .prose :is(h2, h3, h4, strong) { color: var(--ar-ink) !important; }
+html .ar-legacy .prose a { color: var(--ar-research) !important; }
+html .ar-scheduler input,
+html .ar-scheduler select,
+html .ar-scheduler textarea { background: var(--ar-bg) !important; color: var(--ar-ink) !important; border-color: var(--ar-line) !important; }
+html .ar-scheduler > * { border-radius: 14px; }

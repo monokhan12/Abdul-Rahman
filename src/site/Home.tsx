@@ -5,22 +5,23 @@ import {
   Binary,
   Cpu,
   Flame,
-  Github,
-  Linkedin,
-  Mail,
-  MapPin,
   Microscope,
   Plus,
   Recycle,
+  Search,
+  BatteryCharging,
+  ShieldCheck,
 } from 'lucide-react';
 import { additional, education, experience, interests, personalInfo, projects, publications, skills } from '../data';
 import BlogSection from '../components/BlogSection';
 import SiteLayout from './SiteLayout';
 import ElementTile from './ElementTile';
-import { faqSchema, homeFaq, personSchema, ventureLabel, ventures, ventureSchema } from './seo';
+import ScrollFlight from './flight/ScrollFlight';
+import { faqSchema, homeFaq, personSchema, serviceSchema, ventureLabel, ventures, ventureSchema } from './seo';
 import content from './content.json';
 
 const pillarIcons = [Flame, Cpu, Microscope, Recycle];
+const serviceIcons = [Search, Microscope, Binary, BatteryCharging, ShieldCheck];
 
 const toolkit = [
   { title: 'Materials informatics & AI', icon: Binary, items: skills.informatics },
@@ -74,52 +75,43 @@ export default function Home() {
         title: content.site.defaultTitle,
         description: content.site.defaultDescription,
         path: '/',
-        graph: [personSchema(), ...ventures.map(ventureSchema), faqSchema(homeFaq)],
+        graph: [personSchema(), serviceSchema(), ...ventures.map(ventureSchema), faqSchema(homeFaq)],
       }}
     >
-      {/* Hero: answers "who is this" in the first sentence for search snippets and answer engines */}
-      <section className="ar-hero" aria-labelledby="hero-title">
-        <div className="ar-wrap ar-hero__grid">
-          <div>
-            <h1 id="hero-title" className="ar-display">{personalInfo.name}</h1>
-            <p className="ar-hero__role">AI-driven materials engineer and entrepreneur in Lahore, Pakistan</p>
-            <p className="ar-lead ar-hero__summary">
-              I combine physical metallurgy with machine learning and CALPHAD modeling to design better alloys,
-              coatings and recycling routes. I research and teach at PCSIR, and I founded{' '}
-              {ventures.map((v, i) => (
-                <span key={v.slug}>
-                  <Link className="ar-textlink" to={`/ventures/${v.slug}`}>{ventureLabel(v)}</Link>
-                  {i < ventures.length - 2 ? ', ' : i === ventures.length - 2 ? ' and ' : ''}
-                </span>
-              ))}
-              .
+      <ScrollFlight />
+
+      {/* Services: one heading per US search intent */}
+      <section id="services" className="ar-section" aria-labelledby="services-title">
+        <div className="ar-wrap ar-split">
+          <div className="ar-split__aside">
+            <h2 id="services-title" className="ar-h2">Materials engineering consulting for US companies</h2>
+            <p className="ar-body" style={{ marginTop: '1rem' }}>
+              I work remotely with engineering, manufacturing and R&amp;D teams in the United States and worldwide.
+              Every engagement starts with a 30-minute call and a written proposal.
             </p>
             <div className="ar-hero__actions">
               <Link to="/contact" className="ar-btn ar-btn--primary">Book a consultation</Link>
-              <a href="#research" className="ar-btn ar-btn--ghost">See my research</a>
             </div>
-            <ul className="ar-hero__facts">
-              <li><MapPin size={16} aria-hidden="true" /> {personalInfo.location}</li>
-              <li><Mail size={16} aria-hidden="true" /> <a href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a></li>
-              <li><Linkedin size={16} aria-hidden="true" /> <a href={`https://${personalInfo.linkedin}`} target="_blank" rel="me noopener">LinkedIn</a></li>
-              <li><Github size={16} aria-hidden="true" /> <a href={`https://${personalInfo.github}`} target="_blank" rel="me noopener">GitHub</a></li>
-            </ul>
           </div>
-          <div className="ar-hero__tilewrap">
-            <ElementTile
-              className="ar-hero__tile"
-              symbol="Ar"
-              topLeft="18"
-              topRight="39.948"
-              name="Abdul Rahman"
-              meta="Materials engineer, founder"
-            />
-          </div>
+          <ul className="ar-pillars">
+            {content.services.map((sv, idx) => {
+              const Icon = serviceIcons[idx] ?? Microscope;
+              return (
+                <li key={sv.id} id={sv.id} className="ar-pillar">
+                  <Icon size={22} aria-hidden="true" />
+                  <div>
+                    <h3 className="ar-h3">{sv.title}</h3>
+                    <p>{sv.body}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </section>
 
       {/* Research */}
-      <section id="research" className="ar-section" aria-labelledby="research-title">
+      <section id="research" className="ar-section ar-section--alt" aria-labelledby="research-title">
         <div className="ar-wrap ar-split">
           <div className="ar-split__aside">
             <h2 id="research-title" className="ar-h2">Research in metallurgy and materials informatics</h2>
@@ -146,7 +138,7 @@ export default function Home() {
       </section>
 
       {/* Toolkit */}
-      <section id="skills" className="ar-section ar-section--alt" aria-labelledby="skills-title">
+      <section id="skills" className="ar-section" aria-labelledby="skills-title">
         <div className="ar-wrap">
           <div className="ar-section__head">
             <h2 id="skills-title" className="ar-h2">Toolkit: SEM/EDS, XRD, Python and CALPHAD</h2>
@@ -166,7 +158,7 @@ export default function Home() {
       </section>
 
       {/* Experience & education timeline */}
-      <section id="experience" className="ar-section" aria-labelledby="experience-title">
+      <section id="experience" className="ar-section ar-section--alt" aria-labelledby="experience-title">
         <div className="ar-wrap ar-split">
           <div className="ar-split__aside">
             <h2 id="experience-title" className="ar-h2">Experience and education</h2>
@@ -204,7 +196,7 @@ export default function Home() {
       </section>
 
       {/* Projects */}
-      <section id="projects" className="ar-section ar-section--alt" aria-labelledby="projects-title">
+      <section id="projects" className="ar-section" aria-labelledby="projects-title">
         <div className="ar-wrap">
           <div className="ar-section__head">
             <h2 id="projects-title" className="ar-h2">Projects</h2>
@@ -233,7 +225,7 @@ export default function Home() {
       </section>
 
       {/* Publications */}
-      <section id="publications" className="ar-section" aria-labelledby="publications-title">
+      <section id="publications" className="ar-section ar-section--alt" aria-labelledby="publications-title">
         <div className="ar-wrap">
           <div className="ar-section__head">
             <h2 id="publications-title" className="ar-h2">Publications and conference work</h2>
@@ -260,7 +252,7 @@ export default function Home() {
       </section>
 
       {/* Ventures */}
-      <section id="ventures" className="ar-section ar-section--alt" aria-labelledby="ventures-title">
+      <section id="ventures" className="ar-section" aria-labelledby="ventures-title">
         <div className="ar-wrap">
           <div className="ar-section__head">
             <h2 id="ventures-title" className="ar-h2">Ventures I founded</h2>

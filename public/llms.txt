@@ -1,6 +1,6 @@
 # Abdul Rahman
 
-> Abdul Rahman is an AI-driven materials engineer and entrepreneur in Lahore, Pakistan. He combines physical metallurgy with machine learning and CALPHAD modeling, works as a research engineer and senior instructor at the Pakistan Council of Scientific and Industrial Research (PCSIR), and founded Connected 2 Future (C2F), EduCon and Jobs4DAE.
+> Abdul Rahman is an AI-driven materials engineer and entrepreneur based in Lahore, Pakistan, who consults remotely for companies in the United States. He combines physical metallurgy with machine learning and CALPHAD modeling, works as a research engineer and senior instructor at the Pakistan Council of Scientific and Industrial Research (PCSIR), and founded Connected 2 Future (C2F), EduCon and Jobs4DAE.
 
 ## Quick facts
 - Name: Abdul Rahman
@@ -17,8 +17,16 @@
 - Characterization: SEM/EDS, XRD with Rietveld refinement, XRF, metallography, mechanical testing, CSWIP 3.1
 - Corrosion, protective coatings, and direct recycling of NMC lithium-ion battery cathodes
 
+## Consulting services (remote, for US and international clients)
+- Metallurgical failure analysis consulting
+- SEM/EDS and XRD data interpretation
+- Materials informatics and machine learning for R&D
+- Battery recycling and critical minerals
+- Corrosion and protective coatings
+- Book: __SITE_URL__/contact
+
 ## Ventures
-- [Connected 2 Future (C2F)](__SITE_URL__/ventures/c2f): digital agency for AI automation, web development and digital marketing. Founded 2020; Abdul Rahman is CEO.
+- [Connected 2 Future (C2F)](__SITE_URL__/ventures/c2f): AI automation agency for AI automation, web development, AR/VR, blockchain and digital marketing. Founded 2020; Abdul Rahman is CEO. Website: https://c2f.lovable.app/
 - [EduCon](__SITE_URL__/ventures/educon): education and career guidance for students.
 - [Jobs4DAE](__SITE_URL__/ventures/jobs4dae): AI-powered career portal for Diploma of Associate Engineering (DAE) students in Pakistan, with job listings, higher-education guides and engineering AI tools.
 
