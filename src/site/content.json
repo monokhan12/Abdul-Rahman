@@ -1,6 +1,6 @@
 {
   "site": {
-    "url": "https://monokhan12.github.io/Abdul-Rahman",
+    "url": "https://abdul-rah-man.engineer",
     "name": "Abdul Rahman",
     "defaultTitle": "Materials Informatics & Failure Analysis Consultant | Abdul Rahman",
     "defaultDescription": "Remote materials engineering consultant for US companies: metallurgical failure analysis, SEM/EDS and XRD interpretation, and machine learning for R&D.",
@@ -166,28 +166,331 @@
   "services": [
     {
       "id": "failure-analysis",
+      "slug": "metallurgical-failure-analysis",
+      "short": "Failure analysis",
       "title": "Metallurgical failure analysis consulting",
-      "body": "Root-cause analysis of cracked, corroded or worn metal parts: fractography, metallography and chemistry, with a clear report on what failed, why, and what to change."
+      "seoTitle": "Metallurgical Failure Analysis Consultant | Abdul Rahman",
+      "description": "Remote metallurgical failure analysis for US companies: root cause of cracked, corroded or worn metal parts from fractography, SEM/EDS and metallography.",
+      "body": "Root-cause analysis of cracked, corroded or worn metal parts: fractography, metallography and chemistry, with a clear report on what failed, why, and what to change.",
+      "answer": "Metallurgical failure analysis finds out why a metal part cracked, corroded, wore out or deformed, and what to change so it does not happen again. Abdul Rahman runs failure investigations remotely for companies in the United States, combining fractography, SEM/EDS, metallography, hardness testing and chemical analysis into one root-cause report.",
+      "includes": [
+        "Review of the part's history, drawings, material specification and service conditions",
+        "Visual and fractographic examination of fracture surfaces",
+        "SEM/EDS analysis of fracture surfaces, deposits and inclusions",
+        "Metallography, hardness and microstructure checks against the specified material and heat treatment",
+        "Root-cause finding with corrective actions for design, material, processing or operation"
+      ],
+      "bestFor": [
+        "Shaft, gear, fastener and weld failures",
+        "Cracking after heat treatment or welding",
+        "Unexpected corrosion or wear in service",
+        "Supplier disputes that need an independent view"
+      ],
+      "keywords": [
+        "metallurgical failure analysis",
+        "metal failure analysis",
+        "failure analysis engineering",
+        "failure analysis methods"
+      ],
+      "related": [
+        "sem-eds-microstructural-analysis-guide",
+        "corrosion-kinetics-harsh-environments"
+      ],
+      "faq": [
+        {
+          "q": "What is metallurgical failure analysis?",
+          "a": "Metallurgical failure analysis is the investigation of why a metal component failed. It examines the fracture surface, microstructure, chemistry and service history to identify the root cause, such as fatigue, overload, corrosion, hydrogen embrittlement or a heat-treatment defect, and recommends how to prevent it."
+        },
+        {
+          "q": "Can failure analysis be done remotely?",
+          "a": "Yes. Much of the work is interpreting images and data: photographs, SEM images, EDS spectra, hardness results and specifications. When new tests are needed, they can be run at an accredited lab near you, and Abdul Rahman directs the testing and interprets the results."
+        },
+        {
+          "q": "How long does a failure analysis take?",
+          "a": "A straightforward investigation using existing data usually takes one to two weeks. Cases that need new lab testing take longer, depending on the lab's turnaround. The proposal states the timeline before work starts."
+        }
+      ],
+      "process": [
+        {
+          "name": "Discovery call",
+          "text": "A free 30-minute video call to understand the part, the material and what you need to decide."
+        },
+        {
+          "name": "Proposal",
+          "text": "A short written scope with the analyses, the data or samples needed, the timeline and the price."
+        },
+        {
+          "name": "Analysis",
+          "text": "Data and images are shared securely online; physical testing is arranged with a lab near you when needed."
+        },
+        {
+          "name": "Report and debrief",
+          "text": "A written report with findings and recommendations, followed by a call to walk your team through it."
+        }
+      ]
     },
     {
       "id": "sem-xrd",
+      "slug": "sem-eds-xrd-analysis",
+      "short": "SEM/EDS & XRD",
       "title": "SEM/EDS and XRD data interpretation",
-      "body": "Send your SEM images, EDS spectra or XRD patterns and get phase identification, Rietveld refinement and a written interpretation your team can act on."
+      "seoTitle": "SEM/EDS and XRD Analysis Interpretation Services | Abdul Rahman",
+      "description": "Send SEM images, EDS spectra or XRD patterns and get phase identification, Rietveld refinement and a written interpretation your team can act on.",
+      "body": "Send your SEM images, EDS spectra or XRD patterns and get phase identification, Rietveld refinement and a written interpretation your team can act on.",
+      "answer": "SEM/EDS and XRD analysis reveal what a material is made of and how it is structured: SEM shows the microstructure, EDS measures local chemistry, and XRD identifies crystalline phases. Abdul Rahman interprets SEM images, EDS spectra and XRD patterns for companies and research teams, drawing on characterization work across more than 50 industrial and academic projects.",
+      "includes": [
+        "Interpretation of SEM micrographs: microstructure, porosity, cracks, inclusions and coatings",
+        "EDS spectrum and map review, including peak overlaps and quantification limits",
+        "XRD phase identification against reference databases",
+        "Rietveld refinement for phase fractions and lattice parameters",
+        "XRF results cross-checked against EDS and XRD"
+      ],
+      "bestFor": [
+        "Labs with data but no specialist to interpret it",
+        "Contaminant, deposit and corrosion-product identification",
+        "Coating, ceramic and powder characterization",
+        "Second opinions on existing lab reports"
+      ],
+      "keywords": [
+        "sem eds analysis",
+        "xrd analysis",
+        "x-ray diffraction analysis",
+        "rietveld refinement"
+      ],
+      "related": [
+        "sem-eds-microstructural-analysis-guide"
+      ],
+      "faq": [
+        {
+          "q": "What is the difference between SEM, EDS and XRD?",
+          "a": "SEM (scanning electron microscopy) images a surface at high magnification. EDS (energy-dispersive X-ray spectroscopy), usually attached to the SEM, measures which elements are present in a small area. XRD (X-ray diffraction) identifies crystalline phases and compounds in a bulk sample. Together they show structure, chemistry and phase."
+        },
+        {
+          "q": "What files should I send?",
+          "a": "Original image files with their scale bars and instrument settings, EDS spectra or maps in the instrument's export format, and XRD raw data (for example .xy, .raw or .brml) with the instrument geometry and radiation used."
+        },
+        {
+          "q": "What is Rietveld refinement used for?",
+          "a": "Rietveld refinement fits a calculated diffraction pattern to the measured XRD pattern. It gives quantitative phase fractions, lattice parameters and crystallite size, which simple peak matching cannot provide."
+        }
+      ],
+      "process": [
+        {
+          "name": "Discovery call",
+          "text": "A free 30-minute video call to understand the part, the material and what you need to decide."
+        },
+        {
+          "name": "Proposal",
+          "text": "A short written scope with the analyses, the data or samples needed, the timeline and the price."
+        },
+        {
+          "name": "Analysis",
+          "text": "Data and images are shared securely online; physical testing is arranged with a lab near you when needed."
+        },
+        {
+          "name": "Report and debrief",
+          "text": "A written report with findings and recommendations, followed by a call to walk your team through it."
+        }
+      ]
     },
     {
       "id": "materials-informatics",
+      "slug": "materials-informatics-machine-learning",
+      "short": "Materials informatics & ML",
       "title": "Materials informatics and machine learning for R&D",
-      "body": "Machine learning models, Bayesian optimization and CALPHAD modeling that predict properties from composition and processing, so you run fewer experiments."
+      "seoTitle": "Materials Informatics & Machine Learning Consulting | Abdul Rahman",
+      "description": "Machine learning, Bayesian optimization and CALPHAD modeling that predict material properties from composition and processing, so you run fewer tests.",
+      "body": "Machine learning models, Bayesian optimization and CALPHAD modeling that predict properties from composition and processing, so you run fewer experiments.",
+      "answer": "Materials informatics uses data and machine learning to predict how a material's composition and processing affect its properties, so R&D teams test fewer candidates to reach a target. Abdul Rahman builds materials informatics workflows with Python, PyTorch, Pymatgen, MatGL and PyCalphad, including Bayesian optimization loops and CALPHAD thermodynamic models.",
+      "includes": [
+        "Review of your existing experimental data and what it can predict",
+        "Property-prediction models (for example random forests and graph neural networks)",
+        "Bayesian optimization to choose the next experiments",
+        "CALPHAD phase-diagram and thermodynamic calculations with PyCalphad",
+        "Hand-over of code and documentation your team can keep running"
+      ],
+      "bestFor": [
+        "Alloy and coating development teams",
+        "Labs with years of untapped experimental data",
+        "Startups screening compositions before building a lab",
+        "Teams exploring high-entropy alloys and new chemistries"
+      ],
+      "keywords": [
+        "materials informatics",
+        "machine learning materials science",
+        "calphad",
+        "high entropy alloys"
+      ],
+      "related": [
+        "alloy-optimization-ml",
+        "ai-agentic-rag-scientific"
+      ],
+      "faq": [
+        {
+          "q": "What is materials informatics?",
+          "a": "Materials informatics applies data science and machine learning to materials science. It uses data from experiments, simulations and databases to predict how composition and processing affect properties, which reduces the number of experiments needed to develop new materials."
+        },
+        {
+          "q": "How much data do I need to start?",
+          "a": "Less than many teams expect. Bayesian optimization is designed for small, expensive datasets and can guide experiments starting from a few dozen data points, especially when combined with physics-based features and CALPHAD calculations."
+        },
+        {
+          "q": "What is CALPHAD?",
+          "a": "CALPHAD (CALculation of PHAse Diagrams) is a method for computing phase diagrams and thermodynamic properties of multi-component materials from assessed databases. It predicts which phases form at a given composition and temperature."
+        }
+      ],
+      "process": [
+        {
+          "name": "Discovery call",
+          "text": "A free 30-minute video call to understand the part, the material and what you need to decide."
+        },
+        {
+          "name": "Proposal",
+          "text": "A short written scope with the analyses, the data or samples needed, the timeline and the price."
+        },
+        {
+          "name": "Analysis",
+          "text": "Data and images are shared securely online; physical testing is arranged with a lab near you when needed."
+        },
+        {
+          "name": "Report and debrief",
+          "text": "A written report with findings and recommendations, followed by a call to walk your team through it."
+        }
+      ]
     },
     {
       "id": "battery-minerals",
+      "slug": "battery-recycling-critical-minerals",
+      "short": "Battery & critical minerals",
       "title": "Battery recycling and critical minerals",
-      "body": "Direct recycling and relithiation of NMC lithium-ion cathodes, and characterization-led beneficiation of low-grade ores."
+      "seoTitle": "Battery Cathode Recycling & Critical Minerals Consulting | Abdul Rahman",
+      "description": "Direct recycling and relithiation of NMC lithium-ion cathodes, and characterization-led beneficiation of low-grade ores, for battery and mineral teams.",
+      "body": "Direct recycling and relithiation of NMC lithium-ion cathodes, and characterization-led beneficiation of low-grade ores.",
+      "answer": "Critical minerals such as lithium, nickel, cobalt and rare earth elements are needed for batteries and electronics, and recycling and better ore processing reduce dependence on new mining. Abdul Rahman's MSc research covered direct recycling and regeneration of nickel-rich NMC cathodes, and at PCSIR he upgraded low-grade iron ore from 36% to 65% Fe through characterization-driven beneficiation.",
+      "includes": [
+        "Characterization of spent cathode materials and black mass",
+        "Direct recycling and relithiation route assessment for NMC cathodes",
+        "Process mineralogy of ores using SEM/EDS, XRD and XRF",
+        "Beneficiation flowsheet review for low-grade ores",
+        "Literature and technology reviews for critical-mineral projects"
+      ],
+      "bestFor": [
+        "Battery recycling startups and pilot plants",
+        "Mining and mineral-processing teams",
+        "Investors doing technical due diligence",
+        "Researchers moving from lab to pilot scale"
+      ],
+      "keywords": [
+        "critical minerals",
+        "lithium ion battery recycling",
+        "rare earth elements",
+        "ore beneficiation"
+      ],
+      "related": [
+        "direct-cathode-recycling",
+        "pakistan-6-trillion-mineral-wealth",
+        "pakistan-mineral-treasure-map"
+      ],
+      "faq": [
+        {
+          "q": "What are critical minerals?",
+          "a": "Critical minerals are raw materials that are essential to the economy or national security and whose supply is at risk. Lists such as the US Geological Survey's include lithium, nickel, cobalt, graphite and the rare earth elements, which are needed for batteries, electronics and clean-energy technology."
+        },
+        {
+          "q": "What is direct recycling of battery cathodes?",
+          "a": "Direct recycling recovers cathode material from spent lithium-ion batteries and restores it, for example by relithiation and heat treatment, without breaking it down into individual metals. It can use less energy and fewer chemicals than pyrometallurgical or hydrometallurgical recycling."
+        },
+        {
+          "q": "What is ore beneficiation?",
+          "a": "Beneficiation upgrades a low-grade ore into a higher-grade concentrate by separating valuable minerals from waste rock, using methods such as magnetic separation, flotation and gravity separation. Characterization shows which method will work for a given ore."
+        }
+      ],
+      "process": [
+        {
+          "name": "Discovery call",
+          "text": "A free 30-minute video call to understand the part, the material and what you need to decide."
+        },
+        {
+          "name": "Proposal",
+          "text": "A short written scope with the analyses, the data or samples needed, the timeline and the price."
+        },
+        {
+          "name": "Analysis",
+          "text": "Data and images are shared securely online; physical testing is arranged with a lab near you when needed."
+        },
+        {
+          "name": "Report and debrief",
+          "text": "A written report with findings and recommendations, followed by a call to walk your team through it."
+        }
+      ]
     },
     {
       "id": "corrosion-coatings",
+      "slug": "corrosion-protective-coatings",
+      "short": "Corrosion & coatings",
       "title": "Corrosion and protective coatings",
-      "body": "Corrosion kinetics, electrochemical testing data and machine learning-guided design of self-healing protective coatings."
+      "seoTitle": "Corrosion & Protective Coatings Consulting | Abdul Rahman",
+      "description": "Corrosion kinetics, electrochemical test interpretation and machine learning-guided design of self-healing protective coatings, from a materials engineer.",
+      "body": "Corrosion kinetics, electrochemical testing data and machine learning-guided design of self-healing protective coatings.",
+      "answer": "Corrosion is the gradual degradation of a metal by reaction with its environment, and protective coatings are the most common defence. Abdul Rahman works on corrosion kinetics, interpretation of electrochemical test data and machine learning-guided design of self-healing epoxy coatings, the subject of his paper on MgO-loaded ZIF-8 nanocontainers.",
+      "includes": [
+        "Identification of corrosion mechanisms: galvanic, pitting, crevice, stress corrosion cracking, hydrogen embrittlement",
+        "Interpretation of electrochemical tests such as polarization and EIS",
+        "Coating failure investigation with SEM/EDS",
+        "Coating formulation screening with machine learning and Bayesian optimization",
+        "Material and coating selection for harsh and marine environments"
+      ],
+      "bestFor": [
+        "Coating manufacturers developing new formulations",
+        "Plant and asset owners with recurring corrosion",
+        "Marine, oil and gas, and infrastructure teams",
+        "Product teams choosing metals for a new environment"
+      ],
+      "keywords": [
+        "galvanic corrosion",
+        "stress corrosion cracking",
+        "hydrogen embrittlement",
+        "self healing coating"
+      ],
+      "related": [
+        "corrosion-kinetics-harsh-environments"
+      ],
+      "faq": [
+        {
+          "q": "What is galvanic corrosion?",
+          "a": "Galvanic corrosion happens when two different metals are in electrical contact in an electrolyte such as seawater. The less noble metal corrodes faster than it would alone, while the more noble metal is protected. It is prevented by choosing compatible metals, insulating the joint or coating the parts."
+        },
+        {
+          "q": "What is stress corrosion cracking?",
+          "a": "Stress corrosion cracking is cracking caused by the combined action of tensile stress and a corrosive environment, often at stresses well below the material's yield strength. Examples include chloride cracking of austenitic stainless steels."
+        },
+        {
+          "q": "What is a self-healing coating?",
+          "a": "A self-healing coating contains agents, often held in microcapsules or nanocontainers, that are released when the coating is damaged and repair the defect or inhibit corrosion at the exposed metal, extending the coating's protective life."
+        }
+      ],
+      "process": [
+        {
+          "name": "Discovery call",
+          "text": "A free 30-minute video call to understand the part, the material and what you need to decide."
+        },
+        {
+          "name": "Proposal",
+          "text": "A short written scope with the analyses, the data or samples needed, the timeline and the price."
+        },
+        {
+          "name": "Analysis",
+          "text": "Data and images are shared securely online; physical testing is arranged with a lab near you when needed."
+        },
+        {
+          "name": "Report and debrief",
+          "text": "A written report with findings and recommendations, followed by a call to walk your team through it."
+        }
+      ]
     }
-  ]
+  ],
+  "servicesIndex": {
+    "seoTitle": "Materials Engineering Consulting Services | Abdul Rahman",
+    "description": "Remote materials engineering consulting for US companies: failure analysis, SEM/EDS and XRD, materials informatics, battery recycling, corrosion and coatings."
+  }
 }

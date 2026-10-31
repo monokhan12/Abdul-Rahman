@@ -18,7 +18,7 @@ export function VenturesIndex() {
       seo={{
         title: 'Ventures by Abdul Rahman | C2F, EduCon and Jobs4DAE',
         description:
-          'Companies founded by Abdul Rahman, entrepreneur in Lahore: Connected 2 Future (C2F) for AI automation and web development, EduCon for education guidance, and Jobs4DAE for DAE jobs in Pakistan.',
+          'Companies founded by Abdul Rahman: Connected 2 Future (C2F) for AI automation, EduCon for education guidance, and Jobs4DAE for DAE jobs in Pakistan.',
         path: '/ventures',
         graph: [
           personSchema(),

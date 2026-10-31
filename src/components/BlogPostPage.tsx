@@ -28,6 +28,7 @@ import {
 } from '../lib/firebase';
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, User as FirebaseUser } from 'firebase/auth';
 import SiteHeader from '../site/SiteHeader';
+import { articleSchema, breadcrumbSchema, clipText, personSchema, useSeo } from '../site/seo';
 
 // Helper for inline markdown formatting
 const formatInline = (text: string) => {
@@ -280,6 +281,25 @@ export default function BlogPostPage() {
   // Form input
   const [commentText, setCommentText] = useState<string>('');
   const [commenterName, setCommenterName] = useState<string>('');
+
+  // Per-article title, description, canonical and Article JSON-LD (mirrors the prerendered page).
+  const canonicalSlug = post?.slug || slug || '';
+  useSeo({
+    title: post ? `${post.title} | Abdul Rahman` : 'Article | Abdul Rahman',
+    description: post ? clipText(post.summary, 155) : 'Article by Abdul Rahman, materials engineer.',
+    path: `/blog/${canonicalSlug}`,
+    graph: post
+      ? [
+          personSchema(),
+          articleSchema(post),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Blog', path: '/blog' },
+            { name: post.title, path: `/blog/${canonicalSlug}` },
+          ]),
+        ]
+      : undefined,
+  });
 
   useEffect(() => {
     // Track auth state

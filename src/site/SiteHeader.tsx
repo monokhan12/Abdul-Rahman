@@ -6,9 +6,9 @@ import { ventureLabel, ventures } from './seo';
 import ElementTile from './ElementTile';
 
 const sectionLinks = [
+  { label: 'Services', to: '/services' },
   { label: 'Research', to: '/#research' },
   { label: 'Experience', to: '/#experience' },
-  { label: 'Publications', to: '/#publications' },
 ];
 
 function ThemeButton() {

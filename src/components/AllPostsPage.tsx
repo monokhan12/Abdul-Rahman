@@ -27,10 +27,17 @@ import {
 } from '../lib/firebase';
 import BlogCard from './BlogCard';
 import SiteHeader from '../site/SiteHeader';
+import { breadcrumbSchema, personSchema, useSeo } from '../site/seo';
 import { toast } from 'sonner';
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, User as FirebaseUser } from 'firebase/auth';
 
 export default function AllPostsPage() {
+  useSeo({
+    title: 'Metallurgy & Materials Engineering Blog | Abdul Rahman',
+    description: 'Articles by materials engineer Abdul Rahman on failure analysis, SEM/EDS and XRD, corrosion, battery recycling, critical minerals and materials informatics.',
+    path: '/blog',
+    graph: [personSchema(), breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog' }])],
+  });
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);

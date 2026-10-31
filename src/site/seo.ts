@@ -8,6 +8,8 @@ export type QA = { q: string; a: string };
 export const SITE_URL = content.site.url.replace(/\/$/, '');
 export const ventures: Venture[] = content.ventures;
 export const homeFaq: QA[] = content.faq;
+export type ServiceInfo = (typeof content.services)[number];
+export const services: ServiceInfo[] = content.services;
 export const ventureLabel = (v: Venture) => (v.short === v.name ? v.name : `${v.name} (${v.short})`);
 
 export const absoluteUrl = (path = '/') => `${SITE_URL}${path === '/' ? '/' : path}`;
@@ -86,6 +88,47 @@ export function serviceSchema() {
         itemOffered: { '@type': 'Service', name: s.title, description: s.body, areaServed: 'United States' },
       })),
     },
+  };
+}
+
+/** One consulting service, offered remotely to the United States. */
+export function serviceSchemaFor(sv: ServiceInfo) {
+  const url = absoluteUrl(`/services/${sv.slug}`);
+  return {
+    '@type': 'Service',
+    '@id': `${url}#service`,
+    name: sv.title,
+    serviceType: sv.title,
+    description: sv.answer,
+    url,
+    provider: { '@id': PERSON_ID },
+    areaServed: [{ '@type': 'Country', name: 'United States' }, { '@type': 'Place', name: 'Worldwide' }],
+    availableChannel: { '@type': 'ServiceChannel', serviceUrl: absoluteUrl('/contact'), name: 'Remote video consultation' },
+  };
+}
+
+export const clipText = (t: string, n = 155) => (t.length > n ? `${t.slice(0, n - 1).replace(/\s\S*$/, '')}…` : t);
+
+/** Blog article; dates come from the post's createdAt / updatedAt. */
+export function articleSchema(post: { title: string; slug: string; summary: string; category?: string; createdAt?: unknown; updatedAt?: unknown }) {
+  const iso = (d: unknown) => {
+    const v = d instanceof Date ? d : d ? new Date(d as string) : null;
+    return v && !Number.isNaN(v.getTime()) ? v.toISOString() : undefined;
+  };
+  const url = absoluteUrl(`/blog/${post.slug}`);
+  return {
+    '@type': 'BlogPosting',
+    '@id': `${url}#article`,
+    headline: post.title.slice(0, 110),
+    description: post.summary,
+    url,
+    mainEntityOfPage: url,
+    articleSection: post.category,
+    datePublished: iso(post.createdAt),
+    dateModified: iso(post.updatedAt) || iso(post.createdAt),
+    author: { '@id': PERSON_ID },
+    publisher: { '@id': PERSON_ID },
+    inLanguage: 'en-US',
   };
 }
 

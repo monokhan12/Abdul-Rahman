@@ -100,7 +100,9 @@ export default function Home() {
                 <li key={sv.id} id={sv.id} className="ar-pillar">
                   <Icon size={22} aria-hidden="true" />
                   <div>
-                    <h3 className="ar-h3">{sv.title}</h3>
+                    <h3 className="ar-h3">
+                      <Link to={`/services/${sv.slug}`} style={{ textDecoration: 'none' }}>{sv.title}</Link>
+                    </h3>
                     <p>{sv.body}</p>
                   </div>
                 </li>

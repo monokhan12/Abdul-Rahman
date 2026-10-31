@@ -8,10 +8,13 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
 const content = JSON.parse(readFileSync(join(root, 'src/site/content.json'), 'utf8'));
-const SITE_URL = (process.env.SITE_URL || content.site.url).replace(/\/$/, '');
+// The custom domain is the canonical home for every page, whatever host the build runs for.
+const SITE_URL = content.site.url.replace(/\/$/, '');
+const posts = JSON.parse(readFileSync(join(root, 'src/content/posts.json'), 'utf8'));
+const aliases = { 'materials-informatics-accelerating-alloy-design': 'alloy-optimization-ml', 'direct-recycling-nmc-cathode-materials': 'direct-cathode-recycling' };
 const abs = (p) => `${SITE_URL}${p}`;
 // Path prefix the site is served under (e.g. "/abdul-rahman" on GitHub Pages), for in-page links.
-const BASE = (process.env.BASE_PATH ?? new URL(SITE_URL).pathname).replace(/\/$/, '');
+const BASE = (process.env.BASE_PATH ?? '/').replace(/\/$/, '');
 const link = (p) => `${BASE}${p}`;
 
 const esc = (s) =>
@@ -112,7 +115,7 @@ const seoBlock = ({ title, description, path }) => `<!--SEO:START-->
     <!--SEO:END-->`;
 
 const navHtml = `<header><p><strong><a href="${link('/')}">Abdul Rahman</a></strong>, AI-driven materials engineer and entrepreneur</p>
-        <nav aria-label="Main"><a href="${link('/')}">Home</a> | <a href="${link('/ventures')}">Entrepreneur</a> (${content.ventures
+        <nav aria-label="Main"><a href="${link('/')}">Home</a> | <a href="${link('/services')}">Services</a> | <a href="${link('/ventures')}">Entrepreneur</a> (${content.ventures
           .map((v) => `<a href="${link(`/ventures/${v.slug}`)}">${esc(v.short)}</a>`)
           .join(', ')}) | <a href="${link('/blog')}">Blog</a> | <a href="${link('/contact')}">Book a consultation</a></nav></header>`;
 const faqHtml = (items) => items.map((f) => `<h3>${esc(f.q)}</h3>\n<p>${esc(f.a)}</p>`).join('\n');
@@ -161,7 +164,7 @@ write(
     seo: {
       title: 'Ventures by Abdul Rahman | C2F, EduCon and Jobs4DAE',
       description:
-        'Companies founded by Abdul Rahman, entrepreneur in Lahore: Connected 2 Future (C2F) for AI automation and web development, EduCon for education guidance, and Jobs4DAE for DAE jobs in Pakistan.',
+        'Companies founded by Abdul Rahman: Connected 2 Future (C2F) for AI automation, EduCon for education guidance, and Jobs4DAE for DAE jobs in Pakistan.',
       path: '/ventures',
     },
     graph: [person, ...content.ventures.map(org), crumbs([{ name: 'Home', path: '/' }, { name: 'Ventures', path: '/ventures' }])],
@@ -203,6 +206,207 @@ ${v.url ? `<p><a href="${esc(v.url)}">Visit ${esc(v.short)}</a></p>` : ''}
   );
 }
 
+// ---------- Services ----------
+const serviceLd = (sv) => {
+  const url = abs(`/services/${sv.slug}`);
+  return {
+    '@type': 'Service',
+    '@id': `${url}#service`,
+    name: sv.title,
+    serviceType: sv.title,
+    description: sv.answer,
+    url,
+    provider: { '@id': PERSON_ID },
+    areaServed: [{ '@type': 'Country', name: 'United States' }, { '@type': 'Place', name: 'Worldwide' }],
+    availableChannel: { '@type': 'ServiceChannel', serviceUrl: abs('/contact'), name: 'Remote video consultation' },
+  };
+};
+const postBySlug = (slug) => posts.find((p) => p.slug === slug);
+
+write(
+  '/services',
+  render(template, {
+    seo: { title: content.servicesIndex.seoTitle, description: content.servicesIndex.description, path: '/services' },
+    graph: [person, service, ...content.services.map(serviceLd), crumbs([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }])],
+    body: `<h1>Materials engineering consulting</h1>
+<p>Abdul Rahman consults remotely for engineering, manufacturing and R&amp;D teams in the United States and worldwide. Every engagement starts with a free 30-minute call and a written proposal.</p>
+${content.services.map((sv) => `<h2><a href="${link(`/services/${sv.slug}`)}">${esc(sv.title)}</a></h2>\n<p>${esc(sv.body)}</p>`).join('\n')}
+<p><a href="${link('/contact')}">Book a consultation</a></p>`,
+  }),
+);
+
+for (const sv of content.services) {
+  const path = `/services/${sv.slug}`;
+  const related = sv.related.map(postBySlug).filter(Boolean);
+  write(
+    path,
+    render(template, {
+      seo: { title: sv.seoTitle, description: sv.description, path },
+      graph: [
+        person,
+        serviceLd(sv),
+        faq(sv.faq),
+        crumbs([
+          { name: 'Home', path: '/' },
+          { name: 'Services', path: '/services' },
+          { name: sv.title, path },
+        ]),
+      ],
+      body: `<h1>${esc(sv.title)}</h1>
+<p>${esc(sv.answer)}</p>
+<h2>What's included</h2>
+<ul>${sv.includes.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+<h2>Who it's for</h2>
+<ul>${sv.bestFor.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+<h2>How it works</h2>
+<ol>${sv.process.map((st) => `<li><strong>${esc(st.name)}:</strong> ${esc(st.text)}</li>`).join('')}</ol>
+<h2>Questions about ${esc(sv.short.toLowerCase())}</h2>
+${faqHtml(sv.faq)}
+${related.length ? `<h2>Further reading</h2>\n<ul>${related.map((p) => `<li><a href="${link(`/blog/${p.slug}`)}">${esc(p.title)}</a></li>`).join('')}</ul>` : ''}
+<p><a href="${link('/contact')}">Book a free consultation</a></p>`,
+    }),
+  );
+}
+
+// ---------- Contact ----------
+write(
+  '/contact',
+  render(template, {
+    seo: {
+      title: 'Book a Materials Engineering Consultation | Abdul Rahman',
+      description:
+        'Book a free 30-minute video call with Abdul Rahman about failure analysis, SEM/EDS and XRD interpretation, materials informatics or an AI automation project.',
+      path: '/contact',
+    },
+    graph: [person, { '@type': 'ContactPage', name: 'Contact Abdul Rahman', about: { '@id': PERSON_ID } }, crumbs([{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact' }])],
+    body: `<h1>Book a consultation</h1>
+<p>A free 30-minute video call about failure analysis, SEM/EDS and XRD interpretation, materials informatics, or an AI automation project with C2F. Abdul Rahman works remotely with teams in the United States and worldwide.</p>
+<p>Email: <a href="mailto:abdulrahmana18@pm.me">abdulrahmana18@pm.me</a></p>`,
+  }),
+);
+
+// ---------- Blog ----------
+// Minimal Markdown to HTML: enough for crawlers to read headings, lists, links and emphasis.
+const inline = (t) =>
+  esc(t)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/(^|\W)\*(?!\s)(.+?)\*(?=\W|$)/g, '$1<em>$2</em>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, txt, href) => `<a href="${href.startsWith('/') ? link(href) : href}">${txt}</a>`);
+function md(src) {
+  const out = [];
+  let list = null, para = [];
+  const flushPara = () => { if (para.length) { out.push(`<p>${inline(para.join(' '))}</p>`); para = []; } };
+  const flushList = () => { if (list) { out.push(`<${list.tag}>${list.items.map((i) => `<li>${inline(i)}</li>`).join('')}</${list.tag}>`); list = null; } };
+  for (const raw of src.split('\n')) {
+    const line = raw.trim();
+    let m;
+    if (!line || /^(-{3,}|\*{3,})$/.test(line)) { flushPara(); flushList(); continue; }
+    if ((m = line.match(/^(#{1,6})\s+(.*)$/))) { flushPara(); flushList(); const n = Math.min(6, Math.max(2, m[1].length)); out.push(`<h${n}>${inline(m[2])}</h${n}>`); continue; }
+    if ((m = line.match(/^[-*+]\s+(.*)$/)) || (m = line.match(/^\d+[.)]\s+(.*)$/))) {
+      const tag = /^\d/.test(line) ? 'ol' : 'ul';
+      flushPara();
+      if (!list || list.tag !== tag) { flushList(); list = { tag, items: [] }; }
+      list.items.push(m[1]);
+      continue;
+    }
+    if (line.startsWith('|')) {
+      flushPara(); flushList();
+      if (/^\|[\s:|-]+\|$/.test(line)) continue;
+      out.push(`<p>${line.split('|').map((c) => c.trim()).filter(Boolean).map(inline).join(' · ')}</p>`);
+      continue;
+    }
+    if (line.startsWith('>')) { flushPara(); flushList(); out.push(`<blockquote>${inline(line.replace(/^>\s?/, ''))}</blockquote>`); continue; }
+    flushList();
+    para.push(line);
+  }
+  flushPara(); flushList();
+  return out.join('\n');
+}
+const clip = (t, n = 155) => (t.length > n ? `${t.slice(0, n - 1).replace(/\s\S*$/, '')}…` : t);
+const articleLd = (p) => {
+  const url = abs(`/blog/${p.slug}`);
+  return {
+    '@type': 'BlogPosting',
+    '@id': `${url}#article`,
+    headline: p.title.slice(0, 110),
+    description: p.summary,
+    url,
+    mainEntityOfPage: url,
+    articleSection: p.category,
+    datePublished: p.createdAt,
+    dateModified: p.updatedAt || p.createdAt,
+    author: { '@id': PERSON_ID },
+    publisher: { '@id': PERSON_ID },
+    inLanguage: 'en-US',
+  };
+};
+const sortedPosts = [...posts].sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+
+write(
+  '/blog',
+  render(template, {
+    seo: {
+      title: 'Metallurgy & Materials Engineering Blog | Abdul Rahman',
+      description:
+        'Articles by materials engineer Abdul Rahman on failure analysis, SEM/EDS and XRD, corrosion, battery recycling, critical minerals and materials informatics.',
+      path: '/blog',
+    },
+    graph: [
+      person,
+      { '@type': 'Blog', '@id': `${SITE_URL}/blog#blog`, name: 'Abdul Rahman — materials engineering blog', url: abs('/blog'), author: { '@id': PERSON_ID }, blogPost: sortedPosts.map((p) => ({ '@id': `${abs(`/blog/${p.slug}`)}#article` })) },
+      crumbs([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog' }]),
+    ],
+    body: `<h1>Materials engineering blog</h1>
+<ul>${sortedPosts.map((p) => `<li><a href="${link(`/blog/${p.slug}`)}"><strong>${esc(p.title)}</strong></a> (${esc(p.date)}): ${esc(p.summary)}</li>`).join('')}</ul>`,
+  }),
+);
+
+const postHtml = (p, path) =>
+  render(template, {
+    seo: { title: `${p.title.length > 58 ? clip(p.title, 58) : p.title} | Abdul Rahman`, description: clip(p.summary), path: `/blog/${p.slug}` },
+    graph: [
+      person,
+      articleLd(p),
+      crumbs([
+        { name: 'Home', path: '/' },
+        { name: 'Blog', path: '/blog' },
+        { name: p.title, path: `/blog/${p.slug}` },
+      ]),
+    ],
+    body: `<article><h1>${esc(p.title)}</h1>
+<p>By Abdul Rahman · ${esc(p.date)} · ${esc(p.category)}</p>
+<p><strong>${esc(p.summary)}</strong></p>
+${md(p.content)}
+</article>
+<p><a href="${link('/services')}">Consulting services</a> | <a href="${link('/contact')}">Book a consultation</a></p>`,
+  });
+for (const p of posts) write(`/blog/${p.slug}`, postHtml(p));
+// Old URLs that still get linked: same article, canonical points at the main slug.
+for (const [alias, target] of Object.entries(aliases)) {
+  const p = postBySlug(target);
+  if (p) write(`/blog/${alias}`, postHtml(p));
+}
+
+// ---------- Sitemap ----------
+const today = new Date().toISOString().slice(0, 10);
+const urls = [
+  ['/', today, '1.0'],
+  ['/services', today, '0.9'],
+  ...content.services.map((sv) => [`/services/${sv.slug}`, today, '0.9']),
+  ['/blog', today, '0.8'],
+  ...sortedPosts.map((p) => [`/blog/${p.slug}`, (p.updatedAt || p.createdAt).slice(0, 10), '0.7']),
+  ['/ventures', today, '0.6'],
+  ...content.ventures.map((v) => [`/ventures/${v.slug}`, today, '0.6']),
+  ['/contact', today, '0.6'],
+];
+writeFileSync(
+  join(dist, 'sitemap.xml'),
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls
+    .map(([u, d, pr]) => `  <url>\n    <loc>${abs(u)}</loc>\n    <lastmod>${d}</lastmod>\n    <priority>${pr}</priority>\n  </url>`)
+    .join('\n')}\n</urlset>\n`,
+);
+
 // Fill the site URL into the copied public text files (sitemap, robots, llms)
 for (const name of readdirSync(dist)) {
   const file = join(dist, name);
@@ -211,4 +415,4 @@ for (const name of readdirSync(dist)) {
   }
 }
 
-console.log(`Prerendered ${content.ventures.length + 2} routes for ${SITE_URL}`);
+console.log(`Prerendered ${urls.length + Object.keys(aliases).length} routes for ${SITE_URL}`);
