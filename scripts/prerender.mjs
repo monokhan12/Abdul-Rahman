@@ -31,9 +31,8 @@ const person = {
   url: abs('/'),
   jobTitle: ['AI-Driven Materials Engineer', 'Research Engineer & Senior Instructor', 'Entrepreneur'],
   description:
-    'AI-driven materials engineer and entrepreneur based in Lahore, Pakistan, who consults remotely for companies in the United States on metallurgical failure analysis, materials characterization and materials informatics, and founder of Connected 2 Future (C2F), EduCon and Jobs4DAE.',
+    'AI-driven materials engineer and entrepreneur who consults remotely for companies in the United States on metallurgical failure analysis, materials characterization and materials informatics, and founder of Connected 2 Future (C2F), EduCon and Jobs4DAE.',
   email: 'mailto:abdulrahmana18@pm.me',
-  address: { '@type': 'PostalAddress', addressLocality: 'Lahore', addressRegion: 'Punjab', addressCountry: 'PK' },
   worksFor: [
     { '@type': 'Organization', name: 'Pakistan Council of Scientific and Industrial Research (PCSIR)' },
     ...content.ventures.map((v) => ({ '@id': `${abs(`/ventures/${v.slug}`)}#org` })),
@@ -82,7 +81,6 @@ const service = {
   founder: { '@id': PERSON_ID },
   areaServed: [{ '@type': 'Country', name: 'United States' }, { '@type': 'Place', name: 'Worldwide' }],
   availableLanguage: 'English',
-  address: { '@type': 'PostalAddress', addressLocality: 'Lahore', addressCountry: 'PK' },
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Consulting services',

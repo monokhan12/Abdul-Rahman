@@ -45,7 +45,7 @@ export default function Contact() {
               </li>
               <li>
                 <MapPin size={18} aria-hidden="true" style={{ color: 'var(--ar-research)' }} />
-                <span>Based in {personalInfo.location}, working remotely with US clients</span>
+                <span>Working remotely with US clients</span>
               </li>
             </ul>
           </div>

@@ -4,7 +4,6 @@
 - **Name:** Abdul Rahman
 - **Title:** AI-Driven Materials Engineer & Senior Instructor
 - **Institution:** Pakistan Council of Scientific and Industrial Research (PCSIR)
-- **Location:** Lahore, Pakistan
 - **Email:** abdulrahmana18@pm.me
 - **Phone:** +92-3244862934
 - **GitHub:** https://github.com/ARahmankhn
@@ -46,7 +45,6 @@ AI-driven Materials Engineer blending physical metallurgy with computational mat
 
 ### Senior Instructor & Research Engineer
 - **Employer:** Pakistan Council of Scientific and Industrial Research (PCSIR)
-- **Location:** Lahore, Pakistan
 - **Key Responsibilities & Achievements:**
   - Led advanced metallurgical testing, failure analysis, and chemical characterization of engineering alloys and mineral specimens.
   - Developed and delivered rigorous training programs in physical metallurgy, materials characterization, and welding inspection.
@@ -54,7 +52,6 @@ AI-driven Materials Engineer blending physical metallurgy with computational mat
 
 ### Project Engineer
 - **Employer:** Machine Zone Ltd.
-- **Location:** Lahore, Pakistan
 - **Key Responsibilities & Achievements:**
   - Oversaw quality control, heat treatment verification, and metallurgical compliance for manufacturing components.
   - Implemented standard operating procedures (SOPs) for non-destructive and mechanical testing.
@@ -144,7 +141,7 @@ Q: What is EduCon?
 A: EduCon is an education venture founded by Abdul Rahman that helps students choose study options, prepare for admissions and plan their careers.
 
 Q: Who founded EduCon?
-A: EduCon was founded by Abdul Rahman, a materials engineer and senior instructor based in Lahore, Pakistan.
+A: EduCon was founded by Abdul Rahman, a materials engineer and senior instructor.
 
 ### Jobs4DAE
 - Role: Founder
@@ -161,12 +158,12 @@ Q: Which DAE fields does Jobs4DAE cover?
 A: Jobs4DAE covers the main DAE technologies, including electrical, mechanical, civil and electronics, with listings from government departments and private employers.
 
 Q: Who founded Jobs4DAE?
-A: Jobs4DAE was founded by Abdul Rahman, a materials engineer and technical instructor in Lahore who trains diploma-level engineers.
+A: Jobs4DAE was founded by Abdul Rahman, a materials engineer and technical instructor who trains diploma-level engineers.
 
 ## Frequently asked questions
 
 Q: Who is Abdul Rahman?
-A: Abdul Rahman is an AI-driven materials engineer and entrepreneur based in Lahore, Pakistan. He is a research engineer and senior instructor at the Pakistan Council of Scientific and Industrial Research (PCSIR), holds BSc and MSc degrees in metallurgical and materials engineering from UET Lahore, and founded Connected 2 Future (C2F), EduCon and Jobs4DAE.
+A: Abdul Rahman is an AI-driven materials engineer and entrepreneur. He is a research engineer and senior instructor at the Pakistan Council of Scientific and Industrial Research (PCSIR), holds BSc and MSc degrees in metallurgical and materials engineering from UET Lahore, and founded Connected 2 Future (C2F), EduCon and Jobs4DAE.
 
 Q: What does Abdul Rahman specialize in?
 A: He specializes in physical and extractive metallurgy, materials informatics (machine learning and CALPHAD modeling), materials characterization with SEM/EDS, XRD and XRF, corrosion and protective coatings, and direct recycling of lithium-ion battery cathodes.

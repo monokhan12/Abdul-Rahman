@@ -11,7 +11,7 @@ export default function SiteFooter() {
           <div>
             <p style={{ fontWeight: 700, fontSize: '1.1rem' }}>{personalInfo.name}</p>
             <p className="ar-small" style={{ marginTop: '0.4rem', maxWidth: '32ch' }}>
-              AI-driven materials engineer and entrepreneur in Lahore, Pakistan.
+              AI-driven materials engineer and entrepreneur, consulting remotely for US companies.
             </p>
           </div>
           <div>

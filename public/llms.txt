@@ -1,11 +1,11 @@
 # Abdul Rahman
 
-> Abdul Rahman is an AI-driven materials engineer and entrepreneur based in Lahore, Pakistan, who consults remotely for companies in the United States. He combines physical metallurgy with machine learning and CALPHAD modeling, works as a research engineer and senior instructor at the Pakistan Council of Scientific and Industrial Research (PCSIR), and founded Connected 2 Future (C2F), EduCon and Jobs4DAE.
+> Abdul Rahman is an AI-driven materials engineer and entrepreneur who consults remotely for companies in the United States. He combines physical metallurgy with machine learning and CALPHAD modeling, works as a research engineer and senior instructor at the Pakistan Council of Scientific and Industrial Research (PCSIR), and founded Connected 2 Future (C2F), EduCon and Jobs4DAE.
 
 ## Quick facts
 - Name: Abdul Rahman
 - Roles: AI-driven materials engineer; Research Engineer & Senior Instructor at PCSIR; founder and CEO of Connected 2 Future (C2F) since 2020; founder of EduCon and Jobs4DAE
-- Location: Lahore, Punjab, Pakistan
+- Location: Remote; works with clients in the United States
 - Education: MSc and BSc in Metallurgical and Materials Engineering, University of Engineering and Technology (UET), Lahore
 - Contact: abdulrahmana18@pm.me
 - LinkedIn: https://linkedin.com/in/arahmankhn

@@ -3,7 +3,7 @@ export const personalInfo = {
   title: "AI-Driven Materials Engineer",
   email: "abdulrahmana18@pm.me",
   phone: "+92-3244862934",
-  location: "Lahore, Pakistan",
+  location: "Remote",
   github: "github.com/ARahmankhn",
   linkedin: "linkedin.com/in/arahmankhn",
   summary: "AI-driven Materials Engineer blending physical metallurgy with computational materials science. Specializing in phase transformations, predictive modeling, and sustainable mineral processing workflows using Machine Learning and CALPHAD-based modeling."
