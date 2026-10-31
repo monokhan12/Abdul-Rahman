@@ -12,7 +12,8 @@ export type ServiceInfo = (typeof content.services)[number];
 export const services: ServiceInfo[] = content.services;
 export const ventureLabel = (v: Venture) => (v.short === v.name ? v.name : `${v.name} (${v.short})`);
 
-export const absoluteUrl = (path = '/') => `${SITE_URL}${path === '/' ? '/' : path}`;
+// GitHub Pages serves /x as /x/ (a redirect), so canonical page URLs end in a slash.
+export const absoluteUrl = (path = '/') => `${SITE_URL}${path.endsWith('/') ? path : `${path}/`}`;
 
 const PERSON_ID = `${SITE_URL}/#person`;
 

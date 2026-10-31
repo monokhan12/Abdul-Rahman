@@ -12,10 +12,11 @@ const content = JSON.parse(readFileSync(join(root, 'src/site/content.json'), 'ut
 const SITE_URL = content.site.url.replace(/\/$/, '');
 const posts = JSON.parse(readFileSync(join(root, 'src/content/posts.json'), 'utf8'));
 const aliases = { 'materials-informatics-accelerating-alloy-design': 'alloy-optimization-ml', 'direct-recycling-nmc-cathode-materials': 'direct-cathode-recycling' };
-const abs = (p) => `${SITE_URL}${p}`;
+// GitHub Pages serves /x as /x/ (a redirect), so canonical page URLs end in a slash.
+const abs = (p) => `${SITE_URL}${p === '/' || /\.[a-z]+$/.test(p) || p.endsWith('/') ? p : `${p}/`}`;
 // Path prefix the site is served under (e.g. "/abdul-rahman" on GitHub Pages), for in-page links.
 const BASE = (process.env.BASE_PATH ?? '/').replace(/\/$/, '');
-const link = (p) => `${BASE}${p}`;
+const link = (p) => { const [path, hash] = p.split('#'); const slashed = path === '/' || path === '' || /\.[a-z]+$/.test(path) || path.endsWith('/') ? path : `${path}/`; return `${BASE}${slashed}${hash ? `#${hash}` : ''}`; };
 
 const esc = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
