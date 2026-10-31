@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, FormEvent } from 'react';
+import { withBase } from '../lib/withBase';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -877,7 +878,7 @@ export default function BlogAdminPage() {
 
                   <div className="space-y-4">
                     <div className="border border-white/5 bg-white/[0.01] p-3 rounded-2xl space-y-2">
-                      <img src="/src/assets/images/pakistan_mineral_map_1783445793899.jpg" className="w-full h-24 object-cover rounded-xl" alt="Pakistan Map" />
+                      <img src={withBase("/src/assets/images/pakistan_mineral_map_1783445793899.jpg")} className="w-full h-24 object-cover rounded-xl" alt="Pakistan Map" />
                       <div className="flex justify-between items-center">
                         <span className="text-[10px] font-bold uppercase text-indigo-300">Pakistan Mineral Map</span>
                         <button 
@@ -893,7 +894,7 @@ export default function BlogAdminPage() {
                     </div>
 
                     <div className="border border-white/5 bg-white/[0.01] p-3 rounded-2xl space-y-2">
-                      <img src="/src/assets/images/mineral_samples_1783445814400.jpg" className="w-full h-24 object-cover rounded-xl" alt="Specimens Collage" />
+                      <img src={withBase("/src/assets/images/mineral_samples_1783445814400.jpg")} className="w-full h-24 object-cover rounded-xl" alt="Specimens Collage" />
                       <div className="flex justify-between items-center">
                         <span className="text-[10px] font-bold uppercase text-indigo-300">Specimen Samples Collage</span>
                         <button 

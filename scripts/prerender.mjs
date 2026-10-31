@@ -10,6 +10,9 @@ const dist = join(root, 'dist');
 const content = JSON.parse(readFileSync(join(root, 'src/site/content.json'), 'utf8'));
 const SITE_URL = (process.env.SITE_URL || content.site.url).replace(/\/$/, '');
 const abs = (p) => `${SITE_URL}${p}`;
+// Path prefix the site is served under (e.g. "/abdul-rahman" on GitHub Pages), for in-page links.
+const BASE = (process.env.BASE_PATH ?? new URL(SITE_URL).pathname).replace(/\/$/, '');
+const link = (p) => `${BASE}${p}`;
 
 const esc = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -88,10 +91,10 @@ const seoBlock = ({ title, description, path }) => `<!--SEO:START-->
     <meta name="twitter:description" content="${esc(description)}" />
     <!--SEO:END-->`;
 
-const navHtml = `<header><p><strong><a href="/">Abdul Rahman</a></strong>, AI-driven materials engineer and entrepreneur</p>
-        <nav aria-label="Main"><a href="/">Home</a> | <a href="/ventures">Entrepreneur</a> (${content.ventures
-          .map((v) => `<a href="/ventures/${v.slug}">${esc(v.short)}</a>`)
-          .join(', ')}) | <a href="/blog">Blog</a> | <a href="/contact">Book a consultation</a></nav></header>`;
+const navHtml = `<header><p><strong><a href="${link('/')}">Abdul Rahman</a></strong>, AI-driven materials engineer and entrepreneur</p>
+        <nav aria-label="Main"><a href="${link('/')}">Home</a> | <a href="${link('/ventures')}">Entrepreneur</a> (${content.ventures
+          .map((v) => `<a href="${link(`/ventures/${v.slug}`)}">${esc(v.short)}</a>`)
+          .join(', ')}) | <a href="${link('/blog')}">Blog</a> | <a href="${link('/contact')}">Book a consultation</a></nav></header>`;
 const faqHtml = (items) => items.map((f) => `<h3>${esc(f.q)}</h3>\n<p>${esc(f.a)}</p>`).join('\n');
 
 const template = readFileSync(join(dist, 'index.html'), 'utf8');
@@ -137,7 +140,7 @@ write(
     body: `<h1>Ventures</h1>
 <p>Abdul Rahman is the founder of three ventures: Connected 2 Future (C2F), EduCon and Jobs4DAE.</p>
 <ul>${content.ventures
-      .map((v) => `<li><a href="/ventures/${v.slug}"><strong>${esc(label(v))}</strong></a>: ${esc(v.tagline)}</li>`)
+      .map((v) => `<li><a href="${link(`/ventures/${v.slug}`)}"><strong>${esc(label(v))}</strong></a>: ${esc(v.tagline)}</li>`)
       .join('')}</ul>`,
   }),
 );
@@ -167,7 +170,7 @@ for (const v of content.ventures) {
 <h2>About ${esc(v.short)}</h2>
 ${faqHtml(v.faq)}
 ${v.url ? `<p><a href="${esc(v.url)}">Visit ${esc(v.short)}</a></p>` : ''}
-<p><a href="/contact">Talk to Abdul Rahman about ${esc(v.short)}</a></p>`,
+<p><a href="${link('/contact')}">Talk to Abdul Rahman about ${esc(v.short)}</a></p>`,
     }),
   );
 }

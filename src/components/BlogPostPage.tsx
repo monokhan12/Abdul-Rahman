@@ -1,4 +1,5 @@
 import { useState, useEffect, FormEvent, ReactNode } from 'react';
+import { withBase } from '../lib/withBase';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -142,14 +143,14 @@ const renderMarkdown = (text: string) => {
         return elements.push(
           <div key={`img-${index}`} className="my-8 rounded-3xl overflow-hidden border border-white/10 bg-white/5 p-2">
             <img 
-              src={src} 
+              src={withBase(src)} 
               alt={alt} 
               loading="lazy"
               onError={(e) => {
                 // Fallback to /images/ if /src/assets/images/ fails
                 const target = e.currentTarget;
                 if (src.includes('/src/assets/images/')) {
-                  target.src = src.replace('/src/assets/images/', '/images/');
+                  target.src = withBase(src.replace('/src/assets/images/', '/images/'));
                 }
               }}
               className="w-full h-auto rounded-2xl object-cover max-h-[520px]" 

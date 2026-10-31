@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { withBase } from '../lib/withBase';
 import { Image as ImageIcon, Copy, Check, Trash2, FolderPlus, Grid, List, Search, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -10,7 +11,7 @@ export default function CmsMedia() {
     {
       id: '1',
       name: 'pakistan_mineral_map_1783445793899.jpg',
-      url: '/src/assets/images/pakistan_mineral_map_1783445793899.jpg',
+      url: withBase('/src/assets/images/pakistan_mineral_map_1783445793899.jpg'),
       size: '1.2 MB',
       dimensions: '1920x1080',
       createdAt: 'Jul 04, 2026'
@@ -18,7 +19,7 @@ export default function CmsMedia() {
     {
       id: '2',
       name: 'mineral_samples_1783445814400.jpg',
-      url: '/src/assets/images/mineral_samples_1783445814400.jpg',
+      url: withBase('/src/assets/images/mineral_samples_1783445814400.jpg'),
       size: '850 KB',
       dimensions: '1200x800',
       createdAt: 'Jul 04, 2026'

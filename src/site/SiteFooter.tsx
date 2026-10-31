@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { withBase } from '../lib/withBase';
 import { personalInfo } from '../data';
 import { ventureLabel, ventures } from './seo';
 
@@ -45,7 +46,7 @@ export default function SiteFooter() {
         <div className="ar-footer__base">
           <span>© {new Date().getFullYear()} Abdul Rahman</span>
           <span>
-            <a href="/llms.txt">llms.txt</a> <span aria-hidden="true">/</span> <a href="/sitemap.xml">Sitemap</a>{' '}
+            <a href={withBase("/llms.txt")}>llms.txt</a> <span aria-hidden="true">/</span> <a href={withBase("/sitemap.xml")}>Sitemap</a>{' '}
             <span aria-hidden="true">/</span> <Link to="/admin/login">Admin</Link>
           </span>
         </div>

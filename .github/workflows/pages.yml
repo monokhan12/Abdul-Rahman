@@ -25,27 +25,34 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
+      # Requires Settings → Pages → Source: "GitHub Actions" (one-time, in the repo settings).
+      # Runs before the build so the build knows the sub-path the site is served from.
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
-          
+
       - name: Install dependencies
         run: npm ci || npm install
-        
+
       - name: Build project
         run: npm run build
-        
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        
+        env:
+          # "/abdul-rahman/" on github.io, "/" if a custom domain is set later
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
-          
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
