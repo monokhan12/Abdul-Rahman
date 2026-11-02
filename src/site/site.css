@@ -758,3 +758,22 @@ html .ar-scheduler input,
 html .ar-scheduler select,
 html .ar-scheduler textarea { background: var(--ar-bg) !important; color: var(--ar-ink) !important; border-color: var(--ar-line) !important; }
 html .ar-scheduler > * { border-radius: 14px; }
+
+/* ---------- Free tools ---------- */
+.tl-panel { border: 1px solid var(--ar-line); border-radius: 14px; background: var(--ar-surface); padding: clamp(1rem, 3vw, 1.75rem); }
+.tl-grid { display: grid; gap: 1rem; align-items: end; }
+@media (min-width: 48rem) { .tl-grid { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); } }
+.tl-field { display: grid; gap: 0.35rem; }
+.tl-label { font-weight: 600; font-size: 0.95rem; }
+.tl-hint { font-size: 0.85rem; color: var(--ar-ink-3); }
+.tl-input { width: 100%; min-width: 0; padding: 0.6rem 0.7rem; border-radius: 8px; border: 1px solid var(--ar-line); background: var(--ar-bg); color: var(--ar-ink); font: inherit; }
+.tl-pair { display: grid; grid-template-columns: 1fr auto; gap: 0.4rem; }
+.tl-pair .tl-input:last-child { width: auto; }
+.tl-sub { margin: 1.75rem 0 0.75rem; }
+.tl-result { margin-top: 1.25rem; padding: 1rem 1.1rem; border-radius: 10px; border: 1px solid var(--ar-line); background: var(--ar-raised); }
+.tl-grid .tl-result { margin-top: 0; }
+.tl-result p { color: var(--ar-ink-2); }
+.tl-big { font-size: 1.35rem; font-weight: 700; color: var(--ar-ink) !important; font-variant-numeric: tabular-nums; }
+.tl-ok { border-color: var(--ar-research); }
+.tl-bad { border-color: var(--ar-venture); }
+.tl-bad .tl-big { color: var(--ar-venture) !important; }

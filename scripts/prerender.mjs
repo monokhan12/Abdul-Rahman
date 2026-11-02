@@ -387,12 +387,46 @@ for (const [alias, target] of Object.entries(aliases)) {
   if (p) write(`/blog/${alias}`, postHtml(p));
 }
 
+// ---------- Free tools ----------
+const toolLd = (t) => {
+  const url = abs(`/tools/${t.slug}`);
+  return {
+    '@type': 'WebApplication', '@id': `${url}#app`, name: t.title, url, description: t.answer,
+    applicationCategory: 'EngineeringApplication', operatingSystem: 'Any (runs in the browser)',
+    isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, author: { '@id': PERSON_ID },
+  };
+};
+write('/tools', render(template, {
+  seo: { title: content.toolsIndex.seoTitle, description: content.toolsIndex.description, path: '/tools' },
+  graph: [person, ...content.tools.map(toolLd), crumbs([{ name: 'Home', path: '/' }, { name: 'Tools', path: '/tools' }])],
+  body: `<h1>Free engineering tools</h1>
+<p>Calculators for corrosion, X-ray diffraction and automation savings, using published reference data.</p>
+<ul>${content.tools.map((t) => `<li><a href="${link(`/tools/${t.slug}`)}"><strong>${esc(t.title)}</strong></a>: ${esc(t.description)}</li>`).join('')}</ul>`,
+}));
+for (const t of content.tools) {
+  const path = `/tools/${t.slug}`;
+  write(path, render(template, {
+    seo: { title: t.seoTitle, description: t.description, path },
+    graph: [person, toolLd(t), faq(t.faq), crumbs([{ name: 'Home', path: '/' }, { name: 'Tools', path: '/tools' }, { name: t.title, path }])],
+    body: `<h1>${esc(t.title)}</h1>
+<p>${esc(t.answer)}</p>
+<p>The interactive calculator runs in your browser with JavaScript enabled.</p>
+<h2>How to use it</h2>
+${t.guide.map((g) => `<p>${esc(g)}</p>`).join('\n')}
+<h2>Questions</h2>
+${faqHtml(t.faq)}
+${t.sources.length ? `<p>Data sources: ${t.sources.map((x) => `<a href="${esc(x.url)}">${esc(x.label)}</a>`).join('; ')}</p>` : ''}`,
+  }));
+}
+
 // ---------- Sitemap ----------
 const today = new Date().toISOString().slice(0, 10);
 const urls = [
   ['/', today, '1.0'],
   ['/services', today, '0.9'],
   ...content.services.map((sv) => [`/services/${sv.slug}`, today, '0.9']),
+  ['/tools', today, '0.8'],
+  ...content.tools.map((t) => [`/tools/${t.slug}`, today, '0.8']),
   ['/blog', today, '0.8'],
   ...sortedPosts.map((p) => [`/blog/${p.slug}`, (p.updatedAt || p.createdAt).slice(0, 10), '0.7']),
   ['/ventures', today, '0.6'],

@@ -7,6 +7,7 @@ import ElementTile from './ElementTile';
 
 const sectionLinks = [
   { label: 'Services', to: '/services' },
+  { label: 'Tools', to: '/tools' },
   { label: 'Research', to: '/#research' },
   { label: 'Experience', to: '/#experience' },
 ];

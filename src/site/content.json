@@ -493,5 +493,135 @@
   "servicesIndex": {
     "seoTitle": "Materials Engineering Consulting Services | Abdul Rahman",
     "description": "Remote materials engineering consulting for US companies: failure analysis, SEM/EDS and XRD, materials informatics, battery recycling, corrosion and coatings."
+  },
+  "tools": [
+    {
+      "slug": "galvanic-corrosion-calculator",
+      "short": "Galvanic corrosion",
+      "service": "corrosion-protective-coatings",
+      "title": "Galvanic corrosion calculator",
+      "seoTitle": "Galvanic Corrosion Calculator: Check Two Metals | Abdul Rahman",
+      "description": "Free galvanic corrosion calculator. Pick two metals and an environment to see the anodic index difference, which metal corrodes, and how to prevent it.",
+      "answer": "Galvanic corrosion happens when two different metals touch in the presence of moisture: the more active metal (the anode) corrodes faster. This calculator compares the anodic index of two metals and checks the difference against the limit for your environment.",
+      "guide": [
+        "The anodic index is each metal's tendency to corrode, measured relative to gold. The bigger the gap between two metals in contact, the stronger the galvanic current.",
+        "Accepted limits are 0.15 V in harsh environments (outdoors, salt or high humidity), 0.25 V in normal indoor environments and 0.50 V in temperature- and humidity-controlled environments.",
+        "If a pair is over the limit: electrically isolate the metals (non-conductive washers or sleeves), coat or plate them closer together on the index, keep water out of the joint, and avoid a small anode coupled to a large cathode."
+      ],
+      "faq": [
+        {
+          "q": "Which metal corrodes in a galvanic couple?",
+          "a": "The metal with the higher anodic index (the more active one) is the anode and corrodes. The other metal, the cathode, is protected."
+        },
+        {
+          "q": "Is stainless steel safe with aluminum?",
+          "a": "18% chromium stainless steel has an anodic index of 0.50 V and most wrought aluminum 0.90 V, a 0.40 V difference. That is above the 0.15 V harsh and 0.25 V normal limits, so the pair needs isolation outdoors or in humid conditions."
+        },
+        {
+          "q": "What anodic index difference is acceptable?",
+          "a": "Up to 0.15 V in harsh environments, 0.25 V in normal environments and 0.50 V in controlled environments."
+        }
+      ],
+      "sources": [
+        {
+          "label": "Engineers Edge: Galvanic compatibility (anodic index, MIL-STD-889 basis)",
+          "url": "https://www.engineersedge.com/galvanic_capatability.htm"
+        }
+      ]
+    },
+    {
+      "slug": "xrd-bragg-scherrer-calculator",
+      "short": "XRD calculator",
+      "service": "sem-eds-xrd-analysis",
+      "title": "XRD calculator: Bragg's law and Scherrer crystallite size",
+      "seoTitle": "XRD Calculator: Bragg's Law d-Spacing & Scherrer Size | Abdul Rahman",
+      "description": "Free XRD calculator. Convert 2θ to d-spacing with Bragg's law for Cu, Co, Fe, Cr, Mo or Ag radiation, and estimate crystallite size with the Scherrer equation.",
+      "answer": "Bragg's law, nλ = 2d sin θ, links a diffraction peak's angle to the spacing between crystal planes. The Scherrer equation, τ = Kλ / (β cos θ), estimates crystallite size from how broad a peak is. This calculator does both for the common X-ray tube anodes.",
+      "guide": [
+        "Enter the peak position as 2θ, the angle your diffractometer reports; the calculator halves it to get θ.",
+        "For the Scherrer equation, enter the peak's full width at half maximum (FWHM) in degrees 2θ. Subtracting your instrument's own broadening, measured on a standard such as LaB6 or Si, gives a truer size.",
+        "The shape factor K is usually taken as 0.9. Scherrer sizes are reliable roughly up to 100–200 nm; above that, peak broadening becomes too small to measure."
+      ],
+      "faq": [
+        {
+          "q": "What wavelength does a copper X-ray tube use?",
+          "a": "Cu Kα1 is 1.54056 Å, Cu Kα2 is 1.54439 Å, and the weighted Kα average is 1.54184 Å."
+        },
+        {
+          "q": "How do I convert 2θ to d-spacing?",
+          "a": "Use Bragg's law: d = nλ / (2 sin θ), where θ is half of 2θ and n is usually 1. For Cu Kα1 radiation, a peak at 2θ = 44.67° gives d ≈ 2.027 Å."
+        },
+        {
+          "q": "What is the Scherrer constant K?",
+          "a": "K is a shape factor, commonly 0.9 for spherical crystallites with FWHM measurement. Values between about 0.89 and 0.94 are used depending on crystallite shape and how the width is defined."
+        }
+      ],
+      "sources": [
+        {
+          "label": "UNSW Mark Wainwright Analytical Centre: Choice of X-ray sources (wavelength table)",
+          "url": "https://www.analytical.unsw.edu.au/sites/default/files/facility_section_related_files/choice%20of%20X-ray%20sources_0.pdf"
+        }
+      ]
+    },
+    {
+      "slug": "corrosion-rate-calculator",
+      "short": "Corrosion rate",
+      "service": "corrosion-protective-coatings",
+      "title": "Corrosion rate calculator (weight loss method)",
+      "seoTitle": "Corrosion Rate Calculator: mpy & mm/y from Weight Loss | Abdul Rahman",
+      "description": "Free corrosion rate calculator using the ASTM G1 weight loss formula. Enter mass loss, area, exposure time and density to get mm/y, µm/y and mils per year.",
+      "answer": "The weight loss method measures how much mass a coupon loses during exposure and converts it to a uniform corrosion rate with CR = K·W / (A·T·D). With W in grams, A in cm², T in hours and D in g/cm³, K is 8.76×10⁴ for mm/y and 3.45×10⁶ for mils per year.",
+      "guide": [
+        "Weigh the coupon before exposure and again after cleaning off corrosion products; the difference is W.",
+        "A is the coupon's total exposed surface area, T is the exposure time and D is the alloy's density.",
+        "The result assumes uniform corrosion. Pitting or crevice attack can be far deeper than the average rate suggests, so inspect the coupon too."
+      ],
+      "faq": [
+        {
+          "q": "How do I convert mpy to mm/y?",
+          "a": "Multiply by 0.0254: 1 mil per year equals 0.0254 mm per year."
+        },
+        {
+          "q": "Which standard defines the weight loss corrosion rate?",
+          "a": "ASTM G1 covers preparing, cleaning and evaluating corrosion test specimens and gives the corrosion rate formula; ASTM G31 covers laboratory immersion testing."
+        }
+      ],
+      "sources": [
+        {
+          "label": "Corrosion rate (weight loss) calculator: ASTM G1/G31 method and density presets",
+          "url": "https://designcalculators.netlify.app/corrosion-rate"
+        }
+      ]
+    },
+    {
+      "slug": "ai-automation-savings-calculator",
+      "short": "AI automation savings",
+      "service": "",
+      "venture": "c2f",
+      "title": "AI automation savings calculator",
+      "seoTitle": "AI Automation Savings Calculator for Small Business | C2F",
+      "description": "Free calculator: estimate the hours and money AI automation could save your business each year, and how quickly an automation project pays for itself.",
+      "answer": "This calculator estimates the yearly time and cost a business saves by automating a repetitive task. It uses only your own numbers: hours spent, people involved, their hourly cost and the share of the work automation can take over.",
+      "guide": [
+        "Pick one repetitive task, such as answering routine emails, entering invoices or qualifying leads.",
+        "Enter honest numbers, including the share of the task that automation can realistically take over; the rest still needs a person.",
+        "Add an expected project cost to see the payback time. Connected 2 Future (C2F) prepares a free proposal with a real quote for new clients."
+      ],
+      "faq": [
+        {
+          "q": "What tasks are good candidates for AI automation?",
+          "a": "High-volume, rule-based tasks done the same way every time: answering common inquiries, extracting data from documents, routing and qualifying leads, and syncing data between tools."
+        },
+        {
+          "q": "How is the payback period calculated?",
+          "a": "Payback in months = project cost ÷ (annual savings ÷ 12). It ignores ongoing costs, so include any monthly fees in your estimate."
+        }
+      ],
+      "sources": []
+    }
+  ],
+  "toolsIndex": {
+    "seoTitle": "Free Materials Engineering Tools & Calculators | Abdul Rahman",
+    "description": "Free engineering calculators: galvanic corrosion, XRD Bragg's law and Scherrer size, corrosion rate from weight loss, and an AI automation savings calculator."
   }
 }

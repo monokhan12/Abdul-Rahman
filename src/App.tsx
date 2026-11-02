@@ -12,6 +12,7 @@ import { useAuthStore } from './stores/authStore';
 import Home from './site/Home';
 import { VenturePage, VenturesIndex } from './site/VenturePages';
 import { ServicePage, ServicesIndex } from './site/ServicePages';
+import { ToolPage, ToolsIndex } from './site/tools/ToolPages';
 
 // Admin CMS Components
 import ProtectedRoute from './components/ProtectedRoute';
@@ -61,6 +62,8 @@ export default function App() {
       <Routes>
         {/* Public Portfolio Routes */}
         <Route path="/" element={<Home />} />
+        <Route path="/tools" element={<ToolsIndex />} />
+        <Route path="/tools/:slug" element={<ToolPage />} />
         <Route path="/services" element={<ServicesIndex />} />
         <Route path="/services/:slug" element={<ServicePage />} />
         <Route path="/ventures" element={<VenturesIndex />} />

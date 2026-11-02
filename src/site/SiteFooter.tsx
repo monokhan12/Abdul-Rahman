@@ -18,6 +18,7 @@ export default function SiteFooter() {
             <h2>Portfolio</h2>
             <ul>
               <li><Link to="/services">Services</Link></li>
+              <li><Link to="/tools">Free tools</Link></li>
               <li><Link to="/#research">Research</Link></li>
               <li><Link to="/#experience">Experience</Link></li>
               <li><Link to="/#publications">Publications</Link></li>
