@@ -47,8 +47,7 @@ export default function SiteFooter() {
         <div className="ar-footer__base">
           <span>© {new Date().getFullYear()} Abdul Rahman</span>
           <span>
-            <a href={withBase("/llms.txt")}>llms.txt</a> <span aria-hidden="true">/</span> <a href={withBase("/sitemap.xml")}>Sitemap</a>{' '}
-            <span aria-hidden="true">/</span> <Link to="/admin/login">Admin</Link>
+            <a href={withBase("/llms.txt")}>llms.txt</a> <span aria-hidden="true">/</span> <a href={withBase("/sitemap.xml")}>Sitemap</a>
           </span>
         </div>
       </div>

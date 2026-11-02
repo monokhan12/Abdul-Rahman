@@ -25,6 +25,21 @@ import CmsSettings from './components/CmsSettings';
 import UserProfile from './components/UserProfile';
 import { CmsErrorBoundary } from './components/CmsErrorPage';
 
+/** Keep admin and CMS screens out of search results (they are also disallowed in robots.txt). */
+function NoIndexPrivateRoutes() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    if (!/^\/(admin|blog-admin)(\/|$)/.test(pathname)) return;
+    const meta = document.createElement('meta');
+    meta.name = 'robots';
+    meta.content = 'noindex, nofollow';
+    meta.id = 'robots-private';
+    document.head.appendChild(meta);
+    return () => meta.remove();
+  }, [pathname]);
+  return null;
+}
+
 /** Start each new page at the top; in-page anchors (/#research) are handled by the page itself. */
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -42,6 +57,7 @@ export default function App() {
   return (
     <CmsErrorBoundary>
       <ScrollToTop />
+      <NoIndexPrivateRoutes />
       <Routes>
         {/* Public Portfolio Routes */}
         <Route path="/" element={<Home />} />
