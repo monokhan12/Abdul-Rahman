@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { Link } from '../lib/SiteLink';
 import { ChevronDown, Menu, Moon, Sun, X } from 'lucide-react';
 import { applyTheme, getInitialTheme } from '../components/ThemeToggle';
 import { ventureLabel, ventures } from './seo';

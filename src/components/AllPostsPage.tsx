@@ -11,13 +11,12 @@ import {
   CheckCircle,
   FileText,
   Calendar,
-  Lock,
   User,
   Shield,
   Eye,
   Settings
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from '../lib/SiteLink';
 import { 
   getBlogPosts, 
   createBlogPost, 
@@ -27,6 +26,7 @@ import {
 } from '../lib/firebase';
 import BlogCard from './BlogCard';
 import SiteHeader from '../site/SiteHeader';
+import SiteFooter from '../site/SiteFooter';
 import { breadcrumbSchema, personSchema, useSeo } from '../site/seo';
 import { toast } from 'sonner';
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, User as FirebaseUser } from 'firebase/auth';
@@ -184,7 +184,7 @@ export default function AllPostsPage() {
   });
 
   return (
-    <div className="ar-page ar-legacy min-h-screen bg-[#050505] text-[#FAFAFA] font-sans selection:bg-white selection:text-black pb-32">
+    <div className="ar-page ar-legacy min-h-screen bg-[#050505] text-[#FAFAFA] font-sans selection:bg-white selection:text-black">
       {/* Background blobs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-950/20 blur-[130px]" />
@@ -222,6 +222,7 @@ export default function AllPostsPage() {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
+                aria-pressed={selectedCategory === cat}
                 className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wide shrink-0 transition-all cursor-pointer ${
                   selectedCategory === cat
                     ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/10'
@@ -239,6 +240,7 @@ export default function AllPostsPage() {
               <input
                 type="text"
                 placeholder="Search articles..."
+                aria-label="Search articles"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full bg-[#050505] border border-white/10 rounded-xl pl-10 pr-4 py-2 text-xs text-white placeholder-white/40 focus:outline-none focus:border-indigo-500 transition-colors"
@@ -263,15 +265,7 @@ export default function AllPostsPage() {
                   <Plus size={14} /> Quick Post
                 </button>
               </div>
-            ) : (
-              <Link 
-                to="/admin/login"
-                className="px-3.5 py-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white/50 hover:text-white rounded-xl text-[10px] uppercase font-bold tracking-wider flex items-center gap-1.5 cursor-pointer transition-colors"
-                title="Author Login"
-              >
-                <Lock size={10} /> Publisher Login
-              </Link>
-            )}
+            ) : null}
           </div>
         </div>
 
@@ -458,6 +452,7 @@ export default function AllPostsPage() {
           </div>
         )}
       </AnimatePresence>
+      <SiteFooter />
     </div>
   );
 }

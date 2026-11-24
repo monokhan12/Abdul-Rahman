@@ -6,6 +6,12 @@ export const personalInfo = {
   location: "Remote",
   github: "github.com/ARahmankhn",
   linkedin: "linkedin.com/in/arahmankhn",
+  // Researcher profiles. Fill these in and they appear on the homepage and in search-engine data.
+  // cv: a PDF in /public (e.g. "/Abdul-Rahman-CV.pdf") or a full https:// link.
+  cv: "",
+  googleScholar: "", // e.g. "https://scholar.google.com/citations?user=XXXX"
+  orcid: "",         // e.g. "https://orcid.org/0000-0000-0000-0000"
+  researchGate: "",  // e.g. "https://www.researchgate.net/profile/Abdul-Rahman-XXXX"
   summary: "AI-driven Materials Engineer blending physical metallurgy with computational materials science. Specializing in phase transformations, predictive modeling, and sustainable mineral processing workflows using Machine Learning and CALPHAD-based modeling."
 };
 
@@ -19,7 +25,7 @@ export const interests = [
 export const skills = {
   informatics: "Python (Scikit-learn, Pandas), PyTorch, PyCalphad, Pymatgen, MatGL (Materials Graph Library), Bayesian Optimization, Agentic AI Workflows.",
   characterization: "SEM/EDX, XRD, XRF, Optical Metallography, Hardness/Tensile Testing, Non-Destructive Testing (CSWIP 3.1).",
-  software: "MATLAB, OriginPro, ImageJ, Schrödinger Materials Suite, Thermo-Calc (Basic), Comsol Multiphysics, LAMMPS and Quantum Espresso."
+  software: "MATLAB, OriginPro, ImageJ, Schrödinger Materials Suite, Thermo-Calc (Basic), COMSOL Multiphysics, LAMMPS, Quantum ESPRESSO."
 };
 
 export const experience = [
@@ -29,7 +35,7 @@ export const experience = [
     details: [
       "Process Optimization: Engineered characterization-driven workflows for the beneficiation of indigenous mineral resources, successfully upgrading low-grade ore (36% Fe) to metallurgical-grade concentrate (65% Fe).",
       "Structural Materials & Degradation: Evaluated microstructural integrity and mechanical performance of Zn-based alloys and structural steels; analyzed interfacial stability and degradation rates in complex environments.",
-      "Advanced Characterization: Expert practitioner in SEM/EDS, XRD (Phase identification/Rietveld refinement), and XRF for over 50+ industrial and academic research projects involving metals, ceramics, and coatings.",
+      "Advanced Characterization: Expert practitioner in SEM/EDS, XRD (Phase identification/Rietveld refinement), and XRF for more than 50 industrial and academic research projects involving metals, ceramics, and coatings.",
       "Laboratory Governance: Managed ISO 17025 quality systems; standardized experimental protocols to ensure data integrity and reproducibility for national-level industrial testing.",
       "Curriculum Architecture: Developed Competency-Based Training & Assessment (CBT&A) frameworks for sustainable manufacturing, including EQF Level 5 technical programs with GIZ."
     ]
@@ -91,7 +97,7 @@ export const publications = [
   },
   {
     title: "Agentic AI-Driven Digital Twin Framework for Accelerated Discovery of Rare-Earth Materials.",
-    details: "Poster Presentation: MSE 2026, Deutsche Gesellschaft für Materialkunde (2024)"
+    details: "Poster Presentation: MSE Congress, Deutsche Gesellschaft für Materialkunde (2026)"
   }
 ];
 

@@ -391,7 +391,7 @@ export function mountScrollFlight(root: HTMLElement, opts: FlightOptions): Fligh
     const n = s / F;
 
     if (i === 0) {
-      const grainAlpha = 0.16 + 0.84 * smooth((n - 0.12) / 0.6);
+      const grainAlpha = smooth((n - 0.12) / 0.6);
       drawTileScene(o, k, s, grainAlpha, () => drawGrains(nextO, nextK));
       return;
     }

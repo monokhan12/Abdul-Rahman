@@ -48,7 +48,13 @@ export function personSchema() {
       'AI Automation',
       'Technical Education',
     ],
-    sameAs: [`https://${personalInfo.github}`, `https://${personalInfo.linkedin}`],
+    sameAs: [
+      `https://${personalInfo.github}`,
+      `https://${personalInfo.linkedin}`,
+      personalInfo.googleScholar,
+      personalInfo.orcid,
+      personalInfo.researchGate,
+    ].filter(Boolean),
   };
 }
 

@@ -10,7 +10,7 @@
   --ar-line: #2c3542;
   --ar-ink: #e6e9ec;
   --ar-ink-2: #a3adb8;
-  --ar-ink-3: #7b8692;
+  --ar-ink-3: #8b96a2;
   --ar-research: #5cc2b0;
   --ar-research-ink: #0f2b27;
   --ar-venture: #d08a55;
@@ -32,7 +32,7 @@ html[data-theme='light'] {
   --ar-line: #d3d9de;
   --ar-ink: #161b21;
   --ar-ink-2: #4b5560;
-  --ar-ink-3: #66717c;
+  --ar-ink-3: #56606b;
   --ar-research: #1f7a6b;
   --ar-research-ink: #ffffff;
   --ar-venture: #9a5426;
@@ -777,3 +777,97 @@ html .ar-scheduler > * { border-radius: 14px; }
 .tl-ok { border-color: var(--ar-research); }
 .tl-bad { border-color: var(--ar-venture); }
 .tl-bad .tl-big { color: var(--ar-venture) !important; }
+
+/* ---------- Consultation request form ---------- */
+.ar-booking {
+  display: grid;
+  gap: 1.1rem;
+  padding: clamp(1.1rem, 3vw, 1.75rem);
+  background: var(--ar-surface);
+  border: 1px solid var(--ar-line);
+  border-radius: 14px;
+}
+.ar-booking fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.ar-booking legend { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.5rem; padding: 0; }
+.ar-field { display: grid; gap: 0.35rem; min-width: 0; }
+.ar-field label { font-size: 0.92rem; font-weight: 600; color: var(--ar-ink); }
+.ar-field-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1rem; }
+.ar-booking input,
+.ar-booking select,
+.ar-booking textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ar-ink);
+  background: var(--ar-bg);
+  border: 1px solid var(--ar-line);
+  border-radius: 8px;
+  padding: 0.65rem 0.75rem;
+  min-height: 2.75rem;
+}
+.ar-booking textarea { resize: vertical; }
+.ar-booking ::placeholder { color: var(--ar-ink-3); opacity: 1; }
+.ar-booking input:focus-visible,
+.ar-booking select:focus-visible,
+.ar-booking textarea:focus-visible { outline: 2px solid var(--ar-focus); outline-offset: 1px; }
+.ar-booking__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
+.ar-booking__actions .ar-btn[disabled] { opacity: 0.7; cursor: progress; }
+.ar-booking__mail { display: inline-flex; align-items: center; gap: 0.4rem; }
+.ar-booking__alt { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin: 0; }
+.ar-booking__error {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, #d9534f 45%, transparent);
+  background: color-mix(in srgb, #d9534f 10%, transparent);
+}
+.ar-booking--done { text-align: left; }
+.ar-booking--done svg { color: var(--ar-research); }
+.ar-booking--done p { margin: 0; color: var(--ar-ink-2); }
+.ar-hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.ar-spin { animation: ar-spin 0.9s linear infinite; }
+@keyframes ar-spin { to { transform: rotate(360deg); } }
+
+/* ---------- Not found ---------- */
+.ar-notfound { padding-block: clamp(4rem, 12vw, 8rem); }
+.ar-notfound ul { margin-top: 1.5rem; display: grid; gap: 0.5rem; padding-left: 1.1rem; }
+
+/* ---------- Latest articles on the homepage ---------- */
+.ar-posts { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); list-style: none; padding: 0; margin: 0; }
+.ar-post {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 1.25rem;
+  border: 1px solid var(--ar-line);
+  border-radius: 12px;
+  background: var(--ar-surface);
+  text-decoration: none;
+}
+.ar-post:hover { border-color: var(--ar-research); }
+.ar-post p { margin: 0; color: var(--ar-ink-2); font-size: 0.95rem; }
+.ar-post .ar-small { font-size: 0.85rem; }
+
+/* ---------- Researcher links (CV, Scholar, ORCID) ---------- */
+.ar-profiles { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
+
+/* ---------- Related links at the end of articles ---------- */
+.ar-related {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.5rem 2.5rem;
+  margin: 3rem 0;
+  padding: 1.5rem;
+  border: 1px solid var(--ar-line);
+  border-radius: 12px;
+  background: var(--ar-surface);
+}
+.ar-related ul { margin: 0.75rem 0 0; padding-left: 1.1rem; display: grid; gap: 0.45rem; }
+
+/* ---------- Contrast fixes for the older blog screens (WCAG AA) ---------- */
+html .ar-legacy .bg-indigo-600.text-white { color: var(--ar-research-ink) !important; }
+html .ar-legacy [class*='bg-indigo-500\/'][class*='text-indigo-'],
+html .ar-legacy [class*='bg-indigo-600\/'][class*='text-indigo-'],
+html .ar-legacy [class*='bg-indigo-500\/'] [class*='text-indigo-'] { color: var(--ar-ink) !important; }

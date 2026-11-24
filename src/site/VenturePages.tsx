@@ -1,5 +1,10 @@
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { Link } from '../lib/SiteLink';
 import { ArrowUpRight, Check } from 'lucide-react';
+import NotFound from './NotFound';
+import { services } from './seo';
+
+const aiService = services.find((s) => s.id === 'ai-agents-iot');
 import SiteLayout from './SiteLayout';
 import ElementTile from './ElementTile';
 import { FaqList } from './Home';
@@ -62,7 +67,7 @@ export function VenturesIndex() {
 export function VenturePage() {
   const { slug } = useParams();
   const v = ventures.find((x) => x.slug === slug);
-  if (!v) return <Navigate to="/ventures" replace />;
+  if (!v) return <NotFound />;
 
   const label = ventureLabel(v);
   const others = ventures.filter((x) => x.slug !== v.slug);
@@ -124,11 +129,18 @@ export function VenturePage() {
           <div className="ar-split__aside">
             <h2 id="offers-title" className="ar-h2">What {v.short} offers</h2>
           </div>
-          <ul className="ar-offers">
-            {v.offers.map((o) => (
-              <li key={o}><Check size={18} aria-hidden="true" /> {o}</li>
-            ))}
-          </ul>
+          <div>
+            <ul className="ar-offers">
+              {v.offers.map((o) => (
+                <li key={o}><Check size={18} aria-hidden="true" /> {o}</li>
+              ))}
+            </ul>
+            {v.slug === 'c2f' && aiService && (
+              <p className="ar-body" style={{ marginTop: '1.25rem' }}>
+                For manufacturers: <Link to={`/services/${aiService.slug}`} className="ar-textlink">{aiService.title}</Link>.
+              </p>
+            )}
+          </div>
         </div>
       </section>
 
