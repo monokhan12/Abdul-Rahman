@@ -4,8 +4,9 @@
     "name": "Abdul Rahman",
     "defaultTitle": "Materials Informatics & Failure Analysis Consultant | Abdul Rahman",
     "defaultDescription": "Remote materials engineering consultant for US companies: metallurgical failure analysis, SEM/EDS and XRD interpretation, and machine learning for R&D.",
-    "ogImage": "/images/pakistan_mineral_map_1783445793899.jpg",
-    "indexNowKey": "8fa74b42be669545d36b2b3703f80fda"
+    "ogImage": "/og-card.png",
+    "indexNowKey": "8fa74b42be669545d36b2b3703f80fda",
+    "schedulingUrl": ""
   },
   "ventures": [
     {
@@ -360,6 +361,76 @@
       ]
     },
     {
+      "id": "ai-agents-iot",
+      "slug": "ai-agents-industrial-iot",
+      "short": "AI agents & industrial IoT",
+      "title": "AI agents and industrial IoT for manufacturers",
+      "seoTitle": "AI Agents & Industrial IoT Consulting for Manufacturers | Abdul Rahman",
+      "description": "AI agents that automate engineering and business workflows, and IoT retrofits that connect existing machines to sensors, dashboards and machine learning.",
+      "body": "AI agents that take over repetitive engineering and business work, and IoT retrofits that connect existing machines to sensors, dashboards and predictive models.",
+      "answer": "Abdul Rahman designs AI agents and industrial IoT systems for manufacturers and engineering teams through his agency, Connected 2 Future (C2F). The work covers AI agents that read documents, answer questions and run multi-step workflows, and retrofits that add sensors and connectivity to existing machines so their data can feed dashboards and machine learning models for monitoring and predictive maintenance.",
+      "includes": [
+        "Mapping which repetitive tasks or machine data are worth automating first",
+        "AI agents and retrieval-augmented (RAG) assistants built on your own documents and data",
+        "Sensor and connectivity retrofits for existing machines, without replacing them",
+        "Dashboards and alerts for machine condition and process data",
+        "Machine learning models for anomaly detection and predictive maintenance",
+        "Hand-over, documentation and support for your team"
+      ],
+      "bestFor": [
+        "Small and mid-sized manufacturers with older machines",
+        "Engineering and quality teams buried in reports and documents",
+        "Labs that want instrument data captured and searchable",
+        "Businesses exploring AI agents for operations or customer support"
+      ],
+      "keywords": [
+        "ai agents",
+        "industrial iot",
+        "predictive maintenance",
+        "ai automation for manufacturing",
+        "machine retrofit"
+      ],
+      "related": [
+        "ai-agentic-rag-scientific"
+      ],
+      "faq": [
+        {
+          "q": "What is an AI agent?",
+          "a": "An AI agent is software built on a large language model that can carry out multi-step tasks, such as reading documents, looking up data in your systems, drafting reports or answering questions, instead of only replying to a single prompt."
+        },
+        {
+          "q": "Can you connect old machines without replacing them?",
+          "a": "Yes. Most machines can be retrofitted with external sensors, such as vibration, temperature, current or position, and a small gateway that sends the data to a dashboard. The machine itself does not need to be replaced or reprogrammed."
+        },
+        {
+          "q": "What is predictive maintenance?",
+          "a": "Predictive maintenance uses sensor data and machine learning to spot early signs of wear or failure, so a machine is serviced shortly before it would break down instead of on a fixed schedule or after a breakdown."
+        },
+        {
+          "q": "Who delivers the work?",
+          "a": "Projects are scoped by Abdul Rahman and delivered through his agency, Connected 2 Future (C2F), which handles software development, integration and support."
+        }
+      ],
+      "process": [
+        {
+          "name": "Discovery call",
+          "text": "A free 30-minute video call to understand the part, the material and what you need to decide."
+        },
+        {
+          "name": "Proposal",
+          "text": "A short written scope with the analyses, the data or samples needed, the timeline and the price."
+        },
+        {
+          "name": "Analysis",
+          "text": "Data and images are shared securely online; physical testing is arranged with a lab near you when needed."
+        },
+        {
+          "name": "Report and debrief",
+          "text": "A written report with findings and recommendations, followed by a call to walk your team through it."
+        }
+      ]
+    },
+    {
       "id": "battery-minerals",
       "slug": "battery-recycling-critical-minerals",
       "short": "Battery & critical minerals",
@@ -596,7 +667,7 @@
     {
       "slug": "ai-automation-savings-calculator",
       "short": "AI automation savings",
-      "service": "",
+      "service": "ai-agents-industrial-iot",
       "venture": "c2f",
       "title": "AI automation savings calculator",
       "seoTitle": "AI Automation Savings Calculator for Small Business | C2F",

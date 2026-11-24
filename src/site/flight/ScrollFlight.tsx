@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '../../lib/SiteLink';
 import { personalInfo } from '../../data';
 import { ventureLabel, ventures } from '../seo';
 import { mountScrollFlight, type FlightApi } from './scrollFlight';

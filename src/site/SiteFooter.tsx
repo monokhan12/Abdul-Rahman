@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from '../lib/SiteLink';
 import { withBase } from '../lib/withBase';
 import { personalInfo } from '../data';
 import { ventureLabel, ventures } from './seo';

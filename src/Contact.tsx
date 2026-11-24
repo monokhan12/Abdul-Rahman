@@ -1,6 +1,6 @@
 import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import { personalInfo } from './data';
-import GoogleMeetScheduler from './components/GoogleMeetScheduler';
+import BookingForm from './components/BookingForm';
 import SiteLayout from './site/SiteLayout';
 import { breadcrumbSchema, personSchema } from './site/seo';
 
@@ -50,13 +50,11 @@ export default function Contact() {
             </ul>
           </div>
           <div>
-            <h2 className="ar-h3" style={{ fontSize: '1.4rem' }}>Pick a time</h2>
+            <h2 className="ar-h3" style={{ fontSize: '1.4rem' }}>Request a call</h2>
             <p className="ar-body" style={{ marginTop: '0.5rem', marginBottom: '1.25rem' }}>
-              Connect your Google account to book a 30-minute call. You'll get a Google Meet link straight away.
+              Tell me what you're working on and when suits you. I'll confirm a time and send a Google Meet invite.
             </p>
-            <div className="ar-scheduler">
-              <GoogleMeetScheduler />
-            </div>
+            <BookingForm />
           </div>
         </div>
       </section>

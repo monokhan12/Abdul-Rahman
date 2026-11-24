@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { Link } from '../lib/SiteLink';
 import {
   ArrowUpRight,
   Binary,
@@ -13,7 +14,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { additional, education, experience, interests, personalInfo, projects, publications, skills } from '../data';
-import BlogSection from '../components/BlogSection';
+import posts from '../content/posts.json';
 import SiteLayout from './SiteLayout';
 import ElementTile from './ElementTile';
 import ScrollFlight from './flight/ScrollFlight';
@@ -59,6 +60,15 @@ export function FaqList({ items, id = 'faq' }: { items: { q: string; a: string }
     </ul>
   );
 }
+
+const researcherLinks = [
+  { label: 'Download CV (PDF)', href: personalInfo.cv },
+  { label: 'Google Scholar', href: personalInfo.googleScholar },
+  { label: 'ORCID', href: personalInfo.orcid },
+  { label: 'ResearchGate', href: personalInfo.researchGate },
+].filter((l) => l.href);
+
+const latestPosts = [...posts].sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)).slice(0, 3);
 
 export default function Home() {
   const { hash } = useLocation();
@@ -231,6 +241,15 @@ export default function Home() {
         <div className="ar-wrap">
           <div className="ar-section__head">
             <h2 id="publications-title" className="ar-h2">Publications and conference work</h2>
+            {researcherLinks.length > 0 && (
+              <div className="ar-profiles">
+                {researcherLinks.map((l) => (
+                  <a key={l.label} href={l.href} className="ar-btn ar-btn--ghost" target="_blank" rel="me noopener">
+                    {l.label}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
           <ul className="ar-rows">
             {publications.map((pub) => {
@@ -281,7 +300,29 @@ export default function Home() {
         </div>
       </section>
 
-      <BlogSection />
+      {/* Latest articles: static, so the homepage links to every recent post without loading Firestore */}
+      <section id="blog" className="ar-section ar-section--alt" aria-labelledby="blog-title">
+        <div className="ar-wrap">
+          <div className="ar-section__head">
+            <h2 id="blog-title" className="ar-h2">Latest articles</h2>
+            <p className="ar-body">Notes on failure analysis, characterization, corrosion, battery recycling and materials informatics.</p>
+          </div>
+          <ul className="ar-posts">
+            {latestPosts.map((p) => (
+              <li key={p.slug}>
+                <Link to={`/blog/${p.slug}`} className="ar-post">
+                  <span className="ar-small">{p.category} · {p.date}</span>
+                  <h3 className="ar-h3">{p.title}</h3>
+                  <p>{p.summary.length > 160 ? `${p.summary.slice(0, 157).replace(/\s\S*$/, '')}…` : p.summary}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p style={{ marginTop: '1.5rem' }}>
+            <Link to="/blog" className="ar-textlink">All articles</Link>
+          </p>
+        </div>
+      </section>
 
       {/* FAQ: written as direct answers for AEO, mirrored in FAQPage JSON-LD */}
       <section id="faq" className="ar-section" aria-labelledby="faq-title">

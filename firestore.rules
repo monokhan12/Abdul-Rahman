@@ -48,17 +48,43 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
-    // Comments Collection
+    // Comments Collection: only signed-in visitors can comment (stops anonymous spam bots)
     match /comments/{commentId} {
       allow read: if true;
-      allow create: if isValidComment(request.resource.data);
+      allow create: if isSignedIn() && isValidComment(request.resource.data);
       allow delete: if isAdmin();
+    }
+
+    // Consultation requests from the contact page: anyone can submit one, only the admin can read them
+    function isValidBooking(b) {
+      return b.keys().hasOnly(['topic', 'name', 'email', 'organization', 'preferredDate', 'preferredTime',
+                               'timeZone', 'preferredStartUtc', 'message', 'status', 'createdAt']) &&
+             b.topic is string && b.topic.size() > 0 && b.topic.size() <= 120 &&
+             b.name is string && b.name.size() > 0 && b.name.size() <= 120 &&
+             b.email is string && b.email.size() > 3 && b.email.size() <= 200 && b.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$') &&
+             b.organization is string && b.organization.size() <= 200 &&
+             b.preferredDate is string && b.preferredDate.size() <= 20 &&
+             b.preferredTime is string && b.preferredTime.size() <= 10 &&
+             b.timeZone is string && b.timeZone.size() <= 80 &&
+             b.preferredStartUtc is string && b.preferredStartUtc.size() <= 40 &&
+             b.message is string && b.message.size() <= 4000 &&
+             b.status == 'new' &&
+             b.createdAt == request.time;
+    }
+
+    match /bookings/{bookingId} {
+      allow create: if isValidBooking(request.resource.data);
+      allow read, update, delete: if isAdmin();
     }
 
     // Users Collection (for user profiles and auth synchronization)
     match /users/{userId} {
       allow read: if isSignedIn();
-      allow create, update: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+      // Users can manage their own profile but can never give themselves the admin or editor role
+      allow create: if isAdmin() ||
+                       (isSignedIn() && request.auth.uid == userId && request.resource.data.get('role', 'subscriber') in ['subscriber', 'author']);
+      allow update: if isAdmin() ||
+                       (isSignedIn() && request.auth.uid == userId && request.resource.data.get('role', 'subscriber') == resource.data.get('role', 'subscriber'));
       allow delete: if isAdmin();
     }
 

@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { Calendar, Tag, ChevronRight } from 'lucide-react';
 import { BlogPost } from '../lib/firebase';
-import { Link } from 'react-router-dom';
+import { Link } from '../lib/SiteLink';
 
 interface BlogCardProps {
   key?: string | number;

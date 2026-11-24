@@ -1,5 +1,7 @@
-import { Link, Navigate, useParams } from 'react-router-dom';
-import { BatteryCharging, Binary, Check, Microscope, Search, ShieldCheck } from 'lucide-react';
+import { useParams } from 'react-router-dom';
+import { Link } from '../lib/SiteLink';
+import { BatteryCharging, Binary, Check, Cpu, Microscope, Search, ShieldCheck } from 'lucide-react';
+import NotFound from './NotFound';
 import SiteLayout from './SiteLayout';
 import { FaqList } from './Home';
 import content from './content.json';
@@ -19,6 +21,7 @@ const icons: Record<string, typeof Search> = {
   'materials-informatics': Binary,
   'battery-minerals': BatteryCharging,
   'corrosion-coatings': ShieldCheck,
+  'ai-agents-iot': Cpu,
 };
 
 export function ServicesIndex() {
@@ -103,7 +106,7 @@ function BookingBand() {
 export function ServicePage() {
   const { slug } = useParams();
   const sv = services.find((s) => s.slug === slug);
-  if (!sv) return <Navigate to="/services" replace />;
+  if (!sv) return <NotFound />;
 
   const path = `/services/${sv.slug}`;
   const Icon = icons[sv.id] ?? Search;
