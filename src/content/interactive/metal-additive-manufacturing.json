@@ -1,0 +1,184 @@
+{
+  "market": {
+    "mix": {
+      "title": "2025 global AM value split and metal benchmarks",
+      "subtitle": "Wohlers Report 2026 ($24.2B total AM) and AMPOWER (€3.4B core metal AM)",
+      "unit": "$B / €B",
+      "note": "Printing and related contract services grew 15.5% in 2025 to capture 48% ($11.62B) of the $24.2B global market, while hardware system sales rebounded just 3.6%.",
+      "data": [
+        { "name": "AM services & contract manufacturing", "value": 11.62 },
+        { "name": "Hardware systems & materials", "value": 12.58 },
+        { "name": "Metal AM segment (Wohlers est.)", "value": 7.6 },
+        { "name": "Core metal AM base (AMPOWER)", "value": 3.4 }
+      ]
+    },
+    "region": {
+      "title": "2025 regional metal AM share (%)",
+      "subtitle": "North America holds 42.6% ($7.32B broad scope); Asia-Pacific leads growth at +19.8% YoY",
+      "unit": "%",
+      "note": "North America leads global value (about 94% of it US defense and aerospace), while Asia-Pacific grew 19.8% in 2025 and China captured more than 50% of global AM investment deals.",
+      "data": [
+        { "name": "North America", "value": 42.6 },
+        { "name": "Europe", "value": 29.4 },
+        { "name": "Asia-Pacific (+19.8% YoY)", "value": 22.5 },
+        { "name": "Rest of world", "value": 5.5 }
+      ]
+    }
+  },
+  "processes": [
+    {
+      "id": "lpbf", "cat": "PBF", "catLabel": "Powder Bed Fusion", "stepType": "Single-step thermal fusion",
+      "name": "Laser Powder Bed Fusion (L-PBF)", "short": "L-PBF", "tag": "Highest precision",
+      "rate": "0.1–0.5 kg/h (up to 1,850 cm³/h multi-laser)", "maxRate": 0.5,
+      "tol": "±0.05 mm; Ra often <10 µm", "env": "300–500 mm typical; up to 1,000 mm Z", "feed": "Spherical powder (€50–€200+/kg)",
+      "desc": "A recoater blade spreads 20–60 µm layers of fine spherical powder while 1 to 12+ focused lasers selectively melt each cross-section under inert argon or nitrogen. Unfused powder supports intricate internal channels and bionic lattices.",
+      "pros": "Highest geometric freedom, internal cooling channels, thin walls (<0.5 mm), fine lattices.",
+      "cons": "Slow single-beam speed, expensive powder, residual thermal stress, support removal labor.",
+      "flow": ["20–60 µm powder layer", "Multi-laser melting", "Stress relief & wire EDM", "HIP & CNC finish"]
+    },
+    {
+      "id": "epbf", "cat": "PBF", "catLabel": "Powder Bed Fusion", "stepType": "Single-step vacuum fusion",
+      "name": "Electron Beam PBF (E-PBF / EBM)", "short": "E-PBF", "tag": "Reactive titanium",
+      "rate": "0.2–0.8 kg/h (50–100 µm layers)", "maxRate": 0.8,
+      "tol": "±0.1 mm; rougher finish than L-PBF", "env": "200–450 mm vacuum chamber", "feed": "Metal powder in high vacuum",
+      "desc": "Substitutes a high-power electron beam inside a hot high-vacuum chamber, pre-sintering each powder layer to reduce thermal gradients, residual stress and support needs in reactive titanium and TiAl intermetallics.",
+      "pros": "Vacuum environment ideal for reactive Ti/TiAl; low residual stress; fewer support structures.",
+      "cons": "High capital cost ($250–$400/hr operating rate), vacuum maintenance, coarser feature resolution.",
+      "flow": ["Vacuum pre-heat", "Electron beam sinter/melt", "Powder recovery", "Surface finishing"]
+    },
+    {
+      "id": "lpded", "cat": "DED", "catLabel": "Directed Energy Deposition", "stepType": "Single-step blown powder",
+      "name": "Laser Powder DED (LP-DED)", "short": "LP-DED", "tag": "Repair & cladding",
+      "rate": "0.5–3.0 kg/h", "maxRate": 3.0,
+      "tol": "Near-net shape; Ra 17–110 µm", "env": "Variable (5-axis CNC or robotic cell)", "feed": "Coaxial blown metal powder",
+      "desc": "Feeds metal powder directly into a laser melt pool mounted on a multi-axis CNC spindle or robot arm. Excels at repairing worn turbine blades, wear-resistant cladding, and blending multiple hoppers into compositionally graded alloys.",
+      "pros": "High-value component repair, wear cladding, multi-material gradients, hybrid additive-subtractive CNC.",
+      "cons": "Poor overhang capability without multi-axis tilting; post-machining required in most cases.",
+      "flow": ["Multi-axis toolpath", "Coaxial powder + laser", "In-cell CNC milling", "NDT inspection"]
+    },
+    {
+      "id": "waam", "cat": "DED", "catLabel": "Directed Energy Deposition", "stepType": "Single-step electric arc",
+      "name": "Wire Arc AM (WAAM)", "short": "WAAM", "tag": "Multi-meter scale",
+      "rate": "2–15 kg/h", "maxRate": 15.0,
+      "tol": "Low as-printed accuracy; heavy stair-stepping", "env": "Up to 6 m+ (limited by robot reach)", "feed": "Welding wire (€5–€15/kg)",
+      "desc": "Automates electric-arc welding using low-cost commercial welding wire on industrial robots to build multi-meter marine, energy and structural parts with near-100% feedstock utilization.",
+      "pros": "Highest wire throughput, low feedstock cost (€5–€15/kg), massive build scale, near-zero wire waste.",
+      "cons": "High heat input and distortion; subtractive CNC rework required in about 95% of cases.",
+      "flow": ["Robotic arc deposition", "Inter-pass cooling", "Stress relief", "5-axis CNC machining"]
+    },
+    {
+      "id": "ebam", "cat": "DED", "catLabel": "Directed Energy Deposition", "stepType": "Single-step vacuum wire",
+      "name": "Electron Beam DED (EBAM)", "short": "EBAM", "tag": "Large refractory",
+      "rate": "3–10 kg/h", "maxRate": 10.0,
+      "tol": "Near-net shape; requires machining", "env": "Very large vacuum chambers", "feed": "Metal wire in vacuum",
+      "desc": "Uses a high-power electron beam in a large vacuum chamber to melt wire feedstock at multi-kilogram-per-hour rates, preventing oxidation in large aerospace titanium, tantalum, tungsten and niobium structures.",
+      "pros": "Large reactive and refractory structures (Ti, Ta, W, Nb) without atmospheric contamination.",
+      "cons": "High equipment capex, lower geometric resolution, limited supplier ecosystem.",
+      "flow": ["Chamber evacuation", "High-rate wire melt", "Vacuum cool-down", "CNC finish machining"]
+    },
+    {
+      "id": "bjt", "cat": "Sintering", "catLabel": "Multi-Step Sintering", "stepType": "Multi-step print + sinter",
+      "name": "Metal Binder Jetting (BJT)", "short": "BJT", "tag": "Support-free batches",
+      "rate": "High batch throughput (50–100 µm layers)", "maxRate": 4.5,
+      "tol": "±0.2 mm post-sinter", "env": "Up to ~800 mm build box", "feed": "Metal powder + liquid polymer binder",
+      "desc": "Inkjet printheads deposit liquid binder onto a powder bed at ambient temperature, avoiding thermal stress and solid supports so parts can be 3D-nested throughout the chamber before furnace debinding and sintering.",
+      "pros": "Support-free 3D nesting, zero thermal print stress, low hourly rate ($100–$200/hr) for batch production.",
+      "cons": "15–20% sintering shrinkage, custom ceramic setter fixtures needed, lower fatigue properties than PBF.",
+      "flow": ["Ambient binder jetting", "Curing & depowdering", "Debinding furnace", "Sintering (15–20% shrink)"]
+    },
+    {
+      "id": "mfff", "cat": "Sintering", "catLabel": "Multi-Step Sintering", "stepType": "Multi-step extrude + sinter",
+      "name": "Metal FFF / Bound Metal (BMD)", "short": "Metal FFF", "tag": "Office-safe tooling",
+      "rate": "Low–moderate (50–170 µm layers)", "maxRate": 0.25,
+      "tol": "Lower accuracy than PBF", "env": "300 × 220 × 180 mm (max part 250 × 183 mm)", "feed": "Polymer-bound metal filament",
+      "desc": "Extrudes polymer-bound metal filament alongside a ceramic release interface on accessible hardware ($120k–$200k), eliminating loose metal powders for shop-floor jigs, fixtures and functional prototypes.",
+      "pros": "Office-safe (no loose powder), low capex, closed-cell infill lightweighting.",
+      "cons": "Up to 22% shrinkage, lengthy solvent wash (12–72 h) and furnace sinter (17–31 h) cycles.",
+      "flow": ["Filament extrusion", "Solvent wash (12–72 h)", "Thermal sinter (17–31 h)", "Light finishing"]
+    },
+    {
+      "id": "uam", "cat": "SolidState", "catLabel": "Solid-State Bonding", "stepType": "Solid-state foil welding",
+      "name": "Ultrasonic AM (UAM)", "short": "UAM", "tag": "Dissimilar metals",
+      "rate": "245–490 cm³/h (15–30 in³/h)", "maxRate": 1.3,
+      "tol": "±0.05 mm via integrated CNC", "env": "Up to 1.8 m (6 × 6 × 3 ft)", "feed": "Commercial metal foils (~0.15 mm)",
+      "desc": "A 20 kHz ultrasonic sonotrode scrubs oxides off commercial metal foils under pressure to metallurgically bond layers near room temperature without melting, alternating with an integrated CNC mill to embed sensors or channels.",
+      "pros": "Solid-state (no melting), bonds dissimilar metals (Al/Cu, Al/Ti), embeds fiber-optic sensors.",
+      "cons": "About 20% Z-axis strength debit; best suited to softer metals (Al, Cu) and blocky geometries.",
+      "flow": ["Foil feed & 20 kHz scrub", "Solid-state bonding", "Periodic CNC milling", "Sensor encapsulation"]
+    },
+    {
+      "id": "csam", "cat": "SolidState", "catLabel": "Solid-State Bonding", "stepType": "Supersonic kinetic impact",
+      "name": "Cold Spray AM (CSAM)", "short": "Cold Spray", "tag": "Expeditionary & fast",
+      "rate": "5–45 kg/h (up to 6 kg/h on XSPEE3D)", "maxRate": 45.0,
+      "tol": "Coarse near-net; requires CNC", "env": "Open robotic or containerized (~1 m)", "feed": "Powder in supersonic gas stream",
+      "desc": "Accelerates metal powder through a supersonic nozzle so particles plastically deform and bond on impact without melting or oxidation, enabling rapid coatings, casting restoration and sub-zero containerized field printing.",
+      "pros": "No melting, oxidation or thermal stress; extreme speed (5–45 kg/h); containerized field deployment.",
+      "cons": "Line-of-sight deposition only, high gas and equipment cost, limited fine internal geometry.",
+      "flow": ["Supersonic gas acceleration", "Kinetic impact bonding", "Heat treat (optional)", "CNC finish machining"]
+    }
+  ],
+  "processFamilies": [
+    { "id": "all", "label": "All 9 techniques" },
+    { "id": "PBF", "label": "Powder Bed Fusion" },
+    { "id": "DED", "label": "Directed Energy Deposition" },
+    { "id": "Sintering", "label": "Multi-Step Sintering" },
+    { "id": "SolidState", "label": "Solid-State Bonding" }
+  ],
+  "ved": {
+    "low": 50, "high": 120,
+    "lowText": "Insufficient volumetric energy (<50 J/mm³): incomplete overlap between melt tracks creates sharp, elongated lack-of-fusion (LOF) voids that act as severe fatigue crack initiators.",
+    "okText": "Within the optimal conduction-melting window (50–120 J/mm³ for RHEAs). Achieves >99.5% relative density; subsequent HIP (1,200 °C, 100 MPa, 4 h) lowers mechanical anisotropy below 10%.",
+    "highText": "Excessive energy input (>120 J/mm³): intense metal vaporization drills a deep vapor cavity that collapses into spherical gas-trapped keyhole pores and raises spatter and thermal distortion."
+  },
+  "sectors": [
+    {
+      "id": "aero", "label": "Aerospace & space", "title": "Aerospace & space propulsion",
+      "apps": "GE Aerospace LEAP fuel nozzles (19 per engine), SpaceX Raptor 3 engine, Relativity Space Terran R & Aeon R, NASA GRCop-42 thrust chambers.",
+      "alloys": "L-PBF (CoCr, IN718, GRCop-42); large-format Stargate printers (Al & proprietary alloys).",
+      "impact": "Over 30,000 LEAP nozzles produced by consolidating 15–20 brazed parts into 1 monolithic assembly; Relativity Aeon R qualified in 14 months with >300 hot fires.",
+      "stats": [["30,000+", "LEAP nozzles built"], ["15–20 → 1", "Part consolidation"], [">300", "Aeon R hot fires"]]
+    },
+    {
+      "id": "energy", "label": "Energy & power", "title": "Energy & power generation",
+      "apps": "Siemens Energy SGT-700 turbine vanes, green-fuel combustion burners, turbine blade-tip repair, and fusion tokamak tungsten armor tiles.",
+      "alloys": "L-PBF (IN939, pure tungsten); LP-DED automated blade-tip restoration.",
+      "impact": "Over 1.7 million field operating hours; 25–40% cooling-air reduction saves about 9,000 t/yr CO₂ per 55 MW gas turbine (270,000 t lifecycle) with up to 100 vol% H₂ capability.",
+      "stats": [["1.7M+ hrs", "Turbine field hours"], ["−25 to −40%", "Cooling air saved"], ["100% H₂", "Green fuel burner"]]
+    },
+    {
+      "id": "auto", "label": "Automotive", "title": "Automotive & hypercar structures",
+      "apps": "Czinger 21C and Bugatti Tourbillon topology-optimized structural chassis nodes and hollow suspension wishbones.",
+      "alloys": "Multi-laser L-PBF aluminum and titanium via the Divergent Adaptive Production System (DAPS).",
+      "impact": "About 20% of the Czinger 21C total vehicle mass is printed metal, eliminating capital-intensive stamping and casting hard tooling for low-to-mid volume platforms.",
+      "stats": [["~20%", "Czinger 21C mass AM"], ["Zero", "Hard stamping dies"], ["54%", "Max topology savings"]]
+    },
+    {
+      "id": "defense", "label": "Defense & field", "title": "Defense & expeditionary sustainment",
+      "apps": "Forward-deployed spare parts, armament components, legacy vehicle brackets, and large maritime propellers.",
+      "alloys": "Cold Spray (XSPEE3D Al/Cu), L-PBF (Velo3D superalloys), and WAAM marine bronzes and steels.",
+      "impact": "Validated sub-zero field printing for austere logistics; Velo3D received a $10M US Army DEVCOM award (Nov 2026) alongside SPEE3D launching a 50-factory network.",
+      "stats": [["$10M", "US Army DEVCOM"], ["50 sites", "Cold spray network"], ["Sub-zero", "Field print proven"]]
+    },
+    {
+      "id": "med", "label": "Medical & tooling", "title": "Medical, dental & conformal tooling",
+      "apps": "Patient-specific spinal cages, acetabular hip cups, craniofacial plates, surgical guides, and conformal-cooled injection molds.",
+      "alloys": "L-PBF, EBM and binder jetting (Ti-6Al-4V ELI, CoCr, 316L, H13/18Ni300 tool steels).",
+      "impact": "Trabecular porous lattices mimic cancellous bone stiffness to accelerate osseointegration, while conformal mold channels cut plastic injection cycle times.",
+      "stats": [["Ti-6Al-4V", "Biocompatible ELI"], ["Porous", "Bone ingrowth lattice"], ["Faster", "Mold cycle times"]]
+    }
+  ],
+  "cost": {
+    "base": { "machine": 460, "powder": 220, "finish": 240, "ndt": 80 },
+    "nestingFactor": 0.45,
+    "orientPowderFactor": 0.85,
+    "orientFinishFactor": 0.7,
+    "rates": [["SLM machine", "$150–$300/hr"], ["Stress relief", "$500–$600/batch"], ["HIP cycle", "$100–$345/cycle"], ["5-axis CNC", "$50–$175/hr"]]
+  },
+  "gates": [
+    { "name": "Validate value driver", "text": "Confirm gains from part consolidation, conformal cooling, lightweighting or lead-time reduction, not a simple CNC copy." },
+    { "name": "Match process physics", "text": "Align envelope and alloy: L-PBF (<500 mm, ±0.05 mm), E-PBF (reactive Ti), WAAM (>500 mm), BJT (batches), or UAM/Cold Spray." },
+    { "name": "Design for post-process", "text": "Add CNC machining stock on mating faces, verify powder-drain ports for internal channels, and minimize support removal." },
+    { "name": "Model total accepted cost", "text": "Include stress relief, HIP, 5-axis CNC finishing and CT/NDT scrap risk (10–40% of total part cost), plus build nesting." },
+    { "name": "Lock genealogy & qualification", "text": "Enforce lot-level powder chemistry/PSD tracking, frozen parameter files (ISO/ASTM 52920) and witness coupons." }
+  ]
+}

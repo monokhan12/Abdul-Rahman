@@ -232,7 +232,7 @@ export default function BlogAdminPage() {
         cursorOffset = selection ? 0 : -21;
         break;
       case 'image':
-        replacement = `![${selection || 'Image description'}](/src/assets/images/mineral_samples_1783445814400.jpg)`;
+        replacement = `![${selection || 'Image description'}](/images/mineral_samples_1783445814400.jpg)`;
         cursorOffset = selection ? 0 : -1;
         break;
     }
@@ -730,7 +730,7 @@ export default function BlogAdminPage() {
                     <div className="bg-[#050505] border border-white/5 rounded-2xl p-3 flex flex-col justify-center">
                       <span className="text-[9px] uppercase font-bold text-indigo-400 mb-0.5 tracking-wider font-mono">Image reference list</span>
                       <p className="text-[10px] text-white/50 leading-snug">
-                        Copy to insert: <code className="text-white/80 select-all">![Map](/src/assets/images/pakistan_mineral_map_1783445793899.jpg)</code>
+                        Copy to insert: <code className="text-white/80 select-all">![Map](/images/pakistan_mineral_map_1783445793899.jpg)</code>
                       </p>
                     </div>
                   </div>
@@ -878,13 +878,13 @@ export default function BlogAdminPage() {
 
                   <div className="space-y-4">
                     <div className="border border-white/5 bg-white/[0.01] p-3 rounded-2xl space-y-2">
-                      <img src={withBase("/src/assets/images/pakistan_mineral_map_1783445793899.jpg")} className="w-full h-24 object-cover rounded-xl" alt="Pakistan Map" />
+                      <img src={withBase("/images/pakistan_mineral_map_1783445793899.jpg")} className="w-full h-24 object-cover rounded-xl" alt="Pakistan Map" />
                       <div className="flex justify-between items-center">
                         <span className="text-[10px] font-bold uppercase text-indigo-300">Pakistan Mineral Map</span>
                         <button 
                           type="button"
                           onClick={() => {
-                            setContent(prev => prev + '\n![Mineral Map of Pakistan](/src/assets/images/pakistan_mineral_map_1783445793899.jpg)');
+                            setContent(prev => prev + '\n![Mineral Map of Pakistan](/images/pakistan_mineral_map_1783445793899.jpg)');
                           }}
                           className="text-[9px] bg-indigo-600 hover:bg-indigo-700 text-white px-2 py-1 rounded cursor-pointer"
                         >
@@ -894,13 +894,13 @@ export default function BlogAdminPage() {
                     </div>
 
                     <div className="border border-white/5 bg-white/[0.01] p-3 rounded-2xl space-y-2">
-                      <img src={withBase("/src/assets/images/mineral_samples_1783445814400.jpg")} className="w-full h-24 object-cover rounded-xl" alt="Specimens Collage" />
+                      <img src={withBase("/images/mineral_samples_1783445814400.jpg")} className="w-full h-24 object-cover rounded-xl" alt="Specimens Collage" />
                       <div className="flex justify-between items-center">
                         <span className="text-[10px] font-bold uppercase text-indigo-300">Specimen Samples Collage</span>
                         <button 
                           type="button"
                           onClick={() => {
-                            setContent(prev => prev + '\n![Mineral Specimen Samples of Pakistan](/src/assets/images/mineral_samples_1783445814400.jpg)');
+                            setContent(prev => prev + '\n![Mineral Specimen Samples of Pakistan](/images/mineral_samples_1783445814400.jpg)');
                           }}
                           className="text-[9px] bg-indigo-600 hover:bg-indigo-700 text-white px-2 py-1 rounded cursor-pointer"
                         >

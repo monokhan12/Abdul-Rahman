@@ -1,4 +1,6 @@
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { Link } from '../../lib/SiteLink';
+import NotFound from '../NotFound';
 import SiteLayout from '../SiteLayout';
 import { FaqList } from '../Home';
 import content from '../content.json';
@@ -66,7 +68,7 @@ export function ToolsIndex() {
 export function ToolPage() {
   const { slug } = useParams();
   const t = tools.find((x) => x.slug === slug);
-  if (!t) return <Navigate to="/tools" replace />;
+  if (!t) return <NotFound />;
   const Calc = CALCULATORS[t.slug];
   const sv = services.find((s) => s.slug === t.service);
   const path = `/tools/${t.slug}`;

@@ -3,6 +3,7 @@
 // without running JavaScript. Run after `vite build`.
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -10,8 +11,64 @@ const dist = join(root, 'dist');
 const content = JSON.parse(readFileSync(join(root, 'src/site/content.json'), 'utf8'));
 // The custom domain is the canonical home for every page, whatever host the build runs for.
 const SITE_URL = content.site.url.replace(/\/$/, '');
-const posts = JSON.parse(readFileSync(join(root, 'src/content/posts.json'), 'utf8'));
+const staticPosts = JSON.parse(readFileSync(join(root, 'src/content/posts.json'), 'utf8'));
+const firebaseConfig = JSON.parse(readFileSync(join(root, 'firebase-applet-config.json'), 'utf8'));
+
+// Posts published from the CMS live only in Firestore. Fetch them at build time so they get
+// their own static page and a sitemap entry; otherwise Google never finds or indexes them.
+async function fetchCmsPosts() {
+  const url = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/posts?pageSize=300&key=${firebaseConfig.apiKey}`;
+  try {
+    const res = await fetch(url, { signal: AbortSignal.timeout(10000) });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const val = (f) => (f ? f.stringValue ?? f.timestampValue ?? f.integerValue ?? '' : '');
+    return (data.documents || [])
+      .map((d) => {
+        const f = d.fields || {};
+        const createdAt = val(f.createdAt) || d.createTime;
+        const updatedAt = val(f.updatedAt) || d.updateTime;
+        return {
+          id: d.name.split('/').pop(),
+          title: val(f.title),
+          slug: val(f.slug),
+          date: val(f.date) || String(createdAt).slice(0, 10),
+          summary: val(f.summary),
+          category: val(f.category) || 'General',
+          author: val(f.author) || 'Abdul Rahman',
+          createdAt: new Date(createdAt).toISOString(),
+          updatedAt: new Date(updatedAt).toISOString(),
+          content: val(f.content),
+        };
+      })
+      .filter((p) => p.title && p.slug && p.content && /^[a-z0-9-]+$/.test(p.slug));
+  } catch (e) {
+    console.warn(`Could not load CMS posts from Firestore (${e.message}); prerendering built-in posts only.`);
+    return [];
+  }
+}
 const aliases = { 'materials-informatics-accelerating-alloy-design': 'alloy-optimization-ml', 'direct-recycling-nmc-cathode-materials': 'direct-cathode-recycling' };
+const cmsPosts = await fetchCmsPosts();
+// Firestore copies of built-in posts keep the built-in slug; anything else is a new CMS post.
+const known = new Set([...staticPosts.map((p) => p.slug), ...Object.keys(aliases)]);
+const newCmsPosts = cmsPosts.filter((p) => !known.has(p.slug));
+const posts = [...staticPosts.map((p) => {
+  const live = cmsPosts.find((c) => c.slug === p.slug);
+  return live && live.updatedAt > (p.updatedAt || p.createdAt) ? { ...p, updatedAt: live.updatedAt } : p;
+}), ...newCmsPosts];
+if (newCmsPosts.length) console.log(`Including ${newCmsPosts.length} CMS post(s) from Firestore`);
+
+// Last time a set of source files changed, from git history (needs a full clone: fetch-depth 0).
+// A sitemap whose <lastmod> is always "today" gets ignored by Google, so use real dates.
+const today = new Date().toISOString().slice(0, 10);
+function changed(...files) {
+  try {
+    const out = execFileSync('git', ['log', '-1', '--format=%cs', '--', ...files], { cwd: root, encoding: 'utf8' }).trim();
+    return out || today;
+  } catch {
+    return today;
+  }
+}
 // GitHub Pages serves /x as /x/ (a redirect), so canonical page URLs end in a slash.
 const abs = (p) => `${SITE_URL}${p === '/' || /\.[a-z]+$/.test(p) || p.endsWith('/') ? p : `${p}/`}`;
 // Path prefix the site is served under (e.g. "/abdul-rahman" on GitHub Pages), for in-page links.
@@ -21,6 +78,12 @@ const link = (p) => { const [path, hash] = p.split('#'); const slashed = path ==
 const esc = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const label = (v) => (v.short === v.name ? v.name : `${v.name} (${v.short})`);
+
+// Scholar, ORCID and ResearchGate links, read from src/data.ts so they are only set in one place.
+const dataTs = readFileSync(join(root, 'src/data.ts'), 'utf8');
+const researcherProfiles = ['googleScholar', 'orcid', 'researchGate']
+  .map((k) => (dataTs.match(new RegExp(`${k}:\\s*"([^"]*)"`)) || [])[1])
+  .filter(Boolean);
 
 // Keep in step with src/data.ts and personSchema() in src/site/seo.ts.
 const PERSON_ID = `${SITE_URL}/#person`;
@@ -47,7 +110,7 @@ const person = {
     'CALPHAD Modeling', 'SEM/EDS Analysis', 'X-ray Diffraction (XRD)', 'X-ray Fluorescence (XRF)',
     'Corrosion and Protective Coatings', 'Lithium-ion Battery Recycling', 'AI Automation', 'Technical Education',
   ],
-  sameAs: ['https://github.com/ARahmankhn', 'https://linkedin.com/in/arahmankhn'],
+  sameAs: ['https://github.com/ARahmankhn', 'https://linkedin.com/in/arahmankhn', ...researcherProfiles],
 };
 const website = {
   '@type': 'WebSite',
@@ -153,7 +216,10 @@ write('/', homeHtml);
 // Drop the home canonical so those pages are not folded into the homepage.
 writeFileSync(
   join(dist, '404.html'),
-  homeHtml.replace(/\s*<link rel="canonical"[^>]*>/, '').replace(/\s*<meta property="og:url"[^>]*>/, ''),
+  homeHtml
+    .replace(/\s*<link rel="canonical"[^>]*>/, '')
+    .replace(/\s*<meta property="og:url"[^>]*>/, '')
+    .replace(/<meta name="robots"[^>]*>/, '<meta name="robots" content="noindex, follow" />'),
 );
 
 // Ventures index
@@ -292,6 +358,23 @@ const inline = (t) =>
     .replace(/(^|\W)\*(?!\s)(.+?)\*(?=\W|$)/g, '$1<em>$2</em>')
     .replace(/`([^`]+)`/g, '<code>$1</code>')
     .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, txt, href) => `<a href="${href.startsWith('/') ? link(href) : href}">${txt}</a>`);
+// Interactive article widgets ([[interactive:module/widget]] lines) get a static text version
+// from the same data file, so crawlers can read what the charts and calculators show.
+const metalAm = JSON.parse(readFileSync(join(root, 'src/content/interactive/metal-additive-manufacturing.json'), 'utf8'));
+const table = (head, rows) => `<table><thead><tr>${head.map((h) => `<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map((r) => `<tr>${r.map((c) => `<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+const interactiveHtml = {
+  'metal-am': {
+    market: () => ['mix', 'region'].map((k) => { const m = metalAm.market[k]; return `<h3>${esc(m.title)}</h3>\n${table(['Segment', m.unit], m.data.map((d) => [d.name, String(d.value)]))}\n<p>${esc(m.note)}</p>`; }).join('\n'),
+    processes: () => table(['Process', 'Family', 'Deposition rate', 'Accuracy', 'Build envelope', 'Feedstock'], metalAm.processes.map((x) => [x.name, x.catLabel, x.rate, x.tol, x.env, x.feed]))
+      + metalAm.processes.map((x) => `<h3>${esc(x.name)}</h3>\n<p>${esc(x.desc)}</p>\n<p><strong>Strengths:</strong> ${esc(x.pros)} <strong>Limitations:</strong> ${esc(x.cons)}</p>\n<p>Workflow: ${x.flow.map(esc).join(' → ')}</p>`).join('\n'),
+    ved: () => `<p>VED = P / (v × h × t). ${esc(metalAm.ved.lowText)}</p>\n<p>${esc(metalAm.ved.okText)}</p>\n<p>${esc(metalAm.ved.highText)}</p>`,
+    sectors: () => metalAm.sectors.map((x) => `<h4>${esc(x.title)}</h4>\n<p><strong>Flagship hardware:</strong> ${esc(x.apps)}</p>\n<p><strong>Processes and alloys:</strong> ${esc(x.alloys)}</p>\n<p><strong>Verified impact:</strong> ${esc(x.impact)}</p>`).join('\n'),
+    cost: () => { const b = metalAm.cost.base; return table(['Cost element (per $1,000 part)', 'Baseline'], [['Machine amortization and operations', `$${b.machine}`], ['Powder feedstock', `$${b.powder}`], ['Stress relief, HIP and CNC', `$${b.finish}`], ['NDT / CT inspection and scrap', `$${b.ndt}`]])
+      + `\n<p>High-density build nesting cuts machine cost per part by about 55%; strategic orientation cuts support and finishing by about 30%.</p>\n${table(['Operation', 'Typical rate'], metalAm.cost.rates)}`; },
+    gates: () => `<ol>${metalAm.gates.map((g) => `<li><strong>${esc(g.name)}:</strong> ${esc(g.text)}</li>`).join('')}</ol>`,
+  },
+};
+
 function md(src) {
   const out = [];
   let list = null, para = [];
@@ -301,6 +384,7 @@ function md(src) {
     const line = raw.trim();
     let m;
     if (!line || /^(-{3,}|\*{3,})$/.test(line)) { flushPara(); flushList(); continue; }
+    if ((m = line.match(/^\[\[interactive:([\w-]+)\/([\w-]+)\]\]$/))) { flushPara(); flushList(); const f = interactiveHtml[m[1]]?.[m[2]]; if (f) out.push(f()); continue; }
     if ((m = line.match(/^(#{1,6})\s+(.*)$/))) { flushPara(); flushList(); const n = Math.min(6, Math.max(2, m[1].length)); out.push(`<h${n}>${inline(m[2])}</h${n}>`); continue; }
     if ((m = line.match(/^[-*+]\s+(.*)$/)) || (m = line.match(/^\d+[.)]\s+(.*)$/))) {
       const tag = /^\d/.test(line) ? 'ol' : 'ul';
@@ -313,6 +397,12 @@ function md(src) {
       flushPara(); flushList();
       if (/^\|[\s:|-]+\|$/.test(line)) continue;
       out.push(`<p>${line.split('|').map((c) => c.trim()).filter(Boolean).map(inline).join(' · ')}</p>`);
+      continue;
+    }
+    if ((m = line.match(/^!\[([^\]]*)\]\(([^)\s]+)\)$/))) {
+      flushPara(); flushList();
+      const src = m[2].replace('/src/assets/images/', '/images/');
+      out.push(`<p><img src="${src.startsWith('/') ? link(src) : esc(src)}" alt="${esc(m[1])}" loading="lazy" /></p>`);
       continue;
     }
     if (line.startsWith('>')) { flushPara(); flushList(); out.push(`<blockquote>${inline(line.replace(/^>\s?/, ''))}</blockquote>`); continue; }
@@ -341,6 +431,17 @@ const articleLd = (p) => {
   };
 };
 const sortedPosts = [...posts].sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+
+// Every article links to the services it supports and to related reading (mirrors src/site/RelatedLinks.tsx).
+const relatedHtml = (p) => {
+  const direct = content.services.filter((sv) => sv.related.includes(p.slug));
+  const svc = direct.length ? direct : content.services.slice(0, 2);
+  const others = sortedPosts.filter((o) => o.slug !== p.slug);
+  const more = [...others.filter((o) => o.category === p.category), ...others.filter((o) => o.category !== p.category)].slice(0, 3);
+  return `<h2>Related consulting services</h2>
+<ul>${svc.map((sv) => `<li><a href="${link(`/services/${sv.slug}`)}">${esc(sv.title)}</a></li>`).join('')}<li><a href="${link('/contact')}">Book a free 30-minute consultation</a></li></ul>
+${more.length ? `<h2>More articles</h2>\n<ul>${more.map((o) => `<li><a href="${link(`/blog/${o.slug}`)}">${esc(o.title)}</a></li>`).join('')}</ul>` : ''}`;
+};
 
 write(
   '/blog',
@@ -378,13 +479,24 @@ const postHtml = (p, path) =>
 <p><strong>${esc(p.summary)}</strong></p>
 ${md(p.content)}
 </article>
-<p><a href="${link('/services')}">Consulting services</a> | <a href="${link('/contact')}">Book a consultation</a></p>`,
+${relatedHtml(p)}`,
   });
 for (const p of posts) write(`/blog/${p.slug}`, postHtml(p));
-// Old URLs that still get linked: same article, canonical points at the main slug.
+// Old URLs that still get linked: a small redirect page (GitHub Pages has no server-side
+// redirects). noindex + canonical + instant refresh tells Google to index only the main slug.
 for (const [alias, target] of Object.entries(aliases)) {
   const p = postBySlug(target);
-  if (p) write(`/blog/${alias}`, postHtml(p));
+  if (!p) continue;
+  const dest = abs(`/blog/${target}`);
+  write(`/blog/${alias}`, `<!doctype html>
+<html lang="en-US"><head><meta charset="UTF-8" />
+<title>${esc(p.title)} | Abdul Rahman</title>
+<meta name="robots" content="noindex, follow" />
+<link rel="canonical" href="${dest}" />
+<meta http-equiv="refresh" content="0; url=${link(`/blog/${target}`)}" />
+</head><body><p>This article has moved to <a href="${link(`/blog/${target}`)}">${esc(p.title)}</a>.</p>
+<script>location.replace(${JSON.stringify(link(`/blog/${target}`))} + location.hash);</script></body></html>
+`);
 }
 
 // ---------- Free tools ----------
@@ -420,18 +532,20 @@ ${t.sources.length ? `<p>Data sources: ${t.sources.map((x) => `<a href="${esc(x.
 }
 
 // ---------- Sitemap ----------
-const today = new Date().toISOString().slice(0, 10);
+const siteChanged = changed('src/site/content.json', 'src/data.ts', 'src/site/Home.tsx', 'index.html');
+const contentChanged = changed('src/site/content.json');
+const newestPost = sortedPosts.length ? (sortedPosts[0].updatedAt || sortedPosts[0].createdAt).slice(0, 10) : contentChanged;
 const urls = [
-  ['/', today, '1.0'],
-  ['/services', today, '0.9'],
-  ...content.services.map((sv) => [`/services/${sv.slug}`, today, '0.9']),
-  ['/tools', today, '0.8'],
-  ...content.tools.map((t) => [`/tools/${t.slug}`, today, '0.8']),
-  ['/blog', today, '0.8'],
+  ['/', siteChanged, '1.0'],
+  ['/services', changed('src/site/content.json', 'src/site/ServicePages.tsx'), '0.9'],
+  ...content.services.map((sv) => [`/services/${sv.slug}`, changed('src/site/content.json', 'src/site/ServicePages.tsx'), '0.9']),
+  ['/tools', changed('src/site/content.json', 'src/site/tools'), '0.8'],
+  ...content.tools.map((t) => [`/tools/${t.slug}`, changed('src/site/content.json', 'src/site/tools'), '0.8']),
+  ['/blog', newestPost > contentChanged ? newestPost : contentChanged, '0.8'],
   ...sortedPosts.map((p) => [`/blog/${p.slug}`, (p.updatedAt || p.createdAt).slice(0, 10), '0.7']),
-  ['/ventures', today, '0.6'],
-  ...content.ventures.map((v) => [`/ventures/${v.slug}`, today, '0.6']),
-  ['/contact', today, '0.6'],
+  ['/ventures', contentChanged, '0.6'],
+  ...content.ventures.map((v) => [`/ventures/${v.slug}`, contentChanged, '0.6']),
+  ['/contact', changed('src/Contact.tsx', 'src/components/BookingForm.tsx'), '0.6'],
 ];
 writeFileSync(
   join(dist, 'sitemap.xml'),

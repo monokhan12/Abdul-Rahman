@@ -1,6 +1,7 @@
-import { useState, useEffect, FormEvent, ReactNode } from 'react';
+import { useState, useEffect, FormEvent, ReactNode, lazy, Suspense, type ComponentType, type LazyExoticComponent } from 'react';
 import { withBase } from '../lib/withBase';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Link } from '../lib/SiteLink';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowLeft, 
@@ -24,11 +25,24 @@ import {
   createComment, 
   BlogPost, 
   BlogComment,
-  auth
+  auth,
+  defaultBlogPosts,
+  slugAliases
 } from '../lib/firebase';
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, User as FirebaseUser } from 'firebase/auth';
 import SiteHeader from '../site/SiteHeader';
+import SiteFooter from '../site/SiteFooter';
+import NotFound from '../site/NotFound';
+import RelatedLinks from '../site/RelatedLinks';
+import { canonicalPath } from '../lib/SiteLink';
 import { articleSchema, breadcrumbSchema, clipText, personSchema, useSeo } from '../site/seo';
+
+// Interactive widgets an article can embed with a line like `[[interactive:metal-am/ved]]`.
+// Loaded on demand so ordinary articles don't download chart code.
+const interactiveModules: Record<string, LazyExoticComponent<ComponentType<{ id: string }>>> = {
+  'metal-am': lazy(() => import('./posts/MetalAmInteractive')),
+};
+const INTERACTIVE_LINE = /^\[\[interactive:([\w-]+)\/([\w-]+)\]\]$/;
 
 // Helper for inline markdown formatting
 const formatInline = (text: string) => {
@@ -36,7 +50,7 @@ const formatInline = (text: string) => {
     .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-white">$1</strong>')
     .replace(/\*(.*?)\*/g, '<em class="italic text-white/90">$1</em>')
     .replace(/`(.*?)`/g, '<code class="bg-white/10 px-1.5 py-0.5 rounded text-indigo-300 font-mono text-xs border border-white/5">$1</code>')
-    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-indigo-400 hover:text-indigo-300 underline font-medium underline-offset-2">$1</a>');
+    .replace(/\[(.*?)\]\((.*?)\)/g, (_m, label, href) => `<a href="${href.startsWith('/') ? withBase(canonicalPath(href)) : href}" class="text-indigo-400 hover:text-indigo-300 underline font-medium underline-offset-2">${label}</a>`);
 };
 
 // Rich Markdown renderer with tables, code blocks, checklists, images, and blockquotes
@@ -121,6 +135,21 @@ const renderMarkdown = (text: string) => {
       return;
     }
 
+    // Interactive widget: [[interactive:module/widget]]
+    const widget = trimmed.match(INTERACTIVE_LINE);
+    if (widget) {
+      if (inTable) flushTable(`before-widget-${index}`);
+      const Widget = interactiveModules[widget[1]];
+      if (Widget) {
+        elements.push(
+          <Suspense key={`widget-${index}`} fallback={<div className="am-loading">Loading interactive chart…</div>}>
+            <Widget id={widget[2]} />
+          </Suspense>
+        );
+      }
+      return;
+    }
+
     // Markdown Table rows
     if (trimmed.startsWith('|') && trimmed.endsWith('|')) {
       inTable = true;
@@ -144,16 +173,9 @@ const renderMarkdown = (text: string) => {
         return elements.push(
           <div key={`img-${index}`} className="my-8 rounded-3xl overflow-hidden border border-white/10 bg-white/5 p-2">
             <img 
-              src={withBase(src)} 
+              src={withBase(src.replace('/src/assets/images/', '/images/'))} 
               alt={alt} 
               loading="lazy"
-              onError={(e) => {
-                // Fallback to /images/ if /src/assets/images/ fails
-                const target = e.currentTarget;
-                if (src.includes('/src/assets/images/')) {
-                  target.src = withBase(src.replace('/src/assets/images/', '/images/'));
-                }
-              }}
               className="w-full h-auto rounded-2xl object-cover max-h-[520px]" 
             />
             {alt && (
@@ -262,18 +284,42 @@ const renderMarkdown = (text: string) => {
   if (inCodeBlock) flushCodeBlock('end');
   if (inTable) flushTable('end');
 
-  return elements;
+  // Wrap runs of list items in a real <ul>/<ol> so screen readers announce them as lists.
+  const grouped: ReactNode[] = [];
+  let run: { tag: 'ul' | 'ol'; items: ReactNode[] } | null = null;
+  const flush = () => {
+    if (!run) return;
+    const Tag = run.tag;
+    grouped.push(<Tag key={`list-${grouped.length}`} className="my-2">{run.items}</Tag>);
+    run = null;
+  };
+  for (const el of elements) {
+    const key = (el as { key?: string } | null)?.key ?? '';
+    const tag = key.startsWith('ul-') ? 'ul' : key.startsWith('ol-') ? 'ol' : null;
+    if (tag) {
+      if (!run || run.tag !== tag) { flush(); run = { tag, items: [] }; }
+      run.items.push(el);
+    } else {
+      flush();
+      grouped.push(el);
+    }
+  }
+  flush();
+  return grouped;
 };
 
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const [post, setPost] = useState<BlogPost | null>(null);
+  // Built-in articles render immediately (no spinner); Firestore can still update them afterwards.
+  const staticPost = (s?: string) =>
+    s ? defaultBlogPosts.find((p) => p.slug === s || p.slug === slugAliases[s]) || null : null;
+  const [post, setPost] = useState<BlogPost | null>(() => staticPost(slug));
   const [comments, setComments] = useState<BlogComment[]>([]);
   const [currentUser, setCurrentUser] = useState<FirebaseUser | null>(null);
   
   // Loading states
-  const [loadingPost, setLoadingPost] = useState<boolean>(true);
+  const [loadingPost, setLoadingPost] = useState<boolean>(() => !staticPost(slug));
   const [loadingComments, setLoadingComments] = useState<boolean>(true);
   const [submittingComment, setSubmittingComment] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -319,7 +365,7 @@ export default function BlogPostPage() {
   useEffect(() => {
     const loadPostData = async () => {
       if (!slug) return;
-      setLoadingPost(true);
+      if (!staticPost(slug)) setLoadingPost(true);
       setError(null);
       try {
         const article = await getBlogPostBySlug(slug);
@@ -332,7 +378,7 @@ export default function BlogPostPage() {
           loadComments(article.id || slug);
         }
       } catch (err: any) {
-        setError('Failed to fetch the blog post.');
+        if (!staticPost(slug)) setError('Failed to fetch the blog post.');
       } finally {
         setLoadingPost(false);
       }
@@ -403,6 +449,10 @@ export default function BlogPostPage() {
     );
   }
 
+  if (!post && error === 'Article not found.') {
+    return <NotFound />;
+  }
+
   if (error || !post) {
     return (
       <div className="min-h-screen bg-[#050505] text-white flex flex-col items-center justify-center p-6 text-center">
@@ -422,7 +472,7 @@ export default function BlogPostPage() {
   }
 
   return (
-    <div className="ar-page ar-legacy min-h-screen bg-[#050505] text-white font-sans selection:bg-white selection:text-black pb-32">
+    <div className="ar-page ar-legacy min-h-screen bg-[#050505] text-white font-sans selection:bg-white selection:text-black">
       {/* Background glow */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[10%] left-[20%] w-[500px] h-[500px] rounded-full bg-indigo-900/10 blur-[130px]" />
@@ -581,7 +631,10 @@ export default function BlogPostPage() {
             </div>
           </div>
         </section>
+
+        <RelatedLinks slug={post.slug} category={post.category} />
       </div>
+      <SiteFooter />
     </div>
   );
 }
