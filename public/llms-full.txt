@@ -107,6 +107,10 @@ AI-driven Materials Engineer blending physical metallurgy with computational mat
 - **URL:** `/blog/sem-eds-microstructural-analysis-guide`
 - **Topic:** Best practices for sample preparation, accelerating voltage optimization, ZAF matrix correction, and elemental mapping in metallurgical failure analysis.
 
+### Article 7: Metal Additive Manufacturing: Processes, Cost & Outlook
+- **URL:** `/blog/metal-additive-manufacturing-2026-2035-outlook/`
+- **Topic:** Interactive report on industrial metal 3D printing: market consolidation in 2025–2026, a comparison of nine metal AM processes (L-PBF, E-PBF, LP-DED, WAAM, EBAM, binder jetting, metal FFF, ultrasonic AM, cold spray), a volumetric energy density (VED) melt-pool simulator, cost per accepted part, powder atomization routes, qualification standards and the 2026–2035 outlook.
+
 ---
 
 ## Ventures founded by Abdul Rahman

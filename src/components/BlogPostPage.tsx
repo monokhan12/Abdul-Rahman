@@ -1,4 +1,4 @@
-import { useState, useEffect, FormEvent, ReactNode } from 'react';
+import { useState, useEffect, FormEvent, ReactNode, lazy, Suspense, type ComponentType, type LazyExoticComponent } from 'react';
 import { withBase } from '../lib/withBase';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from '../lib/SiteLink';
@@ -36,6 +36,13 @@ import NotFound from '../site/NotFound';
 import RelatedLinks from '../site/RelatedLinks';
 import { canonicalPath } from '../lib/SiteLink';
 import { articleSchema, breadcrumbSchema, clipText, personSchema, useSeo } from '../site/seo';
+
+// Interactive widgets an article can embed with a line like `[[interactive:metal-am/ved]]`.
+// Loaded on demand so ordinary articles don't download chart code.
+const interactiveModules: Record<string, LazyExoticComponent<ComponentType<{ id: string }>>> = {
+  'metal-am': lazy(() => import('./posts/MetalAmInteractive')),
+};
+const INTERACTIVE_LINE = /^\[\[interactive:([\w-]+)\/([\w-]+)\]\]$/;
 
 // Helper for inline markdown formatting
 const formatInline = (text: string) => {
@@ -125,6 +132,21 @@ const renderMarkdown = (text: string) => {
 
     if (inCodeBlock) {
       codeBlockLines.push(line);
+      return;
+    }
+
+    // Interactive widget: [[interactive:module/widget]]
+    const widget = trimmed.match(INTERACTIVE_LINE);
+    if (widget) {
+      if (inTable) flushTable(`before-widget-${index}`);
+      const Widget = interactiveModules[widget[1]];
+      if (Widget) {
+        elements.push(
+          <Suspense key={`widget-${index}`} fallback={<div className="am-loading">Loading interactive chart…</div>}>
+            <Widget id={widget[2]} />
+          </Suspense>
+        );
+      }
       return;
     }
 

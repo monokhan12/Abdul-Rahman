@@ -358,6 +358,23 @@ const inline = (t) =>
     .replace(/(^|\W)\*(?!\s)(.+?)\*(?=\W|$)/g, '$1<em>$2</em>')
     .replace(/`([^`]+)`/g, '<code>$1</code>')
     .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, txt, href) => `<a href="${href.startsWith('/') ? link(href) : href}">${txt}</a>`);
+// Interactive article widgets ([[interactive:module/widget]] lines) get a static text version
+// from the same data file, so crawlers can read what the charts and calculators show.
+const metalAm = JSON.parse(readFileSync(join(root, 'src/content/interactive/metal-additive-manufacturing.json'), 'utf8'));
+const table = (head, rows) => `<table><thead><tr>${head.map((h) => `<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map((r) => `<tr>${r.map((c) => `<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+const interactiveHtml = {
+  'metal-am': {
+    market: () => ['mix', 'region'].map((k) => { const m = metalAm.market[k]; return `<h3>${esc(m.title)}</h3>\n${table(['Segment', m.unit], m.data.map((d) => [d.name, String(d.value)]))}\n<p>${esc(m.note)}</p>`; }).join('\n'),
+    processes: () => table(['Process', 'Family', 'Deposition rate', 'Accuracy', 'Build envelope', 'Feedstock'], metalAm.processes.map((x) => [x.name, x.catLabel, x.rate, x.tol, x.env, x.feed]))
+      + metalAm.processes.map((x) => `<h3>${esc(x.name)}</h3>\n<p>${esc(x.desc)}</p>\n<p><strong>Strengths:</strong> ${esc(x.pros)} <strong>Limitations:</strong> ${esc(x.cons)}</p>\n<p>Workflow: ${x.flow.map(esc).join(' → ')}</p>`).join('\n'),
+    ved: () => `<p>VED = P / (v × h × t). ${esc(metalAm.ved.lowText)}</p>\n<p>${esc(metalAm.ved.okText)}</p>\n<p>${esc(metalAm.ved.highText)}</p>`,
+    sectors: () => metalAm.sectors.map((x) => `<h4>${esc(x.title)}</h4>\n<p><strong>Flagship hardware:</strong> ${esc(x.apps)}</p>\n<p><strong>Processes and alloys:</strong> ${esc(x.alloys)}</p>\n<p><strong>Verified impact:</strong> ${esc(x.impact)}</p>`).join('\n'),
+    cost: () => { const b = metalAm.cost.base; return table(['Cost element (per $1,000 part)', 'Baseline'], [['Machine amortization and operations', `$${b.machine}`], ['Powder feedstock', `$${b.powder}`], ['Stress relief, HIP and CNC', `$${b.finish}`], ['NDT / CT inspection and scrap', `$${b.ndt}`]])
+      + `\n<p>High-density build nesting cuts machine cost per part by about 55%; strategic orientation cuts support and finishing by about 30%.</p>\n${table(['Operation', 'Typical rate'], metalAm.cost.rates)}`; },
+    gates: () => `<ol>${metalAm.gates.map((g) => `<li><strong>${esc(g.name)}:</strong> ${esc(g.text)}</li>`).join('')}</ol>`,
+  },
+};
+
 function md(src) {
   const out = [];
   let list = null, para = [];
@@ -367,6 +384,7 @@ function md(src) {
     const line = raw.trim();
     let m;
     if (!line || /^(-{3,}|\*{3,})$/.test(line)) { flushPara(); flushList(); continue; }
+    if ((m = line.match(/^\[\[interactive:([\w-]+)\/([\w-]+)\]\]$/))) { flushPara(); flushList(); const f = interactiveHtml[m[1]]?.[m[2]]; if (f) out.push(f()); continue; }
     if ((m = line.match(/^(#{1,6})\s+(.*)$/))) { flushPara(); flushList(); const n = Math.min(6, Math.max(2, m[1].length)); out.push(`<h${n}>${inline(m[2])}</h${n}>`); continue; }
     if ((m = line.match(/^[-*+]\s+(.*)$/)) || (m = line.match(/^\d+[.)]\s+(.*)$/))) {
       const tag = /^\d/.test(line) ? 'ol' : 'ul';
